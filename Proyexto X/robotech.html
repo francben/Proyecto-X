@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Robot con movimiento wasd</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/robot_V1-3.js"></script>
+		<script type="text/javascript">
+
+
+$(function() {
+//event listener
+  window.addEventListener("keydown", onKeyDown, false);
+  window.addEventListener("keyup", onKeyUp, false);
+
+function onKeyDown(event) {
+  var keyCode = event.keyCode;
+  switch (keyCode) {
+    case 68: //d
+      keyD = true;
+      break;
+    case 83: //s
+      keyS = true;
+      break;
+    case 65: //a
+      keyA = true;
+      break;
+    case 87: //w
+      keyW = true;
+      break;
+  }
+}
+
+function onKeyUp(event) {
+  var keyCode = event.keyCode;
+  switch (keyCode) {
+    case 68: //d
+      keyD = false;
+      break;
+    case 83: //s
+      keyS = false;
+      break;
+    case 65: //a
+      keyA = false;
+      break;
+    case 87: //w
+      keyW = false;
+      break;
+  }
+}
+
+// variables necesarias
+var tickX = 10;
+var tickY = 10;
+
+var keyW = false;
+var keyA = false;
+var keyS = false;
+var keyD = false;
+
+//funcion para la animacion
+function drawStuff() {
+  window.requestAnimationFrame(drawStuff);
+  var canvas = document.getElementById("myCanvas");
+  var context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, 800, 800);
+
+  var robo8 = new Robot8(tickX, tickY, 100, 100);
+  robo8.dibujar(context);
+
+  if (keyD == true) {
+    tickX += 10;
+  }
+  if (keyS == true) {
+    tickY += 10;
+  }
+  if (keyA == true) {
+    tickX -= 10;
+  }
+  if (keyW == true) {
+    tickY-= 10;
+  }
+}
+window.requestAnimationFrame(drawStuff);
+});
+
+		</script>
+	</head>
+<body>
+	<canvas id="myCanvas" width="800" height="800">	</canvas>
+</body>
+</html>
