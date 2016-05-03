@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fuga V1</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<link href="canvas.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/Juguemos.js"></script>
+		<script type="text/javascript" src="js/mapa.js"></script>
+
+
+		<script type="text/javascript">
+			$(function() {
+				var canvas = $("#myCanvas"); 
+				context = canvas.get(0).getContext("2d");
+				canvas.attr("width", $(window).get(0).innerWidth);
+				canvas.attr("height", $(window).get(0).innerHeight);
+				context.fillStyle = ("silver");
+				context.fillRect(0, 0, canvas.width(), canvas.height());
+
+				var mapa = new Mapa(5,200,250,250);
+				mapa.drawMapa(context);
+
+				var mapa2 = new Mapa(550,100,60,50);
+				mapa2.drawMapa(context);
+
+			});
+			
+		</script>
+	</head>
+<body>
+	<canvas id="myCanvas">
+	<!-- Insert fallback content here -->
+	</canvas>
+
+
+</body>
+</html>
