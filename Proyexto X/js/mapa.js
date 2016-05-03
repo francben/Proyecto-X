@@ -6,141 +6,125 @@ function Mapa(x, y, w, h){
 
 	this.drawMapa = function(ctx){
 		//edif1
-		ctx.strokeRect(this.x+1/18.0*this.w, this.y+10/18.0*this.h, 5/18.0*this.w, 12/18.0*this.h);
+		var med = 8.0;
+		var suelo = 2.5;
+		var ven = 1;
+
+		//edif1
+		ctx.strokeRect(this.x+0.5/med*this.w, this.y+suelo/med*this.h, 3/med*this.w, 7/med*this.h);
+		//ventanas edif1
+		ctx.strokeRect(this.x+0.7/med*this.w, this.y+3/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+2.3/med*this.w, this.y+3/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+0.7/med*this.w, this.y+4.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+2.3/med*this.w, this.y+4.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+0.7/med*this.w, this.y+6.5/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+2.3/med*this.w, this.y+6.5/med*this.h, ven/med*this.w, ven/med*this.h);
+		//puerta edif1
+		ctx.strokeRect(this.x+1/med*this.w, this.y+8.5/med*this.h, 2/med*this.w, 1/med*this.h);
 
 		//edif2
-		ctx.strokeRect(this.x+6/18.0*this.w, this.y+6/18.0*this.h, 8/18.0*this.w, 16/18.0*this.h);
-
-		//edif3 medio
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(-12/18.0)*this.h, 22/18.0*this.w, 34/18.0*this.h);
-
-
-		//edif3
-		ctx.strokeRect(this.x+36/18.0*this.w, this.y+8/18.0*this.h, 8/18.0*this.w, 14/18.0*this.h);
-
-		//edif4
-		ctx.strokeRect(this.x+44/18.0*this.w, this.y+14/18.0*this.h, 5/18.0*this.w, 8/18.0*this.h);
-
-		//edif5
-		ctx.strokeRect(this.x+49/18.0*this.w, this.y+4/18.0*this.h, 12/18.0*this.w, 18/18.0*this.h);
-
-		//edif6
-		ctx.strokeRect(this.x+61/18.0*this.w, this.y+-5/18.0*this.h, 11/18.0*this.w, 27/18.0*this.h);
-
-		//ventanas edif1
-		ctx.strokeRect(this.x+1.5/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+4/18.0*this.w, this.y+14/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+1.5/18.0*this.w, this.y+14/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+4/18.0*this.w, this.y+17/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+1.5/18.0*this.w, this.y+17/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+4/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		//puerta edif1
-		ctx.strokeRect(this.x+3/18.0*this.w, this.y+20.2/18.0*this.h, 1/18.0*this.w, 1.8/18.0*this.h);
-
-
-
+		ctx.strokeRect(this.x+3.5/med*this.w, this.y+-0.5/med*this.h, 3/med*this.w, 10/med*this.h);
 		//ventanas edif2
-		ctx.strokeRect(this.x+6.5/18.0*this.w, this.y+7/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+9.2/18.0*this.w, this.y+7/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+12/18.0*this.w, this.y+7/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+6.5/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+9.2/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+12/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+6.5/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+9.2/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+12/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
+		ctx.strokeRect(this.x+3.7/med*this.w, this.y+-0/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+5.3/med*this.w, this.y+0/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+3.7/med*this.w, this.y+1.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+5.3/med*this.w, this.y+1.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+3.7/med*this.w, this.y+3.6/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+5.3/med*this.w, this.y+3.6/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+3.7/med*this.w, this.y+5.4/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+5.3/med*this.w, this.y+5.4/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+3.7/med*this.w, this.y+7.2/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+5.3/med*this.w, this.y+7.2/med*this.h, ven/med*this.w, ven/med*this.h);
 		//puerta edif2
-		ctx.strokeRect(this.x+8/18.0*this.w, this.y+20.2/18.0*this.h, 4/18.0*this.w, 1.8/18.0*this.h);
+		ctx.strokeRect(this.x+5.8/med*this.w, this.y+8.5/med*this.h, 0.5/med*this.w, 1/med*this.h);
 
 
 		//edif3
+		ctx.strokeRect(this.x+6.5/med*this.w, this.y+1/med*this.h, 3/med*this.w, 8.5/med*this.h);
+		//ventana edif3
+		ctx.strokeRect(this.x+6.7/med*this.w, this.y+1.5/med*this.h, 1.5/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+6.7/med*this.w, this.y+3/med*this.h, 1.5/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+6.7/med*this.w, this.y+4.5/med*this.h, 1.5/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+6.7/med*this.w, this.y+6/med*this.h, 1.5/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+6.7/med*this.w, this.y+7.5/med*this.h, 1.5/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+8.8/med*this.w, this.y+1.5/med*this.h, 0.5/med*this.w, 6.5/med*this.h);
+		//puerta edif3 
+		ctx.strokeRect(this.x+8.8/med*this.w, this.y+8.5/med*this.h, 0.5/med*this.w, 1/med*this.h);
 
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(-12/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(-7/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(-2/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(3/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(8/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		ctx.strokeRect(this.x+14/18.0*this.w, this.y+(13/18.0)*this.h, 22/18.0*this.w, 5/18.0*this.h);
-		//puerta edif3
-		ctx.strokeRect(this.x+15/18.0*this.w, this.y+20.2/18.0*this.h, 4/18.0*this.w, 1.8/18.0*this.h);
-		ctx.strokeRect(this.x+23/18.0*this.w, this.y+20.2/18.0*this.h, 4/18.0*this.w, 1.8/18.0*this.h);
-		ctx.strokeRect(this.x+31/18.0*this.w, this.y+20.2/18.0*this.h, 4/18.0*this.w, 1.8/18.0*this.h);
+		//edif centro
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+-5/med*this.h, 13.5/med*this.w, 14.5/med*this.h);
+		//pisos edif centro
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+-5/med*this.h, 13.5/med*this.w, 2/med*this.h);
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+-3/med*this.h, 13.5/med*this.w, 2/med*this.h);
+		
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+-1/med*this.h, 13.5/med*this.w, 2/med*this.h);
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+1/med*this.h, 13.5/med*this.w, 2/med*this.h);
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+3/med*this.h, 13.5/med*this.w, 2/med*this.h);
+		ctx.strokeRect(this.x+9.5/med*this.w, this.y+5/med*this.h, 13.5/med*this.w, 2/med*this.h);
 
+		//puerta edif centro
+		ctx.strokeRect(this.x+9.7/med*this.w, this.y+8.5/med*this.h, 3/med*this.w, 1/med*this.h);
+		ctx.strokeRect(this.x+15/med*this.w, this.y+8.5/med*this.h, 3/med*this.w, 1/med*this.h);
+		ctx.strokeRect(this.x+19.8/med*this.w, this.y+8.5/med*this.h, 3/med*this.w, 1/med*this.h);
 
-
-
-
-
-
-
-		//ventanas edif4
-		ctx.strokeRect(this.x+36.5/18.0*this.w, this.y+9/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+39.2/18.0*this.w, this.y+9/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+41.8/18.0*this.w, this.y+9/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+36.5/18.0*this.w, this.y+12/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+39.2/18.0*this.w, this.y+12/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+41.8/18.0*this.w, this.y+12/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+36.5/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+39.2/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+41.8/18.0*this.w, this.y+15/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+36.5/18.0*this.w, this.y+18/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+39.2/18.0*this.w, this.y+18/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+41.8/18.0*this.w, this.y+18/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		//puerta edif4
-		ctx.strokeRect(this.x+36/18.0*this.w, this.y+20.2/18.0*this.h, 4/18.0*this.w, 1.8/18.0*this.h);
-		ctx.strokeRect(this.x+42.2/18.0*this.w, this.y+20.2/18.0*this.h, 1/18.0*this.w, 1.8/18.0*this.h);
-
-
-		//edif5
-		ctx.strokeRect(this.x+44.5/18.0*this.w, this.y+15/18.0*this.h, 4/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+44.5/18.0*this.w, this.y+17.8/18.0*this.h, 4/18.0*this.w, 1.5/18.0*this.h);
-		//puerta edif5
-		ctx.strokeRect(this.x+44.6/18.0*this.w, this.y+20.2/18.0*this.h, 1/18.0*this.w, 1.8/18.0*this.h);
-
-
-		//edif6
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+5/18.0*this.h, 8/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+59/18.0*this.w, this.y+5/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+8/18.0*this.h, 8/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+59/18.0*this.w, this.y+8/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+11/18.0*this.h, 8/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+59/18.0*this.w, this.y+11/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+14/18.0*this.h, 8/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+59/18.0*this.w, this.y+14/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+17/18.0*this.h, 8/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+59/18.0*this.w, this.y+17/18.0*this.h, 1.5/18.0*this.w, 1.5/18.0*this.h);
-		//puerta6
-		ctx.strokeRect(this.x+49.5/18.0*this.w, this.y+20/18.0*this.h, 4/18.0*this.w, 2/18.0*this.h);
-
-		//edif7
-		ctx.strokeRect(this.x+69/18.0*this.w, this.y+(-4/18.0)*this.h, 2/18.0*this.w, 22.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(-4/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(-1/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(2/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(5/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(8/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(11/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(14/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		ctx.strokeRect(this.x+62/18.0*this.w, this.y+(17/18.0)*this.h, 6/18.0*this.w, 1.5/18.0*this.h);
-		//puerta7
-		ctx.strokeRect(this.x+69/18.0*this.w, this.y+20/18.0*this.h, 2/18.0*this.w, 2/18.0*this.h);
-
-		//raya
+		//linea
 		ctx.beginPath();
-		ctx.moveTo(this.x+25/18.0*this.w, this.y+(-12/18.0)*this.h); // Set the path origin
-		ctx.lineTo(this.x+25/18.0*this.w, this.y+18/18.0*this.h); // Set the path destination
+		ctx.moveTo(this.x+16.2/med*this.w, this.y+-5/med*this.h); // Set the path origin
+		ctx.lineTo(this.x+16.2/med*this.w, this.y+7/med*this.h); // Set the path destination
 		ctx.closePath(); // Close the path
 		ctx.stroke(); 
 
+
+
+
+
+
+
+
+
+		//edif ultimo
+		ctx.strokeRect(this.x+27/med*this.w, this.y+-0.5/med*this.h, 5/med*this.w, 10/med*this.h);
+		//ventana edif ultimo
+		ctx.strokeRect(this.x+27.2/med*this.w, this.y+-0/med*this.h, 3/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+30.8/med*this.w, this.y+0/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+27.2/med*this.w, this.y+1.8/med*this.h, 3/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+30.8/med*this.w, this.y+1.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+27.2/med*this.w, this.y+3.6/med*this.h, 3/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+30.8/med*this.w, this.y+3.6/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+27.2/med*this.w, this.y+5.4/med*this.h, 3/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+30.8/med*this.w, this.y+5.4/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+28.8/med*this.w, this.y+7/med*this.h, 3/med*this.w, 0.8/med*this.h);
+		//puerta edif ultimo
+		ctx.strokeRect(this.x+29.5/med*this.w, this.y+8.5/med*this.h, 2/med*this.w, 1/med*this.h);
+		ctx.strokeRect(this.x+27.2/med*this.w, this.y+7/med*this.h, 1/med*this.w, 0.8/med*this.h);
+
+
+
+		//edif ante ultimo
+		ctx.strokeRect(this.x+23/med*this.w, this.y+4.5/med*this.h, 4/med*this.w, 5/med*this.h);
+		//ventana edif ante ultimo
+		ctx.strokeRect(this.x+23.2/med*this.w, this.y+4.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+24.5/med*this.w, this.y+4.8/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+25.8/med*this.w, this.y+4.8/med*this.h, ven/med*this.w, ven/med*this.h);
+
+		ctx.strokeRect(this.x+23.2/med*this.w, this.y+6/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+24.5/med*this.w, this.y+6/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+25.8/med*this.w, this.y+6/med*this.h, ven/med*this.w, ven/med*this.h);
+
+		ctx.strokeRect(this.x+23.2/med*this.w, this.y+7.2/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+24.5/med*this.w, this.y+7.2/med*this.h, ven/med*this.w, ven/med*this.h);
+		ctx.strokeRect(this.x+25.8/med*this.w, this.y+7.2/med*this.h, ven/med*this.w, ven/med*this.h);
+
+		//puerta edif ante ultimo
+		ctx.strokeRect(this.x+26.3/med*this.w, this.y+8.5/med*this.h, 0.5/med*this.w, 1/med*this.h);
+
+
+
+
+
+
+
+		
 
 
 
