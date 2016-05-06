@@ -5,17 +5,8 @@
 		<meta charset="utf-8">
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<link href="canvas.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="js/ArmaEstandar.js"></script>
-		<script type="text/javascript" src="js/ArmaElectrica.js"></script>
-		<script type="text/javascript" src="js/ArmaMetralleta.js"></script>
+		<script type="text/javascript" src="js/Juguemos.js"></script>
 		<script type="text/javascript" src="js/alpha.js"></script>
-		<script type="text/javascript" src="js/Level1.js"></script>
-		<script type="text/javascript" src="js/mapa.js"></script>
-		<script type="text/javascript" src="js/nivel4.js"></script>
-		<script type="text/javascript" src="js/mapa.js"></script>
-		<script type="text/javascript" src="js/robot_V1-3.js"></script>
-		<script type="text/javascript" src="js/RobotXero.js"></script>
-		<script type="text/javascript" src="js/Viper.js"></script>
 
 
 		<script type="text/javascript">
@@ -24,25 +15,10 @@
 				context = canvas.get(0).getContext("2d");
 				canvas.attr("width", $(window).get(0).innerWidth);
 				canvas.attr("height", $(window).get(0).innerHeight);
-				//context.fillRect(0, 0, canvas.width(), canvas.height());
-				var ma = new Mapa(0, 250, 400, 300);
-				ma.drawMapa(context);
+				context.fillRect(0, 0, canvas.width(), canvas.height());
 
-				var arme = new ArmaMetralleta(20, 20, 50, 50);
-				arme.dibujar(context);
-				var arel = new ArmaElectrica(120, 20, 70, 70);
-				arel.dibujar(context);
-				var arst = new ArmaEstandar(170, 20, 70, 70);
-				arst.dibujar(context);
-				var alp = new Alpha(240,20,120,120);
-				alp.dibujar(context);
-				var robv1 = new Robot8(380,20,120,120);
-				robv1.dibujar(context);
-				var robx = new RobotXero(20,150,120,120);
-				robx.dibu(context);
-				var robvip = new Viper(150,150,120,120);
-				robvip.dibujar(context);
-
+				var jeje = new Juguemos(500,200,250,250);
+				jeje.dibujar(context);
 
 			});
 			
@@ -52,5 +28,6 @@
 	<canvas id="myCanvas">
 	<!-- Insert fallback content here -->
 	</canvas>
+	
 </body>
 </html>

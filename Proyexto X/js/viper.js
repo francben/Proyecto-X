@@ -1,4 +1,4 @@
-function Viper(x, y, w, h){
+function Robot(x, y, w, h){
 	this.x = x;
 	this.y = y;
 	this.w = w;
@@ -59,7 +59,7 @@ function Viper(x, y, w, h){
 		//dibujando brazo derecho
 		context.beginPath(); // Start the path
 		context.moveTo(this.x + 2.5/8 * this.w, this.y + 3/8); // Set the path origin
-		context.lineTo(this.w, this.y); // Set the path destination
+		context.lineTo(this.w, this.); // Set the path destination
 		context.closePath(); // Close the path
 		context.stroke(); // Outline the path
 
