@@ -14,64 +14,115 @@ function RobotV1_v4(x, y, w, h){
 
 		ctx.lineWidth = 2;
 
+		//cuello
+		ctx.fillStyle = negro;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+4.8/wi*this.w, this.y+2.6/he*this.h); 
+		ctx.lineTo(this.x+4.8/wi*this.w, this.y+2.8/he*this.h); 
+		ctx.lineTo(this.x+5.6/wi*this.w, this.y+2.8/he*this.h);
+		ctx.lineTo(this.x+5.6/wi*this.w, this.y+2.6/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+
+		//soporte cabeza 1
+		ctx.fillStyle = gris1;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+4.5/wi*this.w, this.y+2.8/he*this.h); 
+		ctx.lineTo(this.x+4.5/wi*this.w, this.y+2.5/he*this.h); 
+		ctx.lineTo(this.x+4.8/wi*this.w, this.y+2.0/he*this.h); 
+		ctx.lineTo(this.x+4.8/wi*this.w, this.y+2.3/he*this.h);
+		ctx.lineTo(this.x+4.6/wi*this.w, this.y+2.5/he*this.h);
+		ctx.lineTo(this.x+4.6/wi*this.w, this.y+2.8/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+
+		//soporte cabeza 2
+		ctx.fillStyle = gris1;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+5.8/wi*this.w, this.y+2.8/he*this.h); 
+		ctx.lineTo(this.x+5.8/wi*this.w, this.y+2.5/he*this.h); 
+		ctx.lineTo(this.x+5.6/wi*this.w, this.y+2.3/he*this.h); 
+		ctx.lineTo(this.x+5.6/wi*this.w, this.y+2.0/he*this.h);
+		ctx.lineTo(this.x+5.9/wi*this.w, this.y+2.5/he*this.h);
+		ctx.lineTo(this.x+5.9/wi*this.w, this.y+2.8/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+
 		//cabeza
 		ctx.fillStyle = gris2;
 		ctx.beginPath(); 
-		ctx.moveTo(this.x+4.6/wi*this.w, this.y+2.0/he*this.h); 
-		ctx.lineTo(this.x+4.7/wi*this.w, this.y+2.9/he*this.h); 
-		ctx.lineTo(this.x+5.7/wi*this.w, this.y+2.9/he*this.h);
-		ctx.lineTo(this.x+5.8/wi*this.w, this.y+2.0/he*this.h);
-		ctx.lineTo(this.x+5.6/wi*this.w, this.y+1.7/he*this.h);
-		ctx.lineTo(this.x+4.8/wi*this.w, this.y+1.7/he*this.h);
+		ctx.moveTo(this.x+4.6/wi*this.w, this.y+1.7/he*this.h); 
+		ctx.lineTo(this.x+5.8/wi*this.w, this.y+1.7/he*this.h);
+		ctx.lineTo(this.x+5.7/wi*this.w, this.y+1.5/he*this.h);
+		ctx.lineTo(this.x+4.7/wi*this.w, this.y+1.5/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+		ctx.fillStyle = gris2;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+4.6/wi*this.w, this.y+1.7/he*this.h); 
+		ctx.lineTo(this.x+4.7/wi*this.w, this.y+2.6/he*this.h); 
+		ctx.lineTo(this.x+5.7/wi*this.w, this.y+2.6/he*this.h);
+		ctx.lineTo(this.x+5.8/wi*this.w, this.y+1.7/he*this.h);
 		ctx.closePath(); 
 		ctx.stroke();
 		ctx.fill();
 		ctx.fillStyle = negro;
-		ctx.fillRect(this.x+4.9/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
-		ctx.fillRect(this.x+5.0/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
-		ctx.fillRect(this.x+5.1/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
-		ctx.fillRect(this.x+5.2/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
-		ctx.fillRect(this.x+5.3/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
-		ctx.fillRect(this.x+5.4/wi*this.w, this.y+1.7/he*this.h, 0.05/wi*this.w, 0.1/he*this.h);
+		ctx.fillRect(this.x+4.8/wi*this.w, this.y+1.5/he*this.h, 0.1/wi*this.w, 0.15/he*this.h);
+		ctx.fillRect(this.x+5.0/wi*this.w, this.y+1.5/he*this.h, 0.1/wi*this.w, 0.15/he*this.h);
+		ctx.fillRect(this.x+5.2/wi*this.w, this.y+1.5/he*this.h, 0.1/wi*this.w, 0.15/he*this.h);
+		ctx.fillRect(this.x+5.4/wi*this.w, this.y+1.5/he*this.h, 0.1/wi*this.w, 0.15/he*this.h);
 
 		//ojos
 		ctx.fillStyle = negro;
-		ctx.fillRect(this.x+4.7/wi*this.w, this.y+2/he*this.h, 0.8/wi*this.w, 0.4/he*this.h);
+		ctx.fillRect(this.x+4.7/wi*this.w, this.y+1.8/he*this.h, 0.8/wi*this.w, 0.4/he*this.h);
 		//ojo 1
 		ctx.fillStyle = blanco;
 		ctx.beginPath(); 
-		ctx.arc(this.x+4.9/wi*this.w, this.y+2.2/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.arc(this.x+4.9/wi*this.w, this.y+2.0/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
 		//ojo 2
 		ctx.fillStyle = blanco;
 		ctx.beginPath(); 
-		ctx.arc(this.x+5.3/wi*this.w, this.y+2.2/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.arc(this.x+5.3/wi*this.w, this.y+2.0/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
 
 		//boca
 		ctx.fillStyle = negro;
-		ctx.fillRect(this.x+4.9/wi*this.w, this.y+2.5/he*this.h, 0.05/wi*this.w, 0.2/he*this.h);
-		ctx.fillRect(this.x+5.0/wi*this.w, this.y+2.5/he*this.h, 0.05/wi*this.w, 0.2/he*this.h);
-		ctx.fillRect(this.x+5.1/wi*this.w, this.y+2.5/he*this.h, 0.05/wi*this.w, 0.2/he*this.h);
-		ctx.fillRect(this.x+5.2/wi*this.w, this.y+2.5/he*this.h, 0.05/wi*this.w, 0.2/he*this.h);
-		
-
+		ctx.fillRect(this.x+4.85/wi*this.w, this.y+2.3/he*this.h, 0.1/wi*this.w, 0.2/he*this.h);
+		ctx.fillRect(this.x+5.05/wi*this.w, this.y+2.3/he*this.h, 0.1/wi*this.w, 0.2/he*this.h);
+		ctx.fillRect(this.x+5.25/wi*this.w, this.y+2.3/he*this.h, 0.1/wi*this.w, 0.2/he*this.h);
+	
 		//brazo 1
 		ctx.fillStyle = gris2;
 		ctx.beginPath(); 
-		ctx.moveTo(this.x+2.3/wi*this.w, this.y+4.3/he*this.h); 
-		ctx.lineTo(this.x+3.85/wi*this.w, this.y+4.0/he*this.h); 
-		ctx.lineTo(this.x+3.6/wi*this.w, this.y+3.0/he*this.h); 
-		ctx.lineTo(this.x+4.2/wi*this.w, this.y+3.0/he*this.h);
-		ctx.lineTo(this.x+4.6/wi*this.w, this.y+4.5/he*this.h); 
-		ctx.lineTo(this.x+2.4/wi*this.w, this.y+4.7/he*this.h); 
+		ctx.moveTo(this.x+2.25/wi*this.w, this.y+4.3/he*this.h); 
+		ctx.lineTo(this.x+3.8/wi*this.w, this.y+4.0/he*this.h); 
+		ctx.lineTo(this.x+3.55/wi*this.w, this.y+3.4/he*this.h); 
+		ctx.lineTo(this.x+3.8/wi*this.w, this.y+3.4/he*this.h);
+		ctx.lineTo(this.x+4.1/wi*this.w, this.y+4.2/he*this.h); 
+		ctx.lineTo(this.x+2.25/wi*this.w, this.y+4.45/he*this.h); 
 		ctx.closePath(); 
 		ctx.stroke();
 		ctx.fill();
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+2.3/wi*this.w, this.y+4.6/he*this.h); 
+		ctx.lineTo(this.x+4.2/wi*this.w, this.y+4.35/he*this.h); 
+		ctx.lineTo(this.x+4.2/wi*this.w, this.y+3.8/he*this.h); 
+		ctx.lineTo(this.x+4.3/wi*this.w, this.y+3.8/he*this.h);
+		ctx.lineTo(this.x+4.4/wi*this.w, this.y+4.5/he*this.h); 
+		ctx.lineTo(this.x+2.3/wi*this.w, this.y+4.7/he*this.h); 
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();		
+
 		//codo 1
 		ctx.fillStyle = gris2;
 		ctx.beginPath(); 
@@ -97,8 +148,9 @@ function RobotV1_v4(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke();
 		ctx.fill();
-		ctx.fillRect(this.x+1.5/wi*this.w, this.y+4.3/he*this.h, 0.5/wi*this.w, 0.15/he*this.h);
-		ctx.fillRect(this.x+1.6/wi*this.w, this.y+4.7/he*this.h, 0.5/wi*this.w, 0.15/he*this.h);
+		ctx.fillRect(this.x+1.5/wi*this.w, this.y+4.25/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);
+		ctx.fillRect(this.x+1.5/wi*this.w, this.y+4.5/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);
+		ctx.fillRect(this.x+1.5/wi*this.w, this.y+4.75/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);
 
 		//hombro 1
 		ctx.fillStyle = negro;
@@ -154,8 +206,8 @@ function RobotV1_v4(x, y, w, h){
 		ctx.beginPath(); 
 		ctx.moveTo(this.x+4.4/wi*this.w, this.y+3.3/he*this.h); 
 		ctx.lineTo(this.x+4.8/wi*this.w, this.y+4.5/he*this.h); 
-		ctx.lineTo(this.x+4.8/wi*this.w, this.y+5.4/he*this.h);
-		ctx.lineTo(this.x+5.6/wi*this.w, this.y+5.4/he*this.h);
+		ctx.lineTo(this.x+4.8/wi*this.w, this.y+5.1/he*this.h);
+		ctx.lineTo(this.x+5.6/wi*this.w, this.y+5.1/he*this.h);
 		ctx.lineTo(this.x+5.6/wi*this.w, this.y+4.5/he*this.h);
 		ctx.lineTo(this.x+6.0/wi*this.w, this.y+3.3/he*this.h);		
 		ctx.closePath(); 
@@ -182,7 +234,17 @@ function RobotV1_v4(x, y, w, h){
 		ctx.moveTo(this.x+4.2/wi*this.w, this.y+4.3/he*this.h); 
 		ctx.lineTo(this.x+5.95/wi*this.w, this.y+4.0/he*this.h); 
 		ctx.lineTo(this.x+6.2/wi*this.w, this.y+3.0/he*this.h); 
-		ctx.lineTo(this.x+6.9/wi*this.w, this.y+3.0/he*this.h);
+		ctx.lineTo(this.x+6.35/wi*this.w, this.y+3.0/he*this.h);
+		ctx.lineTo(this.x+6.05/wi*this.w, this.y+4.2/he*this.h); 
+		ctx.lineTo(this.x+4.2/wi*this.w, this.y+4.45/he*this.h); 
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+4.3/wi*this.w, this.y+4.55/he*this.h); 
+		ctx.lineTo(this.x+6.1/wi*this.w, this.y+4.35/he*this.h); 
+		ctx.lineTo(this.x+6.9/wi*this.w, this.y+3.0/he*this.h); 
+		ctx.lineTo(this.x+7.0/wi*this.w, this.y+3.15/he*this.h);
 		ctx.lineTo(this.x+6.3/wi*this.w, this.y+4.5/he*this.h); 
 		ctx.lineTo(this.x+4.3/wi*this.w, this.y+4.7/he*this.h); 
 		ctx.closePath(); 
@@ -199,8 +261,9 @@ function RobotV1_v4(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke();
 		ctx.fill();
-		ctx.fillRect(this.x+3.4/wi*this.w, this.y+4.3/he*this.h, 0.5/wi*this.w, 0.15/he*this.h);
-		ctx.fillRect(this.x+3.5/wi*this.w, this.y+4.7/he*this.h, 0.5/wi*this.w, 0.15/he*this.h);	
+		ctx.fillRect(this.x+3.4/wi*this.w, this.y+4.25/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);
+		ctx.fillRect(this.x+3.5/wi*this.w, this.y+4.5/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);
+		ctx.fillRect(this.x+3.5/wi*this.w, this.y+4.75/he*this.h, 0.5/wi*this.w, 0.1/he*this.h);	
 
 		//codo 2
 		ctx.fillStyle = negro;
@@ -331,46 +394,10 @@ function RobotV1_v4(x, y, w, h){
 		ctx.stroke(); 
 		ctx.fill();
 
-		//union ruedas 1
-		ctx.fillStyle = negro;
-		ctx.fillRect(this.x+3.85/wi*this.w, this.y+8.4/he*this.h, 0.2/wi*this.w, 1/he*this.h);
-		ctx.fillRect(this.x+3.1/wi*this.w, this.y+9.25/he*this.h, 1.8/wi*this.w, 0.2/he*this.h);
-
-		ctx.fillStyle = gris2;
-		ctx.beginPath(); 
-		ctx.arc(this.x+3.1/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
-		ctx.closePath(); 
-		ctx.stroke(); 
-		ctx.fill();
-
-		ctx.beginPath(); 
-		ctx.arc(this.x+3.95/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
-		ctx.closePath(); 
-		ctx.stroke(); 
-		ctx.fill();
-
-		ctx.beginPath(); 
-		ctx.arc(this.x+4.8/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
-		ctx.closePath(); 
-		ctx.stroke(); 
-		ctx.fill();
-
-		ctx.beginPath(); 
-		ctx.arc(this.x+3.95/wi*this.w, this.y+8.4/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
-		ctx.closePath(); 
-		ctx.stroke(); 
-		ctx.fill();
-
 		//ruedas 15
 		ctx.fillStyle = gris1;
 		ctx.beginPath(); 
 		ctx.arc(this.x+3.25/wi*this.w, this.y+8.7/he*this.h, 0.2/wi*this.w, 0, 2*Math.PI, true);
-		ctx.closePath(); 
-		ctx.stroke(); 
-		ctx.fill();
-		ctx.fillStyle = negro;
-		ctx.beginPath(); 
-		ctx.arc(this.x+3.25/wi*this.w, this.y+8.7/he*this.h, 0.05/wi*this.w, 0, 2*Math.PI, true);
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
@@ -382,7 +409,50 @@ function RobotV1_v4(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
+
+		//union ruedas 1
 		ctx.fillStyle = negro;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+3.0/wi*this.w, this.y+9.4/he*this.h);
+		ctx.lineTo(this.x+3.25/wi*this.w, this.y+8.7/he*this.h);
+		ctx.lineTo(this.x+3.95/wi*this.w, this.y+8.35/he*this.h);
+		ctx.lineTo(this.x+4.65/wi*this.w, this.y+8.7/he*this.h);
+		ctx.lineTo(this.x+5.0/wi*this.w, this.y+9.4/he*this.h); 
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+		//ejes 11
+		ctx.fillStyle = gris2;
+		ctx.beginPath(); 
+		ctx.arc(this.x+3.1/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.closePath(); 
+		ctx.stroke(); 
+		ctx.fill();
+		//ejes 12
+		ctx.beginPath(); 
+		ctx.arc(this.x+3.95/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.closePath(); 
+		ctx.stroke(); 
+		ctx.fill();
+		//ejes 12
+		ctx.beginPath(); 
+		ctx.arc(this.x+4.8/wi*this.w, this.y+9.35/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.closePath(); 
+		ctx.stroke(); 
+		ctx.fill();
+		//ejes 13
+		ctx.beginPath(); 
+		ctx.arc(this.x+3.95/wi*this.w, this.y+8.4/he*this.h, 0.1/wi*this.w, 0, 2*Math.PI, true);
+		ctx.closePath(); 
+		ctx.stroke(); 
+		ctx.fill();
+		//ejes 14
+		ctx.beginPath(); 
+		ctx.arc(this.x+3.25/wi*this.w, this.y+8.7/he*this.h, 0.05/wi*this.w, 0, 2*Math.PI, true);
+		ctx.closePath(); 
+		ctx.stroke(); 
+		ctx.fill();
+		//ejes 15
 		ctx.beginPath(); 
 		ctx.arc(this.x+4.65/wi*this.w, this.y+8.7/he*this.h, 0.05/wi*this.w, 0, 2*Math.PI, true);
 		ctx.closePath(); 
@@ -394,6 +464,14 @@ function RobotV1_v4(x, y, w, h){
 		ctx.beginPath(); 
 		ctx.moveTo(this.x+3.5/wi*this.w, this.y+8/he*this.h); 
 		ctx.lineTo(this.x+3.9/wi*this.w, this.y+6.4/he*this.h); 
+		ctx.lineTo(this.x+4.2/wi*this.w, this.y+6.4/he*this.h); 
+		ctx.lineTo(this.x+3.8/wi*this.w, this.y+8/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+4.0/wi*this.w, this.y+8/he*this.h); 
+		ctx.lineTo(this.x+4.5/wi*this.w, this.y+6.4/he*this.h); 
 		ctx.lineTo(this.x+4.8/wi*this.w, this.y+6.4/he*this.h); 
 		ctx.lineTo(this.x+4.3/wi*this.w, this.y+8/he*this.h);
 		ctx.closePath(); 
@@ -412,11 +490,10 @@ function RobotV1_v4(x, y, w, h){
 		ctx.fillStyle = negro;
 		ctx.fillRect(this.x+4.7/wi*this.w, this.y+5.4/he*this.h, 1/wi*this.w, 0.6/he*this.h);
 		ctx.fillStyle = blanco;
-		ctx.fillRect(this.x+4.75/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
-		ctx.fillRect(this.x+4.95/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
-		ctx.fillRect(this.x+5.15/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
-		ctx.fillRect(this.x+5.35/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
-		ctx.fillRect(this.x+5.55/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
+		ctx.fillRect(this.x+4.85/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
+		ctx.fillRect(this.x+5.05/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
+		ctx.fillRect(this.x+5.25/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
+		ctx.fillRect(this.x+5.45/wi*this.w, this.y+5.5/he*this.h, 0.075/wi*this.w, 0.5/he*this.h);
 
 		//pelvis
 		ctx.fillStyle = negro;
@@ -427,7 +504,15 @@ function RobotV1_v4(x, y, w, h){
 		ctx.beginPath(); 
 		ctx.moveTo(this.x+5.1/wi*this.w, this.y+8/he*this.h); 
 		ctx.lineTo(this.x+5.5/wi*this.w, this.y+6.4/he*this.h); 
-		ctx.lineTo(this.x+6.4/wi*this.w, this.y+6.4/he*this.h); 
+		ctx.lineTo(this.x+5.8/wi*this.w, this.y+6.4/he*this.h); 
+		ctx.lineTo(this.x+5.4/wi*this.w, this.y+8/he*this.h);
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+5.6/wi*this.w, this.y+8/he*this.h); 
+		ctx.lineTo(this.x+6.1/wi*this.w, this.y+6.4/he*this.h); 
+		ctx.lineTo(this.x+6.5/wi*this.w, this.y+6.4/he*this.h); 
 		ctx.lineTo(this.x+5.9/wi*this.w, this.y+8/he*this.h);
 		ctx.closePath(); 
 		ctx.stroke();
@@ -622,5 +707,6 @@ function RobotV1_v4(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill(); 
+
 	}
 }
