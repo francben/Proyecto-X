@@ -13,16 +13,16 @@ function Tiger(x, y, w, h){
 		// redondito de la antena
 		ctx.fillStyle="black";
 		ctx.beginPath(); // Start the path
-		ctx.arc(this.x+3.3/med*this.w, this.y-2/med*this.h, 0.5/med*this.w, 0, 2*Math.PI, true);//Draw circle
+		ctx.arc(this.x+3.1/med*this.w, this.y-2.3/med*this.h, 0.5/med*this.w, 0, 2*Math.PI, true);//Draw circle
 		ctx.closePath(); // Close the path
 		ctx.fill(); // Fill the path
 
 		// antena triangulo
 		ctx.fillStyle="grey";
 		ctx.beginPath();
-		ctx.moveTo(200, 64);
-		ctx.lineTo(190, 30);
-		ctx.lineTo(175, 65);
+		ctx.moveTo(this.x + 3/med*this.w, this.y + 0.-2/med*this.h); // Set the path origin
+		ctx.lineTo(this.x + 5/med*this.w,this.y + 2.5/med*this.h); // Set the path destination
+		ctx.lineTo(this.x + 0.1/med*this.w,this.y + 4/med*this.h);
 		ctx.closePath();
 		ctx.fill();
 		
@@ -30,9 +30,9 @@ function Tiger(x, y, w, h){
 		ctx.fillStyle="grey";
 		ctx.strokeStyle="black";
 		ctx.beginPath();
-		ctx.moveTo(45, 260);
-		ctx.lineTo(310, 260);
-		ctx.lineTo(175, 135);
+		ctx.moveTo(this.x + -8/med*this.w, this.y + 17/med*this.h); // Set the path origin
+		ctx.lineTo(this.x + 13/med*this.w,this.y + 17/med*this.h); // Set the path destination
+		ctx.lineTo(this.x + 2.9/med*this.w,this.y + 4/med*this.h);
 		ctx.closePath();
 		ctx.stroke();
 		ctx.fill();
@@ -90,17 +90,17 @@ function Tiger(x, y, w, h){
 		ctx.fill();
 
 		//mano
-		ctx.lineWidth = 12;
+		ctx.lineWidth = 9;
 		ctx.beginPath();
 		ctx.strokeStyle = "black";
-		ctx.moveTo(175, 240);
-		ctx.quadraticCurveTo(180, 200, 200, 230);
+		ctx.moveTo(this.x+4/med*this.w, this.y+14.7/med*this.h);
+		ctx.quadraticCurveTo(this.x+2.8/med*this.w, this.y+11.1/med*this.h, 14/med*this.w, this.y+15/med*this.h);
 		ctx.stroke();
 
 		//pie grande
 		ctx.fillStyle="#FFE4C4"
 		ctx.beginPath();
-		ctx.arc(170, 260, 90, 0, Math.PI*1, false);
+		ctx.arc(this.x+2/med*this.w, this.y+17/med*this.h, 6/med*this.w, 0, Math.PI*1, false);
 		ctx.closePath();
 		ctx.fill();
 
@@ -108,7 +108,8 @@ function Tiger(x, y, w, h){
 		//pie chico
 		ctx.fillStyle="black"
 		ctx.beginPath();
-		ctx.arc(170, 260, 40, 0, Math.PI*1, false);
+		ctx.arc(this.x+2/med*this.w, this.y+17/med*this.h, 2.7/med*this.w, 0, Math.PI*1, false)
+		//ctx.arc(170, 260, 40, 0, Math.PI*1, false);
 		ctx.closePath();
 		ctx.fill();
 		
