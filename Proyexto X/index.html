@@ -7,11 +7,69 @@
 		<link href="canvas.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="js/Juguemos.js"></script>
 		<script type="text/javascript" src="js/alpha.js"></script>
+		<script type="text/javascript" src="js/robotV1_1.js"></script>
 
 
 		<script type="text/javascript">
 			$(function() {
-				var canvas = $("#myCanvas"); 
+
+window.addEventListener("keydown", onKeyDown, false);
+  window.addEventListener("keyup", onKeyUp, false);
+
+function onKeyDown(event) {
+  var keyCode = event.keyCode;
+  switch (keyCode) {
+    case 68: //d
+      keyD = true;
+      break;
+    case 83: //s
+      keyS = true;
+      break;
+    case 65: //a
+      keyA = true;
+      break;
+    case 87: //w
+      keyW = true;
+      break;
+  }
+}
+
+function onKeyUp(event) {
+  var keyCode = event.keyCode;
+  switch (keyCode) {
+    case 68: //d
+      keyD = false;
+      break;
+    case 83: //s
+      keyS = false;
+      break;
+    case 65: //a
+      keyA = false;
+      break;
+    case 87: //w
+      keyW = false;
+      break;
+  }
+}
+
+// variables necesarias
+var tickX = 10;
+var tickY = 10;
+
+var keyW = false;
+var keyA = false;
+var keyS = false;
+var keyD = false;
+
+//funcion para la animacion
+function drawStuff() {
+  window.requestAnimationFrame(drawStuff);
+  var canvas = document.getElementById("myCanvas");
+  var context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, 800, 800);
+
+  				var canvas = $("#myCanvas"); 
 				context = canvas.get(0).getContext("2d");
 				canvas.attr("width", $(window).get(0).innerWidth);
 				canvas.attr("height", $(window).get(0).innerHeight);
@@ -20,7 +78,26 @@
 				var jeje = new Juguemos(500,200,250,250);
 				jeje.dibujar(context);
 
-			});
+  var robov1 = new RobotV1_1(tickX, tickY, 200, 200);
+  robov1.dibujar(context);
+
+  if (keyD == true) {
+    tickX += 10;
+  }
+  if (keyS == true) {
+    tickY += 10;
+  }
+  if (keyA == true) {
+    tickX -= 10;
+  }
+  if (keyW == true) {
+    tickY-= 10;
+  }
+}
+window.requestAnimationFrame(drawStuff);
+});
+
+
 			
 		</script>
 	</head>

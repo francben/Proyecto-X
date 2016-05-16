@@ -4,7 +4,8 @@
 		<title>Robot con movimiento wasd</title>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="js/robot_V1-3.js"></script>
+		<script type="text/javascript" src="js/robotV1_v1.js"></script>
+    <script type="text/javascript" src="js/viper.js"></script>
 		<script type="text/javascript">
 
 
@@ -66,8 +67,8 @@ function drawStuff() {
 
   context.clearRect(0, 0, 800, 800);
 
-  var robo8 = new Robot8(tickX, tickY, 100, 100);
-  robo8.dibujar(context);
+  var robov1 = new Viper(tickX, tickY, 200, 200);
+  robov1.dibujar(context);
 
   if (keyD == true) {
     tickX += 10;
