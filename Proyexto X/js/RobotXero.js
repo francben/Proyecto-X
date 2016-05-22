@@ -189,6 +189,12 @@ function RobotXero(x, y, w, h){
 		ctx.closePath(); // Close the path
 		ctx.stroke();*/
 
+		/*<div>
+		<button id="startAnimation">Start</button>
+		<button id="stopAnimation">Stop</button>
+		</div>*/
+
+
 
 	}
 }
