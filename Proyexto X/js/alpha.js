@@ -1,7 +1,7 @@
 
 function roundedRect(ctx,x,y,width,height,radius,color){
-	ctx.fillStyle = '#'+color;
 	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
 	ctx.moveTo(x,y+radius);
 	ctx.lineTo(x,y+height-radius);
 	ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
@@ -15,8 +15,8 @@ function roundedRect(ctx,x,y,width,height,radius,color){
 	ctx.closePath();
 }
 function Triangulo(ctx,grilla,color){
-	ctx.fillStyle = '#'+color;
 	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
 	ctx.moveTo(this.x+2/grilla*this.w, this.y+9/grilla*this.h);
 	ctx.lineTo(this.x+12/grilla*this.w, this.y+9/grilla*this.h);
 	ctx.lineTo(this.x+9/grilla*this.w, this.y+12/grilla*this.h);
@@ -25,17 +25,27 @@ function Triangulo(ctx,grilla,color){
 	ctx.closePath();
 }
 function Circulo(ctx,x,y,w,h,radio,estado,color){
-	ctx.fillStyle = '#'+color;
 	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
 	ctx.arc(x,y,w,h, radio, estado);
 	ctx.fill();
 }
 
 function Rectangulo(ctx,x,y,width,height,color){
+	ctx.beginPath();
 	ctx.fillStyle = '#'+color;
 	ctx.fillRect(x,y,width,height);
 	ctx.closePath();
 }
+
+function Elipse(ctx,x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.ellipse(x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock);
+	ctx.fill();
+	ctx.closePath();
+}
+
 
 function Alpha(x, y, w, h){
 	this.x = x;
@@ -43,113 +53,119 @@ function Alpha(x, y, w, h){
 	this.w = w;
 	this.h = h;
 
-	var grilla = 32;
-	var radio = 20;
+	var grilla = 16;
 	var color = '';
 
 	this.dibujar = function(ctx){
 
 
+		//brazo izq
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+7/grilla*this.w, this.y+11.5/grilla*this.h);
+		ctx.lineTo(this.x+15/grilla*this.w, this.y+12/grilla*this.h);
+		ctx.lineWidth = 38;
+		ctx.strokeStyle = '#ffffff';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+		Circulo(ctx, this.x+17/grilla*this.w, this.y+11.8/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'ffffff');
+		Circulo(ctx, this.x+17.3/grilla*this.w, this.y+11.5/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
+
+
 		//cabeza
-		roundedRect(ctx, this.x+4/grilla*this.w, this.y+1/grilla*this.h, 8/grilla*this.w, 7/grilla*this.h, 50,'8B4513');
-		roundedRect(ctx, this.x+5/grilla*this.w, this.y+2.5/grilla*this.h, 6/grilla*this.w, 2/grilla*this.h, radio,'000000');
+		roundedRect(ctx, this.x+4/grilla*this.w, this.y+1/grilla*this.h, 6/grilla*this.w, 5/grilla*this.h, 10,'ffffff');
+		Rectangulo(ctx, this.x+4/grilla*this.w, this.y+4/grilla*this.h, 6/grilla*this.w, 3/grilla*this.h, 'ffffff');
 
-		//ojo rayos
-		roundedRect(ctx, this.x+6.2/grilla*this.w, this.y+3.3/grilla*this.h, 0.5/grilla*this.w, 0.5/grilla*this.h, radio,'FA0907');
+		//pierna
+		Rectangulo(ctx, this.x+5/grilla*this.w, this.y+13/grilla*this.h, 4/grilla*this.w, 8/grilla*this.h, 'ffffff');
+		roundedRect(ctx, this.x+5/grilla*this.w, this.y+18/grilla*this.h, 4/grilla*this.w, 4/grilla*this.h, 10,'ffffff');
 
-
-		//ojo izq
-		ctx.fillStyle = "#19070B";
-		//ctx.fillRect(this.x+6/grilla*this.w, this.y+3/grilla*this.h, 1/grilla*this.w, 1/grilla*this.h);
-		Circulo(ctx, this.x+6.5/grilla*this.w, this.y+3.5/grilla*this.h, 0.3/grilla*this.h, 0, 2 * Math.PI, true,'FA0907');
-
-
-
-		//ojo der
-		ctx.fillStyle = "#19070B";
-		ctx.fillRect(this.x+9/grilla*this.w, this.y+3/grilla*this.h, 1/grilla*this.w, 1/grilla*this.h);
-		Circulo(ctx, this.x+9.5/grilla*this.w, this.y+3.5/grilla*this.h, 0.3/grilla*this.h, 0, 2 * Math.PI, true,'FA0907');
 
 		//boca
-		Rectangulo(ctx, this.x+6/grilla*this.w, this.y+6/grilla*this.h, 4/grilla*this.w, 0.8/grilla*this.h, '000000');
-		Rectangulo(ctx, this.x+6/grilla*this.w, this.y+6/grilla*this.h, 4/grilla*this.w, 0.4/grilla*this.h, '8B4513');
+		Rectangulo(ctx, this.x+7/grilla*this.w, this.y+5/grilla*this.h, 3/grilla*this.w, 0.5/grilla*this.h, '000000');
+		Rectangulo(ctx, this.x+7/grilla*this.w, this.y+5.25/grilla*this.h, 3/grilla*this.w, 0.1/grilla*this.h, 'ffffff');
 
-		//antena izq
-		Rectangulo(ctx,this.x+3.5/grilla*this.w, this.y+2/grilla*this.h, 0.5/grilla*this.w, 2/grilla*this.h,'8B4513');
+		//ceja
+		Rectangulo(ctx, this.x+9/grilla*this.w, this.y+1.5/grilla*this.h, 3/grilla*this.w, 0.2/grilla*this.h, '000000');
 
-		//antena der
-		Rectangulo(ctx,this.x+12/grilla*this.w, this.y+2/grilla*this.h, 0.5/grilla*this.w, 2/grilla*this.h,'8B4513');
+		//ojos
+		Circulo(ctx, this.x+9/grilla*this.w, this.y+3/grilla*this.h, 0.8/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+		Circulo(ctx, this.x+9/grilla*this.w, this.y+3/grilla*this.h, 0.4/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'e02223');
+
+		//antena
+		Circulo(ctx, this.x+5.3/grilla*this.w, this.y+4/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+		Circulo(ctx, this.x+5.3/grilla*this.w, this.y+4/grilla*this.h, 0.6/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*225, true,'ffffff');
 
 		//cuello
-		Rectangulo(ctx,this.x+7/grilla*this.w, this.y+8/grilla*this.h, 2/grilla*this.w, 0.4/grilla*this.h,'8B4513');
-
-
-		//nariz
-		roundedRect(ctx, this.x+7.8/grilla*this.w, this.y+5/grilla*this.h, 0.5/grilla*this.w, 0.5/grilla*this.h, 15,'000000');
+		Rectangulo(ctx, this.x+5.5/grilla*this.w, this.y+7.1/grilla*this.h, 3/grilla*this.w, 0.6/grilla*this.h, 'ffffff');
 
 		//cuerpo
-		ctx.fillStyle = "#8B4513";
+		roundedRect(ctx, this.x+3.5/grilla*this.w, this.y+8/grilla*this.h, 7/grilla*this.w, 5/grilla*this.h, 10,'ffffff');
+		Rectangulo(ctx, this.x+3.5/grilla*this.w, this.y+10/grilla*this.h, 7/grilla*this.w, 3/grilla*this.h, 'ffffff');
+
+
+		
+		//brazo
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+11/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+11/grilla*this.h, 1.8/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
+
+		//brazo der
 		ctx.beginPath();
-		ctx.moveTo(this.x+1/grilla*this.w, this.y+8.4/grilla*this.h);
-		ctx.lineTo(this.x+15/grilla*this.w, this.y+8.4/grilla*this.h);
-		ctx.lineTo(this.x+8/grilla*this.w, this.y+18/grilla*this.h);
-		ctx.lineTo(this.x+1/grilla*this.w, this.y+8.4/grilla*this.h);
-		ctx.fill();
-
-
-		ctx.fillStyle = "#8B4513";
-		ctx.beginPath();
-		ctx.moveTo(this.x+2/grilla*this.w, this.y+7.6/grilla*this.h);
-		ctx.lineTo(this.x+14/grilla*this.w, this.y+7.6/grilla*this.h);
-		ctx.lineTo(this.x+7/grilla*this.w, this.y+14/grilla*this.h);
-		ctx.lineTo(this.x+2/grilla*this.w, this.y+7.6/grilla*this.h);
-		ctx.fill();
-
-
-		//dedos
-		ctx.fillStyle = "#8B4513";
-		ctx.beginPath();
-		ctx.moveTo(this.x+1/grilla*this.w, this.y+20/grilla*this.h);
-		ctx.lineTo(this.x+2/grilla*this.w, this.y+2/grilla*this.h);
-		ctx.fill();
-
-		//cuerpo
-		roundedRect(ctx, this.x+4/grilla*this.w, this.y+14/grilla*this.h, 8/grilla*this.w, 6/grilla*this.h, 20,'8B4513');
-
-		roundedRect(ctx,this.x+1/grilla*this.w, this.y+8.7/grilla*this.h, 2/grilla*this.w, 13/grilla*this.h,20,'8B4513');
-		roundedRect(ctx,this.x+13/grilla*this.w, this.y+8.7/grilla*this.h, 2/grilla*this.w, 13/grilla*this.h,20,'8B4513');
-
-
-		roundedRect(ctx,this.x+4/grilla*this.w, this.y+16.7/grilla*this.h, 3/grilla*this.w, 13/grilla*this.h,10,'8B4513');
-		roundedRect(ctx,this.x+9/grilla*this.w, this.y+16.7/grilla*this.h, 3/grilla*this.w, 13/grilla*this.h,10,'8B4513');
-
-
-		roundedRect(ctx,this.x+3/grilla*this.w, this.y+29/grilla*this.h, 3/grilla*this.w, 2/grilla*this.h,10,'8B4513');
-		roundedRect(ctx,this.x+10/grilla*this.w, this.y+29/grilla*this.h, 3/grilla*this.w, 2/grilla*this.h,10,'8B4513');
-
-
-		//escudo
-		ctx.fillStyle = "#6A0D07";
-		ctx.beginPath();
-		ctx.moveTo(this.x+6/grilla*this.w, this.y+9/grilla*this.h);
-		ctx.lineTo(this.x+10/grilla*this.w, this.y+9/grilla*this.h);
-		ctx.lineTo(this.x+8/grilla*this.w, this.y+13/grilla*this.h);
-		ctx.lineTo(this.x+6/grilla*this.w, this.y+9/grilla*this.h);
-		ctx.fill();
-
-		//escudo
-		ctx.strokeStyle = "#FA0907";
-		ctx.beginPath();
-		ctx.moveTo(this.x+6/grilla*this.w, this.y+9/grilla*this.h);
-		ctx.lineTo(this.x+10/grilla*this.w, this.y+9/grilla*this.h);
-		ctx.lineTo(this.x+8/grilla*this.w, this.y+13/grilla*this.h);
-		ctx.lineTo(this.x+6/grilla*this.w, this.y+9/grilla*this.h);
+		ctx.moveTo(this.x+7/grilla*this.w, this.y+11/grilla*this.h);
+		ctx.lineTo(this.x+5/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineWidth = 41;
+		ctx.strokeStyle = '#000000';
+		ctx.lineCap="round";
 		ctx.stroke();
+		ctx.closePath();
 
-		ctx.fillStyle = "#ffffff";
-		var text2 = "ALPHA";
-		ctx.font = "bold 14px arial";
-		ctx.fillText(text2, this.x+6.7/grilla*this.w, this.y+10/grilla*this.h);
+		ctx.beginPath();
+		ctx.moveTo(this.x+7/grilla*this.w, this.y+11/grilla*this.h);
+		ctx.lineTo(this.x+5/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineWidth = 40;
+		ctx.strokeStyle = '#ffffff';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+5/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineTo(this.x+9/grilla*this.w, this.y+15/grilla*this.h);
+		ctx.lineWidth = 41;
+		ctx.strokeStyle = '#000000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+5/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineTo(this.x+9/grilla*this.w, this.y+15/grilla*this.h);
+		ctx.lineWidth = 40;
+		ctx.strokeStyle = '#ffffff';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+		Circulo(ctx, this.x+5/grilla*this.w, this.y+14/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+		Circulo(ctx, this.x+5/grilla*this.w, this.y+14/grilla*this.h, 0.6/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
+
+		//mano
+		//Circulo(ctx, this.x+9/grilla*this.w, this.y+15/grilla*this.h, 0.9/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+		Circulo(ctx, this.x+11/grilla*this.w, this.y+15/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'ffffff');
+		Circulo(ctx, this.x+11.5/grilla*this.w, this.y+15/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
+
+
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 5/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'545454');
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 3.5/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 3/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
+
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 3.5/grilla*this.h, (Math.PI/180)*310, (Math.PI/180)*220, true,'FFFFFF');
+		//Rectangulo(ctx, this.x+6/grilla*this.w, this.y+20/grilla*this.h, 2/grilla*this.w, 3/grilla*this.h, 'ffffff');
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
+		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 0.5/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'545454');
+
 
 	}
 }
