@@ -1,110 +1,119 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Fuga V1</title>
-		<meta charset="utf-8">
-		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-		<link href="canvas.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="js/Juguemos.js"></script>
-		<script type="text/javascript" src="js/alpha.js"></script>
-		<script type="text/javascript" src="js/robotV1_1.js"></script>
+    <head>
+        <title>Fuga V1</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <link href="canvas.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/Juguemos.js"></script>
+        <script type="text/javascript" src="js/Alpha.js"></script>
+        <script type="text/javascript" src="js/robotV1_1.js"></script>
+        <script type="text/javascript" src="js/Fondo1.js"></script>
+        <script type="text/javascript">
+            $(function() {
+            window.addEventListener("keydown", onKeyDown, false);
+            window.addEventListener("keyup", onKeyUp, false);
+            function onKeyDown(event) {
+            var keyCode = event.keyCode;
+            switch (keyCode) {
+             case 68: //d
+               keyD = true;
+               break;
+             case 83: //s
+               keyS = true;
+               break;
+             case 65: //a
+               keyA = true;
+               break;
+             case 87: //w
+               keyW = true;
+               break;
+            }
+            }
+            
+            function onKeyUp(event) {
+            var keyCode = event.keyCode;
+            switch (keyCode) {
+             case 68: //d
+               keyD = false;
+               break;
+             case 83: //s
+               keyS = false;
+               break;
+             case 65: //a
+               keyA = false;
+               break;
+             case 87: //w
+               keyW = false;
+               break;
+            }
+            }
+            
+            // variables necesarias
+            var tickX = 0;
+            var tickY = 0;
+            
+            var keyW = false;
+            var keyA = false;
+            var keyS = false;
+            var keyD = false;
+            
+            //funcion para la animacion
+            function drawStuff() {
+            window.requestAnimationFrame(drawStuff);
+            var canvas = document.getElementById("myCanvas");
+            var context = canvas.getContext("2d");
 
+            var canvas = $("#myCanvas"); 
+            context = canvas.get(0).getContext("2d");
+            canvas.attr("width", $(window).get(0).innerWidth);
+            canvas.attr("height", $(window).get(0).innerHeight);
+              //context.fillRect(0, 0, canvas.width(), canvas.height());
+            
+              //var jeje = new Fondo1();
+              //jeje.dibujar(context);  
+                 
+            var fondo1 = new Fondo1(0,0,canvas.width(),canvas.height());
+            fondo1.dibujar(context);
 
-		<script type="text/javascript">
-			$(function() {
-
-window.addEventListener("keydown", onKeyDown, false);
-  window.addEventListener("keyup", onKeyUp, false);
-
-function onKeyDown(event) {
-  var keyCode = event.keyCode;
-  switch (keyCode) {
-    case 68: //d
-      keyD = true;
-      break;
-    case 83: //s
-      keyS = true;
-      break;
-    case 65: //a
-      keyA = true;
-      break;
-    case 87: //w
-      keyW = true;
-      break;
-  }
-}
-
-function onKeyUp(event) {
-  var keyCode = event.keyCode;
-  switch (keyCode) {
-    case 68: //d
-      keyD = false;
-      break;
-    case 83: //s
-      keyS = false;
-      break;
-    case 65: //a
-      keyA = false;
-      break;
-    case 87: //w
-      keyW = false;
-      break;
-  }
-}
-
-// variables necesarias
-var tickX = 10;
-var tickY = 10;
-
-var keyW = false;
-var keyA = false;
-var keyS = false;
-var keyD = false;
-
-//funcion para la animacion
-function drawStuff() {
-  window.requestAnimationFrame(drawStuff);
-  var canvas = document.getElementById("myCanvas");
-  var context = canvas.getContext("2d");
-
-  context.clearRect(0, 0, 800, 800);
-
-  				var canvas = $("#myCanvas"); 
-				context = canvas.get(0).getContext("2d");
-				canvas.attr("width", $(window).get(0).innerWidth);
-				canvas.attr("height", $(window).get(0).innerHeight);
-				context.fillRect(0, 0, canvas.width(), canvas.height());
-
-				var jeje = new Juguemos(500,200,250,250);
-				jeje.dibujar(context);
-
-  var robov1 = new RobotV1_1(tickX, tickY, 200, 200);
-  robov1.dibujar(context);
-
-  if (keyD == true) {
-    tickX += 10;
-  }
-  if (keyS == true) {
-    tickY += 10;
-  }
-  if (keyA == true) {
-    tickX -= 10;
-  }
-  if (keyW == true) {
-    tickY-= 10;
-  }
-}
-window.requestAnimationFrame(drawStuff);
-});
-
-
-			
-		</script>
-	</head>
-<body>
-	<canvas id="myCanvas">
-	<!-- Insert fallback content here -->
-	</canvas>
-	
-</body>
+            var a1 = new Alpha(canvas.width()*0.1,canvas.height()*0.1,canvas.width()*0.3,canvas.height()*0.41);
+            a1.dibujar(context);
+            console.log(tickX);
+            
+            var robov1 = new RobotV1_1(tickX+canvas.width()*0.8, tickY+canvas.height()*0.55, canvas.width()*0.2, canvas.height()*0.25);
+            robov1.dibujar(context);
+            
+            if (keyD == true) {
+             tickX += 10;
+            }
+            /*
+            if (keyS == true) {
+             tickY += 10;
+            }
+            */
+            if (keyA == true) {
+             tickX -= 10;
+            }
+           /* if (keyW == true) {
+             tickY-= 10;
+            }
+            */
+            }
+            
+            window.requestAnimationFrame(drawStuff);
+            });
+            
+             
+            
+            
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas">
+            <!-- Insert fallback content here -->
+        </canvas>
+        <div style="display:none;">
+            <img id="imgFondo1" src="img2.jpg" />
+        </div>
+    </body>
 </html>
