@@ -9,6 +9,8 @@
         <script type="text/javascript" src="js/Alpha.js"></script>
         <script type="text/javascript" src="js/robotV1_1.js"></script>
         <script type="text/javascript" src="js/Fondo1.js"></script>
+        <script type="text/javascript" src="js/ArmaEstandarEnemigo.js"></script>
+        <script type="text/javascript" src="js/ArmaEstandar.js"></script>
         <script type="text/javascript">
             $(function() {
             window.addEventListener("keydown", onKeyDown, false);
@@ -62,26 +64,29 @@
             function drawStuff() {
             window.requestAnimationFrame(drawStuff);
             var canvas = document.getElementById("myCanvas");
-            var context = canvas.getContext("2d");
+            var ctx = canvas.getContext("2d");
 
             var canvas = $("#myCanvas"); 
-            context = canvas.get(0).getContext("2d");
+            ctx = canvas.get(0).getContext("2d");
             canvas.attr("width", $(window).get(0).innerWidth);
             canvas.attr("height", $(window).get(0).innerHeight);
-              //context.fillRect(0, 0, canvas.width(), canvas.height());
+              //ctx.fillRect(0, 0, canvas.width(), canvas.height());
             
               //var jeje = new Fondo1();
-              //jeje.dibujar(context);  
-                 
+              //jeje.dibujar(ctx);  
+             
             var fondo1 = new Fondo1(0,0,canvas.width(),canvas.height());
-            fondo1.dibujar(context);
+            fondo1.dibujar(ctx);
 
             var a1 = new Alpha(canvas.width()*0.1,canvas.height()*0.1,canvas.width()*0.3,canvas.height()*0.41);
-            a1.dibujar(context);
-            console.log(tickX);
+            a1.dibujar(ctx);
             
             var robov1 = new RobotV1_1(tickX+canvas.width()*0.8, tickY+canvas.height()*0.55, canvas.width()*0.2, canvas.height()*0.25);
-            robov1.dibujar(context);
+            robov1.dibujar(ctx);
+            var ar1 = new ArmaEstandarEnemigo(canvas.width()*0.1+350,canvas.height()*0.1+120,canvas.width()*0.2,canvas.height()*0.25);
+            ar1.dibujar(ctx);
+            var ar = new ArmaEstandar(tickX+canvas.width()*0.1+999,tickY+canvas.height()*0.1+342,canvas.width()*0.06,canvas.height()*0.12);
+            ar.dibujar(ctx);
             
             if (keyD == true) {
              tickX += 10;
