@@ -13,7 +13,8 @@ function RobotV1_4(x, y, w, h){
 	this.dibujar = function(ctx){
 
 		ctx.lineWidth = 2;
-
+		ctx.strokeStyle = negro;
+		ctx.stroke();
 
 		//cuello
 		ctx.fillStyle = negro;

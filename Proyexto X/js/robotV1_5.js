@@ -13,7 +13,8 @@ function RobotV1_5(x, y, w, h){
 	this.dibujar = function(ctx){
 
 		ctx.lineWidth = 2;
-
+		ctx.strokeStyle = negro;
+		ctx.stroke();
 		//tapa cabeza 
 		ctx.fillStyle = negro;
 		ctx.beginPath(); 

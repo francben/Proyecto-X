@@ -13,8 +13,9 @@ function RobotV1_1(x, y, w, h){
 	this.dibujar = function(ctx){
 
 		ctx.lineWidth = 2;
+		ctx.strokeStyle = negro;
+		ctx.stroke();
 		
-
 		//cabeza
 		ctx.fillStyle = gris2;
 		ctx.beginPath(); 
