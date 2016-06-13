@@ -5,6 +5,15 @@ function Tiger(x, y, w, h){
 	this.h = h;//100
 	var med = 8;
 
+var Shape = function(x, y, width, height) {
+				this.x = x;
+				this.y = y;
+				this.width = width;
+				this.height = height;
+				};
+
+	
+
 
 	this.dibujar = function(ctx){
 		
@@ -90,12 +99,12 @@ function Tiger(x, y, w, h){
 		ctx.fill();
 
 		//mano
-		ctx.lineWidth = 9;
-		ctx.beginPath();
-		ctx.strokeStyle = "black";
-		ctx.moveTo(this.x+4/med*this.w, this.y+14.7/med*this.h);
-		ctx.quadraticCurveTo(this.x+2.8/med*this.w, this.y+11.1/med*this.h, 14/med*this.w, this.y+15/med*this.h);
-		ctx.stroke();
+		//ctx.lineWidth = 9;
+		//ctx.beginPath();
+		//ctx.strokeStyle = "black";
+		//ctx.moveTo(this.x+4/med*this.w, this.y+14.7/med*this.h);
+		//ctx.quadraticCurveTo(this.x+2.8/med*this.w, this.y+11.1/med*this.h, 14/med*this.w, this.y+15/med*this.h);
+		//ctx.stroke();
 
 		//pie grande
 		ctx.fillStyle="#FFE4C4"
@@ -113,15 +122,5 @@ function Tiger(x, y, w, h){
 		ctx.closePath();
 		ctx.fill();
 		
-
-
-
-		
-		
-
-
-
-
-
 	}
 }
