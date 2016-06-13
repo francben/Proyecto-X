@@ -4,45 +4,13 @@ function Presentacion(x, y, w, h){
 	this.w = w;
 	this.h = h;
 
-	var wi = 10.0;
-	var he = 10.0;
+	var wi = 8.0;
+	var he = 8.0;
 	var negro = "rgb(0, 0, 0)";
 	var gris1 = "rgb(100, 100, 100)";
 	var gris2 = "rgb(200, 200, 200)";
 	var blanco = "rgb(255, 255, 255)";
 
-	var tw = this.x+0.0001/wi*this.w;
-	var th = this.y+0.0001/he*this.h;
-	var px = this.x+0.0001/wi*this.w;
-	var py = this.y+0.001/he*this.h;
-	var pw = 1.0/wi*this.w;
-	var ph = 1.0/he*this.h;
-	var esp = 50;
-	var posi = tw;
-	var posf = posi + 500;
-	var e = 0;
-	var a = 0;
-	var letra = [" ", "P", "R", "O", "Y", "E", "C", "T", "O", " "];
-	function animate1() { 
-		ctx.clearRect(px, py, pw, ph);
-		ctx.font = "70px sans-serif";
-		ctx.fillStyle = 'white';
-		ctx.fillText(letra[a], tw, th);
-		if(a<[10] || tw<posf){
-   			tw += esp;
-   			e = 1;
-   			a+= e;
-		}
-		if(a==[10] || tw==posf){
-   			ctx.font = "90px sans-serif";
-   			ctx.fillStyle = 'red';
-			ctx.fillText("X", tw, th);
-			a = 0;
-			e = 0;
-			tw = posi;
-   		}
-		setTimeout(animate1, 600);
-	}; 
 
 	var ox = this.x+4.65/wi*this.w;
 	var oy = this.y+1.1/he*this.h;
@@ -70,7 +38,7 @@ function Presentacion(x, y, w, h){
     	if (posx <= posI) {
         	vx = +1;
     	}
-        setTimeout(animate0, 200); 
+        setTimeout(animate0, 30); 
 	}; 
 
 
@@ -85,8 +53,6 @@ function Presentacion(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
-
-		animate1();
 
 		//ojos
 		ctx.fillStyle = negro;
