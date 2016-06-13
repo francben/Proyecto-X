@@ -60,18 +60,59 @@ function Alpha(x, y, w, h){
 
 
 		//brazo izq
-
 		ctx.beginPath();
-		ctx.moveTo(this.x+7/grilla*this.w, this.y+11.5/grilla*this.h);
-		ctx.lineTo(this.x+15/grilla*this.w, this.y+12/grilla*this.h);
+		ctx.moveTo(this.x+7/grilla*this.w, this.y+10/grilla*this.h);
+		ctx.lineTo(this.x+13/grilla*this.w, this.y+12/grilla*this.h);
 		ctx.lineWidth = 38;
 		ctx.strokeStyle = '#ffffff';
 		ctx.lineCap="round";
 		ctx.stroke();
 		ctx.closePath();
 
-		Circulo(ctx, this.x+17/grilla*this.w, this.y+11.8/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'ffffff');
-		Circulo(ctx, this.x+17.3/grilla*this.w, this.y+11.5/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
+		//Circulo(ctx, this.x+17/grilla*this.w, this.y+11.8/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'ffffff');
+		//Circulo(ctx, this.x+17.3/grilla*this.w, this.y+11.5/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
+
+
+		// ----------------- mano pinzas der
+		ctx.beginPath();
+		ctx.moveTo(this.x+13/grilla*this.w, this.y+12/grilla*this.h);
+		ctx.lineTo(this.x+14/grilla*this.w, this.y+11/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+14/grilla*this.w, this.y+11/grilla*this.h);
+		ctx.lineTo(this.x+15/grilla*this.w, this.y+11.5/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+		//
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+13/grilla*this.w, this.y+12/grilla*this.h);
+		ctx.lineTo(this.x+14/grilla*this.w, this.y+13/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+14/grilla*this.w, this.y+13/grilla*this.h);
+		ctx.lineTo(this.x+15/grilla*this.w, this.y+12.5/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+		//!----------------------------
 
 
 		//cabeza
@@ -88,7 +129,18 @@ function Alpha(x, y, w, h){
 		Rectangulo(ctx, this.x+7/grilla*this.w, this.y+5.25/grilla*this.h, 3/grilla*this.w, 0.1/grilla*this.h, 'ffffff');
 
 		//ceja
-		Rectangulo(ctx, this.x+9/grilla*this.w, this.y+1.5/grilla*this.h, 3/grilla*this.w, 0.2/grilla*this.h, '000000');
+		//Rectangulo(ctx, this.x+9/grilla*this.w, this.y+1.5/grilla*this.h, 1/grilla*this.w, 0.2/grilla*this.h, '000000');
+
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+9/grilla*this.w, this.y+1.5/grilla*this.h);
+		ctx.lineTo(this.x+10/grilla*this.w, this.y+1.8/grilla*this.h);
+		ctx.lineWidth = 5;
+		ctx.strokeStyle = '#000000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
 
 		//ojos
 		Circulo(ctx, this.x+9/grilla*this.w, this.y+3/grilla*this.h, 0.8/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
@@ -106,8 +158,7 @@ function Alpha(x, y, w, h){
 		Rectangulo(ctx, this.x+3.5/grilla*this.w, this.y+10/grilla*this.h, 7/grilla*this.w, 3/grilla*this.h, 'ffffff');
 
 
-		
-		//brazo
+		//hombro der
 		Circulo(ctx, this.x+7/grilla*this.w, this.y+11/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
 		Circulo(ctx, this.x+7/grilla*this.w, this.y+11/grilla*this.h, 1.8/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
 
@@ -148,13 +199,60 @@ function Alpha(x, y, w, h){
 		ctx.stroke();
 		ctx.closePath();
 
+		// ----------------- mano pinzas der
+		ctx.beginPath();
+		ctx.moveTo(this.x+9/grilla*this.w, this.y+15/grilla*this.h);
+		ctx.lineTo(this.x+10/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+10/grilla*this.w, this.y+14/grilla*this.h);
+		ctx.lineTo(this.x+11/grilla*this.w, this.y+14.5/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+		//
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+9/grilla*this.w, this.y+15/grilla*this.h);
+		ctx.lineTo(this.x+10/grilla*this.w, this.y+16/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+
+
+		ctx.beginPath();
+		ctx.moveTo(this.x+10/grilla*this.w, this.y+16/grilla*this.h);
+		ctx.lineTo(this.x+11/grilla*this.w, this.y+15.5/grilla*this.h);
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = '#ff0000';
+		ctx.lineCap="round";
+		ctx.stroke();
+		ctx.closePath();
+		//!----------------------------
+
+
+
 		Circulo(ctx, this.x+5/grilla*this.w, this.y+14/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
 		Circulo(ctx, this.x+5/grilla*this.w, this.y+14/grilla*this.h, 0.6/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'ffffff');
 
-		//mano
 		//Circulo(ctx, this.x+9/grilla*this.w, this.y+15/grilla*this.h, 0.9/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'000000');
-		Circulo(ctx, this.x+11/grilla*this.w, this.y+15/grilla*this.h, 2/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'ffffff');
-		Circulo(ctx, this.x+11.5/grilla*this.w, this.y+15/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
+		Circulo(ctx, this.x+9/grilla*this.w, this.y+15/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, false,'000000');
+		Circulo(ctx, this.x+9/grilla*this.w, this.y+15/grilla*this.h, 0.6/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, false,'ffffff');
+
+
+		Circulo(ctx, this.x+13/grilla*this.w, this.y+12/grilla*this.h, 1/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, false,'000000');
+		Circulo(ctx, this.x+13/grilla*this.w, this.y+12/grilla*this.h, 0.6/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, false,'ffffff');
+		//Circulo(ctx, this.x+11.2/grilla*this.w, this.y+15/grilla*this.h, 1.3/grilla*this.h, (Math.PI/180)*45, (Math.PI/180)*260, false,'000000');
 
 
 		Circulo(ctx, this.x+7/grilla*this.w, this.y+23/grilla*this.h, 5/grilla*this.h, (Math.PI/180)*0, (Math.PI/180)*360, true,'545454');
