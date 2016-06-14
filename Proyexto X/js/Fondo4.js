@@ -1,6 +1,6 @@
-function Fondo2(){
+function Fondo4(){
 
-	this.idElementFondo = "#imgFondo2";
+	this.idElementFondo = "#imgFondo4";
 
 	this.dibujar = function(ctx){
 

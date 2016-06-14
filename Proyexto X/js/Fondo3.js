@@ -1,12 +1,14 @@
 function Fondo3(){
-	var canvas = document.getElementById("mycanvas");
-	var ctx = canvas.getContext("2d");
-	//context = canvas.get(0).getContext("2d");
-	var fondo3 = new Image();
+
+	this.idElementFondo = "#imgFondo3";
+
+	this.dibujar = function(ctx){
+
+		var f1 = $(this.idElementFondo)[0];
+	console.log("F1",f1);
+		ctx.drawImage(f1,0,0);
+
+			
 	
-	fondo3.src = "img4.jpg";
-	
-	fondo3.onload = function(){
-		ctx.drawImage(fondo3,0,0)
-	}        
+	}
 }
