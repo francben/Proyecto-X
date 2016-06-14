@@ -6,8 +6,16 @@ function RobotXero(x, y, w, h){
 
 	var med = 8.0;
 
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandarEnemigo();
 
-	this.dibu = function(ctx){
+	// todos los robots deben tener esta funcion
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	}
+
+
+	this.dibujar = function(ctx){
 		//la cara
 		//ctx.strokeStyle = "black";
 		//ctx.fillStyle = "black";

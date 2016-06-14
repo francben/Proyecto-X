@@ -10,6 +10,11 @@ function RobotV1_1(x, y, w, h){
 	var gris1 = "rgb(100, 100, 100)";
 	var gris2 = "rgb(200, 200, 200)";
 
+
+	this.disparar = function(){
+		//
+	} 
+
 	this.dibujar = function(ctx){
 
 		ctx.lineWidth = 2;

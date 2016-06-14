@@ -27,14 +27,18 @@ function linea(ctx,x,y,x2,y2,color){
 	ctx.stroke();
 	ctx.restore();
 }
+
 function ArmaEstandarEnemigo(x, y, w, h){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	var grilla =8;
 
+	// todas las armas deben tener esta propiedad
+	this.tipoProyectil = BalaEnergia;
+	
 	this.dibujar = function(ctx){
+		var grilla =8;
 		elipsef(ctx,this.x+3.8/grilla*this.w, this.y+4/grilla*this.h, 2.3/grilla*this.w,1.6/grilla*this.h ,  0, 4.8, 1.47, true,'fff');
 		elipses(ctx,this.x+3.8/grilla*this.w, this.y+4/grilla*this.h, 2.3/grilla*this.w,1.6/grilla*this.h ,  0, 4.8, 1.47, true,'00f');
 		elipsef(ctx,this.x+4/grilla*this.w, this.y+4/grilla*this.h, 0.38/grilla*this.w,1.58/grilla*this.h ,  0, 0, 2*Math.PI, true,'f00');
@@ -42,9 +46,12 @@ function ArmaEstandarEnemigo(x, y, w, h){
 		linea(ctx,this.x+2/grilla*this.w,this.y+3.5/grilla*this.h,this.x+3/grilla*this.w,this.y+3.5/grilla*this.h,'f33');
 		linea(ctx,this.x+2/grilla*this.w,this.y+4/grilla*this.h,this.x+3/grilla*this.w,this.y+4/grilla*this.h,'f33');
 		linea(ctx,this.x+2/grilla*this.w,this.y+4.5/grilla*this.h,this.x+3/grilla*this.w,this.y+4.5/grilla*this.h,'f33');
+	};
 
-
-
+	this.disparar = function(nivel){
+		nivel.elementos.push(new BalaEnergia(......));
 	}
+
+
 
 }
