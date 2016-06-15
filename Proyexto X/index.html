@@ -5,12 +5,18 @@
         <meta charset="utf-8">
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <link href="canvas.css" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="js/Juguemos.js"></script>
-        <script type="text/javascript" src="js/Alpha.js"></script>
-        <script type="text/javascript" src="js/robotV1_1.js"></script>
-        <script type="text/javascript" src="js/Fondo1.js"></script>
-        <script type="text/javascript" src="js/ArmaEstandarEnemigo.js"></script>
-        <script type="text/javascript" src="js/ArmaEstandar.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo1.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo2.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo3.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo4.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo5.js"></script>
+        <script type="text/javascript" src="js/Juego.js"></script>
+        <script type="text/javascript" src="js/robots/RobotXero.js"></script>
+        <script type="text/javascript" src="js/robots/robotV1_1.js"></script>
+        <script type="text/javascript" src="js/armas/ArmaEstandarEnemigo.js"></script>
+        <script type="text/javascript" src="js/armas/ArmaEstandar.js"></script>
+        <script type="text/javascript" src="js/municiones/BalaEnergia.js"></script>
+        <script type="text/javascript" src="js/Nivel.js"></script>
         <script type="text/javascript">
             $(function() {
             window.addEventListener("keydown", onKeyDown, false);
@@ -59,8 +65,13 @@
             var keyA = false;
             var keyS = false;
             var keyD = false;
+            init();
+            startGame();
             
-            //funcion para la animacion
+
+            //*****Para obtener el keycode de las teclas
+            //AgregarEventeclado();
+
             function drawStuff() {
             window.requestAnimationFrame(drawStuff);
             var canvas = document.getElementById("myCanvas");
@@ -74,7 +85,7 @@
             
               //var jeje = new Fondo1();
               //jeje.dibujar(ctx);  
-             
+            /* 
             var fondo1 = new Fondo1(0,0,canvas.width(),canvas.height());
             fondo1.dibujar(ctx);
 
@@ -83,11 +94,11 @@
             
             var robov1 = new RobotV1_1(tickX+canvas.width()*0.8, tickY+canvas.height()*0.55, canvas.width()*0.2, canvas.height()*0.25);
             robov1.dibujar(ctx);
-            var ar1 = new ArmaEstandarEnemigo(canvas.width()*0.1+350,canvas.height()*0.1+120,canvas.width()*0.2,canvas.height()*0.25);
+            var ar1 = new ArmaEstandarEnemigo(canvas.width()*0.31,canvas.height()*0.28,canvas.width()*0.2,canvas.height()*0.25);
             ar1.dibujar(ctx);
-            var ar = new ArmaEstandar(tickX+canvas.width()*0.1+999,tickY+canvas.height()*0.1+342,canvas.width()*0.06,canvas.height()*0.12);
+            var ar = new ArmaEstandar(tickX+canvas.width()*0.1,tickY+canvas.height()*0.1+342,canvas.width()*0.06,canvas.height()*0.12);
             ar.dibujar(ctx);
-            
+            */
             if (keyD == true) {
              tickX += 10;
             }
@@ -118,7 +129,12 @@
             <!-- Insert fallback content here -->
         </canvas>
         <div style="display:none;">
-            <img id="imgFondo1" src="img2.jpg" />
+            <img id="imgFondo1" src="img2.jpg"/>
+            <img id="imgFondo2" src="imgCanvas.jpg"/>
+            <img id="imgFondo3" src="imgCanvas2.jpg"/>
+            <img id="imgFondo4" src="imgCanvas3.jpg"/>
+            <img id="imgFondo5" src="imgCanvas4.jpg"/>
+            <img id="imgFondo6" src="imgCanvas9.jpg"/>
         </div>
     </body>
 </html>

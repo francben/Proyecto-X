@@ -22,7 +22,7 @@ function relleno(context,w,h,radio,e,t,a,b,color1,color2){
 }
 
 function brillo(context,ui,x,y,color){
-	//context.save();
+	context.save();
 	context.shadowColor = '#'+color; 
 	context.shadowBlur = ui;
 	context.shadowOffsetX = x;
@@ -38,12 +38,12 @@ function BalaEnergia(x, y, w, h){
 	this.velocidad = 5;
 	this.dirX = -1;
 	this.dirY = 1;
-	var grilla = 8;
 	this.exploto = false;
 	this.dibujar = function(context){
-				brillo(context,3/grilla*this.w,0,0,'f00');
-	    		//relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,0,1,'f99','fff');
-				circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'000');
-				context.restore();
+		var grilla = 8;
+		brillo(context,3/grilla*this.w,0,0,'f00');
+	    //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,0,1,'f99','fff');
+		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'000');
+		context.restore();
 	};
 }

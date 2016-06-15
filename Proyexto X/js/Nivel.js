@@ -15,7 +15,7 @@ function Nivel(){
 
 		this.fondo.dibujar(ctx);
 		this.jugador.dibujar(ctx);
-		this.robotEnemigo.dibujar(ct);
+		this.robotEnemigo.dibujar(ctx);
 
 		//$.each(this.elementos, function(e){ e.dibujar(ctx); });
 		

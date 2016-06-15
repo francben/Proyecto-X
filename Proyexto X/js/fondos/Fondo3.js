@@ -1,6 +1,9 @@
-function Fondo4(){
-
-	this.idElementFondo = "#imgFondo4";
+function Fondo3(x,y,w,h){
+	this.x=x;
+	this.y=y;
+	this.w=w;
+	this.h=h;
+	this.idElementFondo = "#imgFondo3";
 
 	this.dibujar = function(ctx){
 

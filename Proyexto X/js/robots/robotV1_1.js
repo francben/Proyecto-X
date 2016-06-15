@@ -3,19 +3,20 @@ function RobotV1_1(x, y, w, h){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.velocidad = 5;
+	this.dirX = -1;
+	this.dirY = 1;
 
-	var wi = 8.0;
-	var he = 8.0;
-	var negro = "rgb(0, 0, 0)";
-	var gris1 = "rgb(100, 100, 100)";
-	var gris2 = "rgb(200, 200, 200)";
-
-
-	this.disparar = function(){
-		//
-	} 
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	};
 
 	this.dibujar = function(ctx){
+		var wi = 8.0;
+		var he = 8.0;
+		var negro = "rgb(0, 0, 0)";
+		var gris1 = "rgb(100, 100, 100)";
+		var gris2 = "rgb(200, 200, 200)";
 
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = negro;
@@ -442,7 +443,5 @@ function RobotV1_1(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
-
-
 	}
 }
