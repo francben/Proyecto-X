@@ -13,18 +13,16 @@ function Nivel(){
 
 	this.dibujar = function(ctx){
 
-		this.fondo.dibujar(ctx);
+		//this.fondo.dibujar(ctx);
 		this.jugador.dibujar(ctx);
 		this.robotEnemigo.dibujar(ctx);
-
-		//$.each(this.elementos, function(e){ e.dibujar(ctx); });
 		
 		for (var i = 0; i < this.elementos.length; i++) {
 			var element = this.elementos[i];
 			element.dibujar(ctx);
 		}
 
-		this.mostrarBarrasEnergia(ctx);
+		//this.mostrarBarrasEnergia(ctx);
 	}
 
 	// actualiza cada uno de los componentes del nivel

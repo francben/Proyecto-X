@@ -17,7 +17,6 @@ function RobotV1_1(x, y, w, h){
 		var negro = "rgb(0, 0, 0)";
 		var gris1 = "rgb(100, 100, 100)";
 		var gris2 = "rgb(200, 200, 200)";
-
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = negro;
 		ctx.stroke();
@@ -443,5 +442,6 @@ function RobotV1_1(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
+		ctx.restore();
 	}
 }

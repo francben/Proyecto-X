@@ -25,7 +25,7 @@ function init(){
     g_canvas.attr("height", $(window).get(0).innerHeight);
 
 	// diseño/configuracion de nivel 1
-	nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
+	//nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
 	nivel1.jugador = new RobotV1_1(g_x+g_canvas.width()*0.8,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.01,g_canvas.height()*0.1,g_canvas.width()*0.49,g_canvas.height()*0.8);
 
@@ -72,7 +72,7 @@ function init(){
 	g_niveles.push(nivel3);
 	g_niveles.push(nivel4);
 	g_niveles.push(nivel5);
-	g_niveles.push(nivel6);
+	//g_niveles.push(nivel6);
 	//
 	g_nivelActual = g_niveles[g_numNivelActual];
 
@@ -89,7 +89,7 @@ function startGame(){
 
 	//mostrarPantallaNivel();
 
-	// loop de animacion y dibujo
+	// loop de animacion y dibujoS
 	
 	animar();
 }
@@ -98,19 +98,19 @@ function animar(){
 	// borrar canvas
 	// dibujar - llamar metodo en nivel actual
 	
-		g_nivelActual.dibujar(g_context);
-	
+	g_nivelActual.dibujar(g_context);
+	console.log(g_nivelActual.dibujar());
 	// mover elementos - llamar metodo en nivel actual
-	for(var i=0; i<g_nivelActual.length; i++){
+	/*for (var i=0; i<g_nivelActual.length; i++){
 		var a = g_nivelActual[i]
 		a.dibujar(g_context);
 		console.log(a);
-	}
+	}*/
 	// detectar las colisiones
 
 	//preguntar si seguir animando
 	if(g_playing){
-		setTimeout(animar, 1000/55);		
+		setTimeout(animar, 50);		
 	}
 }
 
