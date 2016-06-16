@@ -8,7 +8,7 @@ var g_context = null;
 var g_playing = false;
 var g_numNivelActual = 0;
 var g_teclado= {};
-var g_x = 0;
+var g_x = 0.0;
 
 
 function init(){
@@ -23,10 +23,16 @@ function init(){
     g_context = g_canvas.get(0).getContext("2d");
     g_canvas.attr("width", $(window).get(0).innerWidth);
     g_canvas.attr("height", $(window).get(0).innerHeight);
+    g_x=g_x+g_canvas.width()*0.8;
+   
+		//var limite = g_canvas - jugador.x
+		//if(g_x>limite) g_x=limite;
+
+	
 
 	// diseño/configuracion de nivel 1
-	//nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
-	nivel1.jugador = new RobotV1_1(g_x+g_canvas.width()*0.8,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
+	nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
+	nivel1.jugador = new RobotV1_1(g_x,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.01,g_canvas.height()*0.1,g_canvas.width()*0.49,g_canvas.height()*0.8);
 
 	//nivel1.elementos.push(new Obtaculo(........));}
@@ -79,8 +85,8 @@ function init(){
 
 	//g_canvas = OBTNER CANVAS;
 	//g_context = g_canvas.getContext("2d");
+
 	AgregarEventeclado();
-	moverRobot();
 }
 
 function startGame(){
@@ -90,38 +96,38 @@ function startGame(){
 	//mostrarPantallaNivel();
 
 	// loop de animacion y dibujoS
-	
 	animar();
 }
 
 function animar(){
 	// borrar canvas
 	// dibujar - llamar metodo en nivel actual
-	
+	moverRobot();
 	g_nivelActual.dibujar(g_context);
-	console.log(g_nivelActual.dibujar());
 	// mover elementos - llamar metodo en nivel actual
-	/*for (var i=0; i<g_nivelActual.length; i++){
-		var a = g_nivelActual[i]
-		a.dibujar(g_context);
-		console.log(a);
-	}*/
+	var a = g_nivelActual;
+	a.x+=1;
 	// detectar las colisiones
-
 	//preguntar si seguir animando
+
 	if(g_playing){
-		setTimeout(animar, 50);		
+		setTimeout(animar, 50);
 	}
 }
 
 function moverRobot(){
 	if(g_teclado[37]){
 		g_x-=10;
+		console.log("izquierda");
+		console.log(g_x);
 	}
 	if(g_teclado[39]){
 		g_x+=10;
-		var limite = g_canvas.width() - g_canvas.width()*0.2
-		if(g_x>limite) g_x=limite;
+		console.log("derecha");
+		console.log(g_x);
+		//var limite = g_canvas - jugador.x
+		//if(g_x>limite) g_x=limite;
+
 	}
 }
 
@@ -149,7 +155,6 @@ function dispararArmaJugador(){
 function AgregarEventeclado(){
 	agregar(document,"keydown",function(e){
 		g_teclado[e.keyCode] = true;
-		console.log(e.keyCode);
 	});
 	agregar(document,"keyup",function(e){
 		g_teclado[e.keyCode] = false;

@@ -6,6 +6,7 @@ function RobotV1_1(x, y, w, h){
 	this.velocidad = 5;
 	this.dirX = -1;
 	this.dirY = 1;
+	this.energia=100;
 
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
@@ -17,6 +18,7 @@ function RobotV1_1(x, y, w, h){
 		var negro = "rgb(0, 0, 0)";
 		var gris1 = "rgb(100, 100, 100)";
 		var gris2 = "rgb(200, 200, 200)";
+		ctx.save();
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = negro;
 		ctx.stroke();

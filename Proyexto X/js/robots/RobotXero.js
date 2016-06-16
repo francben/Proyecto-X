@@ -6,6 +6,7 @@ function RobotXero(x, y, w, h){
 	this.velocidad = 5;
 	this.dirX = -1;
 	this.dirY = 1;
+	this.energia=100;
 	
 
 	// todos los robots deben tener esta propiedad
@@ -19,6 +20,7 @@ function RobotXero(x, y, w, h){
 
 	this.dibujar = function(ctx){
 		var med = 8.0;
+		ctx.save();
 		//la cara
 		//ctx.strokeStyle = "black";
 		//ctx.fillStyle = "black";
@@ -205,7 +207,7 @@ function RobotXero(x, y, w, h){
 		<button id="stopAnimation">Stop</button>
 		</div>*/
 
-
+		ctx.restore();
 
 	}
 }

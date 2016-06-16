@@ -49,7 +49,7 @@ function ArmaEstandarEnemigo(x, y, w, h){
 	};
 
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(0,0,0,0));
+		nivel.elementos.push(new BalaEnergia(0,0,50,50));
 	}
 
 

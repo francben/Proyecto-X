@@ -55,7 +55,7 @@ function ArmaEstandar(x, y, w, h){
 		ctx.restore();
 	};
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(0,0,0,0));
+		nivel.elementos.push(new BalaEnergia(0,0,50,50));
 	}
 
 }
