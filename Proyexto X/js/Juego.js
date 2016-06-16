@@ -6,9 +6,9 @@ var g_canvas = null;
 var g_context = null;
 
 var g_playing = false;
-var g_numNivelActual = 0;
+var g_numNivelActual = 1;
 var g_teclado= {};
-
+var g_pos = {g_x:0,g_y:0,g_w:0,g_h:0};
 
 function init(){
 	var nivel1 = new Nivel();
@@ -17,6 +17,7 @@ function init(){
 	var nivel4 = new Nivel();
 	var nivel5 = new Nivel();
 	var nivel6 = new Nivel();
+	
 
 	var g_canvas = $("#myCanvas"); 
     g_context = g_canvas.get(0).getContext("2d");
@@ -30,10 +31,10 @@ function init(){
 
 	// diseño/configuracion de nivel 1
 	nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
-	nivel1.jugador = new RobotV1_1(g_canvas.width()*0.8,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
+	nivel1.jugador = new RobotV1_1(g_pos.x=g_canvas.width()*0.8,g_pos.y=g_canvas.height()*0.59, g_pos.w=g_canvas.width()*0.2, g_pos.h=g_canvas.height()*0.25);
 	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.01,g_canvas.height()*0.1,g_canvas.width()*0.49,g_canvas.height()*0.8);
 
-	nivel1.elementos.push(new ArmaEstandar(g_canvas.width()*0.838,g_canvas.height()*0.645,g_canvas.width()*0.05, g_canvas.height()*0.13));
+	nivel1.elementos.push(new ArmaEstandar(g_pos.x*1.05,g_pos.y*1.09,g_canvas.width()*0.05, g_canvas.height()*0.13));
 	//nivel1.elementos.push(new Obtaculo(........));
 
 
@@ -49,7 +50,7 @@ function init(){
 	// diseño de nivel 3
 	nivel3.fondo = new Fondo3(0,0,g_canvas.width(),g_canvas.height());
 	nivel3.jugador = new RobotV1_3(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
-	nivel3.robotEnemigo = new Tiger(g_canvas.width()*0.2,g_canvas.height()*0.45,g_canvas.width()*0.1,g_canvas.height()*0.1);
+	nivel3.robotEnemigo = new Tiger(g_canvas.width()*0.2,g_canvas.height()*0.4,g_canvas.width()*0.07,g_canvas.height()*0.15);
 
 	//nivel3.elementos.push(new Obtaculo(........));}
 	//nivel3.elementos.push(new Obtaculo(........));
@@ -101,6 +102,7 @@ function animar(){
 	// borrar canvas
 	// dibujar - llamar metodo en nivel actual
 	moverRobot();
+	dispararArmaJugador(g_pos.x,g_pos.y,g_pos.w, g_pos.h);
 	g_nivelActual.dibujar(g_context);
 	// detectar las colisiones
 	//preguntar si seguir animando
@@ -118,10 +120,11 @@ function animar(){
 function moverRobot(){
 	if(g_teclado[37]){
 		g_nivelActual.jugador.x-=g_nivelActual.jugador.velocidad;
-		g_nivelActual.jugador.arma.x-=g_nivelActual.jugador.arma.velocidad;
+		g_pos.x-=g_nivelActual.jugador.velocidad;
 	}
 	if(g_teclado[39]){
 		g_nivelActual.jugador.x+=g_nivelActual.jugador.velocidad;
+		g_pos.x+=g_nivelActual.jugador.velocidad;
 		//var limite = g_canvas - jugador.x
 		//if(g_x>limite) g_x=limite;
 
@@ -145,10 +148,11 @@ function mostrarPantallaNivel(){
 
 
 // llamar esta funcion al presionar tecla para disparar arma del robot jugador
-function dispararArmaJugador(){
+function dispararArmaJugador(x,y,w,h){
 	if(g_teclado[76]){
-	g_nivelActual.jugador.disparar(g_nivelActual);
-}
+		//g_nivelActual.elementos.push(new BalaEnergia(x,y*0.87,w*0.1,h));
+		g_nivelActual.jugador.disparar(g_nivelActual);
+	}
 }
 
 function AgregarEventeclado(){
@@ -164,7 +168,3 @@ function AgregarEventeclado(){
 		elemen.addEventListener(nombre,funcion,false)
 	}
 }
-
-
-
-

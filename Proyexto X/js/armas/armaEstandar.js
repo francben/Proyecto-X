@@ -6,7 +6,7 @@ function ArmaEstandar(x, y, w, h){
 	this.tipoProyectil = BalaEnergia;
 	
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(0,0,50,50));
+		nivel.elementos.push(new BalaEnergia(x,y,w,h));
 	};
 
 	this.dibujar = function(ctx){
