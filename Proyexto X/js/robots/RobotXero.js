@@ -3,14 +3,14 @@ function RobotXero(x, y, w, h){
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.velocidad = 5;
+	this.velocidad = 8;
 	this.dirX = -1;
 	this.dirY = 1;
 	this.energia=100;
 	
 
 	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandarEnemigo();
+	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
 
 	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){
@@ -28,6 +28,8 @@ function RobotXero(x, y, w, h){
 		//Cabeza
 		ctx.fillStyle= "black";
 		ctx.fillRect (this.x + 3/med*this.w, this.y + 2/med*this.h, 1/med*this.w , 1/med*this.h);
+		ctx.strokeStyle= "white";
+		ctx.strokeRect (this.x + 3/med*this.w, this.y + 2/med*this.h, 1/med*this.w , 1/med*this.h);
 
 		//orejas
 		ctx.fillStyle = "white";
@@ -51,6 +53,8 @@ function RobotXero(x, y, w, h){
 		//cuello
 		ctx.fillStyle = "black";
 		ctx.fillRect(this.x + 3.5/med*this.w, this.y + 3/med*this.h, 0.2/med*this.w , 1/med*this.h);
+		ctx.strokeStyle = "white";
+		ctx.strokeRect(this.x + 3.5/med*this.w, this.y + 3/med*this.h, 0.2/med*this.w , 1/med*this.h);
 		
 		//pansa
 		ctx.fillStyle= "grey";

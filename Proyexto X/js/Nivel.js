@@ -8,7 +8,7 @@ function Nivel(){
 
 	// contiene cada componente a ser dibujado dentro de la escena
 	// incluye los proyectiles de las armas
-	//this.elementos = [];
+	this.elementos = [];
 
 
 	this.dibujar = function(ctx){
@@ -16,12 +16,12 @@ function Nivel(){
 		this.fondo.dibujar(ctx);
 		this.jugador.dibujar(ctx);
 		this.robotEnemigo.dibujar(ctx);
-		/*
+		
 		for (var i = 0; i < this.elementos.length; i++) {
 			var element = this.elementos[i];
 			element.dibujar(ctx);
 		}
-		*/
+		
 		//this.mostrarBarrasEnergia(ctx);
 	}
 

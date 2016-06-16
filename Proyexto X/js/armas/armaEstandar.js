@@ -4,6 +4,10 @@ function ArmaEstandar(x, y, w, h){
 	this.w = w;
 	this.h = h;
 	this.tipoProyectil = BalaEnergia;
+	
+	this.disparar = function(nivel){
+		nivel.elementos.push(new BalaEnergia(0,0,50,50));
+	};
 
 	this.dibujar = function(ctx){
 		var grilla=8;
@@ -53,9 +57,5 @@ function ArmaEstandar(x, y, w, h){
 		ctx.closePath();
 		ctx.fill();
 		ctx.restore();
-	};
-	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(0,0,50,50));
 	}
-
 }

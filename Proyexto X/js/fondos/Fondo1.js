@@ -10,7 +10,7 @@ function Fondo1(x,y,w,h){
 		
 		var f1 = $(this.idElementFondo)[0];
 		ctx.save();
-		ctx.drawImage(f1,0,0,w,h);
+		ctx.drawImage(f1,x,y,w,h);
 		ctx.restore();
 	}
 }

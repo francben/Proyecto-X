@@ -18,16 +18,27 @@ function arcOval(ctx, centerX, centerY, width, height, n, color) {
     ctx.stroke();
     ctx.closePath();
 }
-function robotRocket(x, y, w, h){
+function RobotRocket(x, y, w, h){
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.velocidad = 11;
+    this.dirX = -1;
+    this.dirY = 1;
+    this.energia=100;
+    // todos los robots deben tener esta propiedad
+    this.arma = new ArmaEstandarEnemigo(x,y,w,h);
 
-    var grilla = 8;
+    // todos los robots deben tener esta funcion
+    this.disparar = function(nivel){
+        this.arma.disparar(nivel);
+    };
+    
 
     this.dibujar = function(ctx){
-        
+        ctx.save();
+        var grilla = 8;
         ctx.lineWidth = 0.8;
         
         ctx.fillStyle = '';
@@ -340,5 +351,6 @@ function robotRocket(x, y, w, h){
         ctx.fillStyle = '#333333';
         ctx.fill();
         ctx.stroke();
+        ctx.restore();
     }
 }

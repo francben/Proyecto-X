@@ -3,15 +3,28 @@ function RobotV1_4(x, y, w, h){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.velocidad = 11;
+	this.dirX = -1;
+	this.dirY = 1;
+	this.energia=100;
+	
 
-	var wi = 8.0;
-	var he = 8.0;
-	var negro = "rgb(0, 0, 0)";
-	var gris1 = "rgb(100, 100, 100)";
-	var gris2 = "rgb(200, 200, 200)";
-	var blanco = "rgb(255, 255, 255)";
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+
+	// todos los robots deben tener esta funcion
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	};
+	
 	this.dibujar = function(ctx){
-
+		var wi = 8.0;
+		var he = 8.0;
+		var negro = "rgb(0, 0, 0)";
+		var gris1 = "rgb(100, 100, 100)";
+		var gris2 = "rgb(200, 200, 200)";
+		var blanco = "rgb(255, 255, 255)";
+		ctx.save();
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = negro;
 		ctx.stroke();
@@ -719,6 +732,6 @@ function RobotV1_4(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill(); 
-
+		ctx.restore();
 	}
 }

@@ -3,7 +3,20 @@ function Tiger(x, y, w, h){
 	this.y = y;//50
 	this.w = w;//100
 	this.h = h;//100
-	var med = 8;
+	this.velocidad = 10;
+	this.dirX = -1;
+	this.dirY = 1;
+	this.energia=100;
+	
+
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+
+	// todos los robots deben tener esta funcion
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	};
+	
 
 var Shape = function(x, y, width, height) {
 				this.x = x;
@@ -17,8 +30,8 @@ var Shape = function(x, y, width, height) {
 
 	this.dibujar = function(ctx){
 		
-
-
+		var med = 8;
+		ctx.save();
 		// redondito de la antena
 		ctx.fillStyle="black";
 		ctx.beginPath(); // Start the path
@@ -121,6 +134,6 @@ var Shape = function(x, y, width, height) {
 		//ctx.arc(170, 260, 40, 0, Math.PI*1, false);
 		ctx.closePath();
 		ctx.fill();
-		
+		ctx.restore();
 	}
 }

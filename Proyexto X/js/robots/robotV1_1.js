@@ -3,11 +3,12 @@ function RobotV1_1(x, y, w, h){
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.velocidad = 5;
+	this.velocidad = 8;
 	this.dirX = -1;
 	this.dirY = 1;
 	this.energia=100;
-
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandar(x,y,w,h);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};

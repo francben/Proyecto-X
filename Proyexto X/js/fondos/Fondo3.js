@@ -7,11 +7,10 @@ function Fondo3(x,y,w,h){
 
 	this.dibujar = function(ctx){
 
-		var f1 = $(this.idElementFondo)[0];
-	console.log("F1",f1);
-		ctx.drawImage(f1,0,0);
-
-			
-	
+	var f1 = $(this.idElementFondo)[0];
+		ctx.save();
+  		ctx.drawImage(f1, x, y, w, h);
+  		ctx.restore();
+		
 	}
 }

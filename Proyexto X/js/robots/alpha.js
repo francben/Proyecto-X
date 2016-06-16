@@ -52,12 +52,22 @@ function Alpha(x, y, w, h){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.velocidad = 12;
+	this.dirX = -1;
+	this.dirY = 1;
+	this.energia=100;
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
 
-	var grilla = 16;
-	var color = '';
+	// todos los robots deben tener esta funcion
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	};
+	
 
 	this.dibujar = function(ctx){
-
+		var grilla = 16;
+		var color = '';
 
 		//brazo izq
 		ctx.beginPath();

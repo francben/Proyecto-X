@@ -1,15 +1,27 @@
-function Viper(x, y, w, h){
+function Viper1(x, y, w, h){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.velocidad = 9;
+	this.dirX = -1;
+	this.dirY = 1;
+	this.energia=100;
+	
 
-	var grilla = 8;
+	// todos los robots deben tener esta propiedad
+	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+
+	// todos los robots deben tener esta funcion
+	this.disparar = function(nivel){
+		this.arma.disparar(nivel);
+	};
+	
 
 	this.dibujar = function(c){
 
-		
-
+		var grilla = 8;
+		c.save();
 		// dibujando la cara 
 		c.fillStyle= "black";
 		c.fillRect(this.x + 3.7/grilla * this.w ,this.y + 0.3/grilla * this.h ,3.8/grilla * this.w  , 3 /grilla * this.h);
@@ -110,7 +122,7 @@ function Viper(x, y, w, h){
 		c.closePath();
 		c.fill();
 
-
+		c.restore();
 
 	}
 
