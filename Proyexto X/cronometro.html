@@ -1,0 +1,32 @@
+
+<html>
+<head>
+<title>CRONOMETRO</title> 
+<script type="text/javascript">
+// 1000 = 1 segundo
+var mins = 59;
+var segs = 59;
+//var s;
+function minutos(){
+document.getElementById("segundos").innerHTML=mins;
+if(segs == 0){
+}
+mins--;
+}
+
+function segundos(){
+document.getElementById("segundos").innerHTML=segs;
+if(segs == 0){
+	
+}
+segs--;
+}
+
+var m = setInterval('minutos()', 1000);
+
+</script>
+</head>
+<body>
+<span id="minutos">4</span> : <span id="segundos">59</span> 
+</body>
+</html>
