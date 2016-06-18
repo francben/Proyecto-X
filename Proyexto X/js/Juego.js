@@ -6,9 +6,8 @@ var g_canvas = null;
 var g_context = null;
 
 var g_playing = false;
-var g_numNivelActual = 1;
+var g_numNivelActual = 0;
 var g_teclado= {};
-var g_pos = {g_x:0,g_y:0,g_w:0,g_h:0};
 
 function init(){
 	var nivel1 = new Nivel();
@@ -24,17 +23,15 @@ function init(){
     g_canvas.attr("width", $(window).get(0).innerWidth);
     g_canvas.attr("height", $(window).get(0).innerHeight);
    
-		//var limite = g_canvas - jugador.x
-		//if(g_x>limite) g_x=limite;
 
 	
 
 	// diseño/configuracion de nivel 1
 	nivel1.fondo = new Fondo1(0,0,g_canvas.width(),g_canvas.height());
-	nivel1.jugador = new RobotV1_1(g_pos.x=g_canvas.width()*0.8,g_pos.y=g_canvas.height()*0.59, g_pos.w=g_canvas.width()*0.2, g_pos.h=g_canvas.height()*0.25);
-	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.01,g_canvas.height()*0.1,g_canvas.width()*0.49,g_canvas.height()*0.8);
+	nivel1.jugador = new RobotV1_1(g_canvas.width()*0.8,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
+	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.02,g_canvas.height()*0.38,g_canvas.width()*0.4,g_canvas.height()*0.5);
 
-	nivel1.elementos.push(new ArmaEstandar(g_pos.x*1.05,g_pos.y*1.09,g_canvas.width()*0.05, g_canvas.height()*0.13));
+	//nivel1.elementos.push(new ArmaEstandar(g_pos.x*1.05,g_pos.y*1.09,g_canvas.width()*0.05, g_canvas.height()*0.13));
 	//nivel1.elementos.push(new Obtaculo(........));
 
 
@@ -101,10 +98,16 @@ function startGame(){
 function animar(){
 	// borrar canvas
 	// dibujar - llamar metodo en nivel actual
-	moverRobot();
-	dispararArmaJugador(g_pos.x,g_pos.y,g_pos.w, g_pos.h);
+	
+	
 	g_nivelActual.dibujar(g_context);
+	g_nivelActual.jugador.arma.dibujar(g_context);
+	g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+	moverRobot();
+	dispararArmaJugador();
+	moverDisparoArmaJugador();
 	// detectar las colisiones
+	//verificarContacto();
 	//preguntar si seguir animando
 
 	if (g_teclado[80]){
@@ -120,15 +123,28 @@ function animar(){
 function moverRobot(){
 	if(g_teclado[37]){
 		g_nivelActual.jugador.x-=g_nivelActual.jugador.velocidad;
-		g_pos.x-=g_nivelActual.jugador.velocidad;
+		g_nivelActual.jugador.arma.x-=g_nivelActual.jugador.velocidad;
+		g_nivelActual.jugador.arma.tipoProyectil.x-=g_nivelActual.jugador.velocidad;
 	}
 	if(g_teclado[39]){
 		g_nivelActual.jugador.x+=g_nivelActual.jugador.velocidad;
-		g_pos.x+=g_nivelActual.jugador.velocidad;
-		//var limite = g_canvas - jugador.x
-		//if(g_x>limite) g_x=limite;
+		g_nivelActual.jugador.arma.x+=g_nivelActual.jugador.velocidad;
+		g_nivelActual.jugador.arma.tipoProyectil.x+=g_nivelActual.jugador.velocidad;
+		var limite = 1000;
+		if(g_nivelActual.jugador.x>limite){
+			g_nivelActual.jugador.X=limite;
+			console.log("paso");
+		}	
+	}
+	if(g_teclado[88]){
+		if(!g_teclado.g_nivelActual){
+			disparo = g_nivelActual.jugador.disparar(g_nivelActual);
+			g_teclado.g_nivelActual =true;
+
+		}
 
 	}
+	else g_teclado.g_nivelActual = false;
 }
 
 
@@ -145,21 +161,59 @@ function mostrarPantallaNivel(){
 
 	// probablemente llamar a startGame()
 }
-
+function verificarContacto(){
+	for (var i in g_nivelActual.elementos) {
+		var disparo = g_nivelActual.elementos[i];
+			var enemigo = g_nivelActual.robotEnemigo.arma;
+			if (hit(disparo,enemigo)) {
+				console.log("hubo contacto");
+			}
+		
+	}
+}
+function hit(a,b){
+	var hit = false;
+	if (b.g_nivelActual.jugador.x + b.g_nivelActual.jugador.width >= a.g_nivelActual.jugador.x && b.g_nivelActual.jugador.x < a.g_nivelActual.jugador.x +a.g_nivelActual.jugador.width) {
+		if (b.y + b.height >= a.y && b.y < a.y + a.height) {
+			hit = true;
+			console.log(hit);
+		}
+	}
+	if (b.x <= a.x && b.x + b.width >= a.x + a.width) {
+		if (b.y <= a.y && b.y + b.height >= a.y + a.height) {
+			hit = true;
+		}
+	}
+	if (a.x <= b.x && a.x + a.width >= b.x + b.width) {
+		if (a.y <= b.y && a.y + a.height >= b.y + b.height) {
+			hit = true;
+		}
+	}
+	return hit;
+}
 
 // llamar esta funcion al presionar tecla para disparar arma del robot jugador
-function dispararArmaJugador(x,y,w,h){
-	if(g_teclado[76]){
-		//g_nivelActual.elementos.push(new BalaEnergia(x,y*0.87,w*0.1,h));
-		g_nivelActual.jugador.disparar(g_nivelActual);
+function dispararArmaJugador(){
+	for(var i in g_nivelActual.elementos){	
+		var disparo = g_nivelActual.elementos[i];
+		g_nivelActual.jugador.arma.tipoProyectil = new BalaEnergia(g_nivelActual.jugador.arma.x*1,g_nivelActual.jugador.arma.y*1.04,g_nivelActual.jugador.arma.w*0.4,g_nivelActual.jugador.arma.h*0.4);
 	}
+}
+function moverDisparoArmaJugador(){
+	for(var i in g_nivelActual.elementos){
+		var disparo = g_nivelActual.elementos[i];
+		disparo.x-=disparo.velocidad;
+	}
+	g_nivelActual.elementos = g_nivelActual.elementos.filter(function(disparo){
+		return disparo.x > 0;
+	});
 }
 
 function AgregarEventeclado(){
 	agregar(document,"keydown",function(e){
 		g_teclado[e.keyCode] = true;
 		//Muestra el numero de la tecla presionada
-		console.log(e.keyCode);
+		//console.log(e.keyCode);
 	});
 	agregar(document,"keyup",function(e){
 		g_teclado[e.keyCode] = false;

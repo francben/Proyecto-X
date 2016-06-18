@@ -10,7 +10,7 @@ function RobotXero(x, y, w, h){
 	
 
 	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+	this.arma = new ArmaEstandarEnemigo(x*11,y*1.63,w*0.35,h*0.35);
 
 	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){

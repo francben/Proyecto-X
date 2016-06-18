@@ -8,9 +8,9 @@ function RobotV1_1(x, y, w, h){
 	this.dirY = 1;
 	this.energia=100;
 	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandar(x,y,w,h);
-	
-	this.disparar = function(nivel){
+	this.arma = new ArmaEstandar(x*1.05,y*1.13,w*0.25,h*0.4);
+
+	this.disparar = function(nivel,x){
 		this.arma.disparar(nivel);
 	};
 
