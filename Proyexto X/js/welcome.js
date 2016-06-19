@@ -4,46 +4,55 @@ function Presentacion(x, y, w, h){
 	this.w = w;
 	this.h = h;
 
-	var wi = 8.0;
-	var he = 8.0;
+	var wi = 12.0;
+	var he = 12.0;
 	var negro = "rgb(0, 0, 0)";
 	var gris1 = "rgb(100, 100, 100)";
 	var gris2 = "rgb(200, 200, 200)";
 	var blanco = "rgb(255, 255, 255)";
 
-
-	var ox = this.x+4.65/wi*this.w;
-	var oy = this.y+1.1/he*this.h;
+	var ox = this.x+4.70/wi*this.w;
+	var oy = this.y+1.20/he*this.h;
 	var ow = 1.0/wi*this.w;
-	var oh = 0.3/he*this.h;
-	var inix = this.x+4.65/wi*this.w;
-	var iniy = this.y+1.15/he*this.h;
-	var finx = this.x+5.40/wi*this.w;
-	var posI = inix;
-	var posF = finx;
-	var vx = 1;
-	var posx = inix;
-	var posy = this.y+1.15/he*this.h;
+	var oh = 0.2/he*this.h;
+	var orw = 0.2/wi*this.w;
+	var orh = 0.2/he*this.h;	
+	var posI = this.x+4.70/wi*this.w;
+	var posF = this.x+5.45/wi*this.w;
+	var vx = 0.3;
+	var posx = this.x+4.70/wi*this.w;
+	var posy = this.y+1.20/he*this.h;
 	
 	function animate0() { 
    		ctx.clearRect(ox, oy, ow, oh);
-   		ctx.fillStyle = negro;
+   		ctx.fillStyle = 'black';
 		ctx.fillRect(ox, oy, ow, oh);
    		ctx.fillStyle = 'red';
-   		ctx.fillRect(posx, posy, 10, 9); 
+   		ctx.fillRect(posx, posy, orw, orh); 
    		posx += vx;
 	   	if (posx >= posF) {
-        	vx = -1;
+        	vx = -0.3;
     	}
     	if (posx <= posI) {
-        	vx = +1;
+        	vx = +0.3;
     	}
-        setTimeout(animate0, 30); 
+        setTimeout(animate0, 500); 
 	}; 
-
-
-	this.dibujar = function(ctx){
 	
+
+	this.dibujar3 = function(ctx){
+
+		//pared fondo laboratorio
+	/*	ctx.fillStyle = gris1;
+		ctx.beginPath(); 
+		ctx.moveTo(this.x+0.1/wi*this.w, this.y+0.4/he*this.h); 
+		ctx.lineTo(this.x+11.0/wi*this.w, this.y+0.4/he*this.h); 
+		ctx.lineTo(this.x+11.0/wi*this.w, this.y+8.0/he*this.h); 
+		ctx.lineTo(this.x+0.1/wi*this.w, this.y+8.0/he*this.h); 
+		ctx.closePath(); 
+		ctx.stroke();
+		ctx.fill();*/
+
 		ctx.lineWidth = 2;
 
 		//cabeza
@@ -56,9 +65,8 @@ function Presentacion(x, y, w, h){
 
 		//ojos
 		ctx.fillStyle = negro;
-		ctx.fillRect(ox, oy, ow, oh);
-		animate0();
-		
+		ctx.fillRect(this.x+4.70/wi*this.w, this.y+1.20/he*this.h, 1.0/wi*this.w, 0.2/he*this.h);
+	//	animate0();
 
 		//brazo 1
 		ctx.fillStyle = gris2;
@@ -524,6 +532,7 @@ function Presentacion(x, y, w, h){
 		ctx.closePath(); 
 		ctx.stroke(); 
 		ctx.fill();
+
 
 
 	}

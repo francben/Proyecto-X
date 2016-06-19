@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<title>Proyecto X</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    	<script type="text/javascript" src="js/welcome.js"></script>
+    	<script type="text/javascript" src="js/sellar.js"></script>
+      <script type="text/javascript" src="js/blinblin.js"></script>
+      <script type="text/javascript" src="js/btjugar.js"></script>
+      <script type="text/javascript" src="js/btsalir.js"></script>
+      <script type="text/javascript" src="js/btcredito.js"></script>
+      <script type="text/javascript" src="js/btayuda.js"></script>
+		<script type="text/javascript">
+  		$(function() {
+
+              var canvas = $("#myCanvas"); 
+              ctx = canvas.get(0).getContext("2d");
+              canvas.attr("width", $(window).get(0).innerWidth);
+              canvas.attr("height", $(window).get(0).innerHeight);
+
+              var ancho = canvas.width();
+              var alto = canvas.height();
+              var wid = ancho-ancho/1.75; 
+              var hei = alto-alto/7.25;
+
+              var x0 = ancho-ancho/1.2;
+              var y0 = alto-alto/1.3;
+              var x1 = ancho-ancho/1.2;
+              var y1 = alto-alto/1.9;
+              var x2 = ancho-ancho/2.4;
+              var y2 = alto-alto/1.3;
+              var x3 = ancho-ancho/2.4;
+              var y3 = alto-alto/1.9;
+              var x4 = ancho-ancho/1.4;
+              var y4 = alto-alto/1.25;
+              var x4 = ancho-ancho/1.4;
+              var y4 = alto-alto/1.25;
+              var x5 = ancho-ancho/1.4;
+              var y5 = alto-alto/1.05;
+
+              var blink = new Blinblin(x4, y4, wid, hei);
+
+
+              function animate3() { 
+                  ctx.clearRect(0, 0, ancho, alto); 
+                  var hola = new Presentacion(x4, y4, wid, hei);
+                  var logo = new Sello(x5, y5, wid, hei);
+                  logo.dibu0(ctx);
+                  var boton1 = new BtJugar(x0, y0, wid, hei);
+                  boton1.dibu1(ctx);
+                  var boton2 = new BtSalir(x1, y1, wid, hei);
+                  boton2.dibu2(ctx);
+                  var boton3 = new BtAyuda(x2, y2, wid, hei);
+                  boton3.dibu3(ctx);
+                  var boton4 = new BtCredito(x3, y3, wid, hei);
+                  boton4.dibu4(ctx);
+                  hola.dibujar3(ctx);
+                  setTimeout(animate3, 5000); 
+              };
+              animate3();
+
+
+  		});
+  		</script>
+	</head>
+  	<body>
+      <canvas id="myCanvas" >
+	 		    <style>#myCanvas { background-color: rgba(0, 0, 0, 0.75); }</style> 
+		  </canvas>	
+		  <div style="display:none;">  
+		  </div> 
+	</body>
+</HTML>
