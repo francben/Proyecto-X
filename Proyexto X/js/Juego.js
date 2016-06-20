@@ -107,7 +107,7 @@ function animar(){
 	dispararArmaJugador();
 	moverDisparoArmaJugador();
 	// detectar las colisiones
-	//verificarContacto();
+	verificarContacto();
 	//preguntar si seguir animando
 
 	if (g_teclado[80]){
@@ -164,33 +164,42 @@ function mostrarPantallaNivel(){
 function verificarContacto(){
 	for (var i in g_nivelActual.elementos) {
 		var disparo = g_nivelActual.elementos[i];
-			var enemigo = g_nivelActual.robotEnemigo.arma;
-			if (hit(disparo,enemigo)) {
-				console.log("hubo contacto");
+		var enemigo = g_nivelActual.robotEnemigo;
+		if(hit(disparo,enemigo)){
+			console.log("hubo contacto");
+			g_nivelActual.elementos = g_nivelActual.elementos.filter(function(disparo){
+				return false;	
+				});
+		}
+	}
+	function hit(){
+		var contacto = false;
+		if (enemigo.x + enemigo.w/1.5 >= disparo.x && enemigo.x < disparo.x +disparo.w) {
+			if (enemigo.y + enemigo.h >= disparo.y && enemigo.y < disparo.y + disparo.h) {
+			contacto = true;
 			}
-		
+		}
+		if (enemigo.x <= disparo.x && enemigo.x + enemigo.w/1.5 >= disparo.x + disparo.w) {
+			if (enemigo.y <= disparo.y && enemigo.y + enemigo.h >= disparo.y + disparo.h) {
+				contacto = true;
+			}
+		}
+		if (disparo.x <= enemigo.x && disparo.x + disparo.w >= enemigo.x + enemigo.w/1.5) {
+			if (disparo.y <= enemigo.y && disparo.y + disparo.h >= enemigo.y + enemigo.h) {
+				contacto = true;
+			}
+		}
+		return contacto; 	
+		/*if (contacto) {
+			console.log("hubo contacto");
+			 
+			
+		}*/
+			
 	}
+	
 }
-function hit(a,b){
-	var hit = false;
-	if (b.g_nivelActual.jugador.x + b.g_nivelActual.jugador.width >= a.g_nivelActual.jugador.x && b.g_nivelActual.jugador.x < a.g_nivelActual.jugador.x +a.g_nivelActual.jugador.width) {
-		if (b.y + b.height >= a.y && b.y < a.y + a.height) {
-			hit = true;
-			console.log(hit);
-		}
-	}
-	if (b.x <= a.x && b.x + b.width >= a.x + a.width) {
-		if (b.y <= a.y && b.y + b.height >= a.y + a.height) {
-			hit = true;
-		}
-	}
-	if (a.x <= b.x && a.x + a.width >= b.x + b.width) {
-		if (a.y <= b.y && a.y + a.height >= b.y + b.height) {
-			hit = true;
-		}
-	}
-	return hit;
-}
+
 
 // llamar esta funcion al presionar tecla para disparar arma del robot jugador
 function dispararArmaJugador(){
@@ -219,6 +228,10 @@ function AgregarEventeclado(){
 		g_teclado[e.keyCode] = false;
 	});
 	function agregar(elemen,nombre,funcion){
-		elemen.addEventListener(nombre,funcion,false)
+		if(elemen.addEventListener){
+			elemen.addEventListener(nombre,funcion,false);
+		}else if(elemen.attachEvent){
+			elemen.attachEvent(nombre,funcion);
+		}
 	}
 }

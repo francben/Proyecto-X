@@ -18,8 +18,8 @@ function Nivel(){
 		this.robotEnemigo.dibujar(ctx);
 		
 		for (var i = 0; i < this.elementos.length; i++) {
-			var element = this.elementos[i];
-			element.dibujar(ctx);
+			var elemento = this.elementos[i];
+			elemento.dibujar(ctx);
 		}
 		
 		//this.mostrarBarrasEnergia(ctx);

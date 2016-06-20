@@ -7,11 +7,13 @@ function BalaEnergia(x, y, w, h){
 	this.dirX = -1;
 	this.dirY = 1;
 	this.exploto = false;
+
+
 	this.dibujar = function(context){
 		var grilla = 8;
-		brillo(context,3/grilla*this.w,0,0,'f00');
-	    //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,0,1,'f99','fff');
-		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'000');
+		brillo(context, 8/grilla*this.w,0,0,'f00');
+	    //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,1,1,'f90','fff');
+		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'990');
 		context.restore();
 	}
 }

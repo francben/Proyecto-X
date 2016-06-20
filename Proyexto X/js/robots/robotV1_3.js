@@ -10,7 +10,7 @@ function RobotV1_3(x, y, w, h){
 	
 
 	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+	this.arma = new ArmaEstandar(x,y,w,h);
 
 	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){
