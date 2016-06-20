@@ -1,107 +1,154 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Fuga V1</title>
-		<meta charset="utf-8">
-		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-		<link href="canvas.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="js/Juguemos.js"></script>
-		<script type="text/javascript" src="js/alpha.js"></script>
+    <head>
+        <title>Fuga V1</title>
+        <meta charset="utf-8">
+        <link href="css/mensajes/main.css" rel="stylesheet" type="text/css">
+        <link href="css/canvas.css" rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo1.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo2.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo3.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo4.js"></script>
+        <script type="text/javascript" src="js/fondos/Fondo5.js"></script>
+        <script type="text/javascript" src="js/Juego.js"></script>
+        <script type="text/javascript" src="js/robots/RobotXero.js"></script>
+        <script type="text/javascript" src="js/robots/Viper1.js"></script>
+        <script type="text/javascript" src="js/robots/Tiger.js"></script>
+        <script type="text/javascript" src="js/robots/RobotRocket.js"></script>
+        <script type="text/javascript" src="js/robots/Alpha.js"></script>
+        <script type="text/javascript" src="js/robots/RobotV1_1.js"></script>
+        <script type="text/javascript" src="js/robots/RobotV1_2.js"></script>
+        <script type="text/javascript" src="js/robots/RobotV1_3.js"></script>
+        <script type="text/javascript" src="js/robots/RobotV1_4.js"></script>
+        <script type="text/javascript" src="js/robots/RobotV1_5.js"></script>
+        <script type="text/javascript" src="js/armas/ArmaEstandarEnemigo.js"></script>
+        <script type="text/javascript" src="js/armas/ArmaEstandar.js"></script>
+        <script type="text/javascript" src="js/municiones/BalaEnergia.js"></script>
+        <script type="text/javascript" src="js/Nivel.js"></script>
+
+        <script type="text/javascript" src="js/mensajes/jquery.js"></script>
+        <script type="text/javascript" src="js/mensajes/functions.js"></script>
+        <script type="text/javascript">
+            $(function() {
+            
+            window.addEventListener("keydown", onKeyDown, false);
+            window.addEventListener("keyup", onKeyUp, false);
+            
+            function onKeyDown(event) {
+            var keyCode = event.keyCode;
+            switch (keyCode) {
+             case 68: //d
+               keyD = true;
+               break;
+             case 83: //s
+               keyS = true;
+               break;
+             case 65: //a
+               keyA = true;
+               break;
+             case 87: //w
+               keyW = true;
+               break;
+            }
+            }
+            
+            function onKeyUp(event) {
+            var keyCode = event.keyCode;
+            switch (keyCode) {
+             case 68: //d
+               keyD = false;
+               break;
+             case 83: //s
+               keyS = false;
+               break;
+             case 65: //a
+               keyA = false;
+               break;
+             case 87: //w
+               keyW = false;
+               break;
+            }
+            }
+            
+            // variables necesarias
+            var tickX = 10;
+            var tickY = 10;
+            
+            var keyW = false;
+            var keyA = false;
+            var keyS = false;
+            var keyD = false;
+            
+            //funcion para la animacion
+            function drawStuff() {
+            window.requestAnimationFrame(drawStuff);
+            var canvas = document.getElementById("myCanvas");
+            var context = canvas.getContext("2d");
+            
+            context.clearRect(0, 0, 800, 800);
+            
+                  var canvas = $("#myCanvas"); 
+              context = canvas.get(0).getContext("2d");
+              canvas.attr("width", $(window).get(0).innerWidth);
+              canvas.attr("height", $(window).get(0).innerHeight);
+              context.fillRect(0, 0, canvas.width(), canvas.height());
+            
+            
+            var robov1 = new Alpha(tickX, tickY, 200, 200);
+            robov1.dibujar(context);
+            
+            if (keyD == true) {
+              $('#TeclaD').click();
+             tickX += 10;
+            }
+            if (keyS == true) {
+             tickY += 10;
+              $('#TeclaS').click();
+            }
+            if (keyA == true) {
+             tickX -= 10;
+              $('#TeclaA').click();
+            }
+            if (keyW == true) {
+             tickY-= 10;
+              $('#TeclaW').click();
+            }
+            }
+            window.requestAnimationFrame(drawStuff);
+            });
+            
+            
+            
+        </script>
+    </head>
+    <body>
+        <a id="TeclaD" href="#" class="btn btn-link hidden" data-notify-position="top-full-width" data-notify-type="success" data-notify-msg="<i class='fa fa-info-circle'></i> Presionaste la tecla D!" onclick="SEMICOLON.widget.notifications(this); return false;">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Presionar la tecla D
+        </a>
+
+        <a id="TeclaS" href="#" class="btn btn-link hidden" data-notify-position="top-full-width" data-notify-type="info" data-notify-msg="<i class='fa fa-info-circle'></i> Presionaste la tecla S!" onclick="SEMICOLON.widget.notifications(this); return false;">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Presionar la tecla S
+        </a>
 
 
-		<script type="text/javascript">
-			$(function() {
-
-window.addEventListener("keydown", onKeyDown, false);
-  window.addEventListener("keyup", onKeyUp, false);
-
-function onKeyDown(event) {
-  var keyCode = event.keyCode;
-  switch (keyCode) {
-    case 68: //d
-      keyD = true;
-      break;
-    case 83: //s
-      keyS = true;
-      break;
-    case 65: //a
-      keyA = true;
-      break;
-    case 87: //w
-      keyW = true;
-      break;
-  }
-}
-
-function onKeyUp(event) {
-  var keyCode = event.keyCode;
-  switch (keyCode) {
-    case 68: //d
-      keyD = false;
-      break;
-    case 83: //s
-      keyS = false;
-      break;
-    case 65: //a
-      keyA = false;
-      break;
-    case 87: //w
-      keyW = false;
-      break;
-  }
-}
-
-// variables necesarias
-var tickX = 10;
-var tickY = 10;
-
-var keyW = false;
-var keyA = false;
-var keyS = false;
-var keyD = false;
-
-//funcion para la animacion
-function drawStuff() {
-  window.requestAnimationFrame(drawStuff);
-  var canvas = document.getElementById("myCanvas");
-  var context = canvas.getContext("2d");
-
-  context.clearRect(0, 0, 800, 800);
-
-  				var canvas = $("#myCanvas"); 
-				context = canvas.get(0).getContext("2d");
-				canvas.attr("width", $(window).get(0).innerWidth);
-				canvas.attr("height", $(window).get(0).innerHeight);
-				context.fillRect(0, 0, canvas.width(), canvas.height());
+        <a id="TeclaA" href="#" class="btn btn-link hidden" data-notify-position="top-full-width" data-notify-type="error" data-notify-msg="<i class='fa fa-info-circle'></i> Presionaste la tecla A!" onclick="SEMICOLON.widget.notifications(this); return false;">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Presionar la tecla A
+        </a>
 
 
-  var robov1 = new Alpha(tickX, tickY, 200, 200);
-  robov1.dibujar(context);
-
-  if (keyD == true) {
-    tickX += 10;
-  }
-  if (keyS == true) {
-    tickY += 10;
-  }
-  if (keyA == true) {
-    tickX -= 10;
-  }
-  if (keyW == true) {
-    tickY-= 10;
-  }
-}
-window.requestAnimationFrame(drawStuff);
-});
+        <a id="TeclaW" href="#" class="btn btn-link hidden" data-notify-position="top-full-width" data-notify-type="warning" data-notify-msg="<i class='fa fa-info-circle'></i> Presionaste la tecla W!" onclick="SEMICOLON.widget.notifications(this); return false;">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Presionar la tecla W
+        </a>
 
 
-			
-		</script>
-	</head>
-<body>
-	<canvas id="myCanvas">
-	<!-- Insert fallback content here -->
-	</canvas>
-	
-</body>
+
+        <canvas id="myCanvas">
+            <!-- Insert fallback content here -->
+        </canvas>
+
+
+        
+    </body>
 </html>
