@@ -4,7 +4,7 @@
 		<title>Proyecto X</title>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    	<script type="text/javascript" src="js/welcome.js"></script>
+    	<script type="text/javascript" src="js/welcome.js"></script> 
     	<script type="text/javascript" src="js/sellar.js"></script>
       <script type="text/javascript" src="js/blinblin.js"></script>
       <script type="text/javascript" src="js/btjugar.js"></script>
@@ -41,34 +41,113 @@
 
               var blink = new Blinblin(x4, y4, wid, hei);
 
-
+    /*          function animbot1() {
+                  var boton1 = new BtJugar(x0, y0, wid, hei);
+                  boton1.dibu1(ctx);
+             }
+            function animbot2() {
+                  var boton2 = new BtSalir(x1, y1, wid, hei);
+                  boton2.dibu2(ctx);
+              }
+              function animbot3() {
+                  var boton3 = new BtAyuda(x2, y2, wid, hei);
+                  boton3.dibu3(ctx);
+              }
+              function animbot4() {
+                  var boton4 = new BtCredito(x3, y3, wid, hei);
+                  boton4.dibu4(ctx);
+              }
+              */
               function animate3() { 
                   ctx.clearRect(0, 0, ancho, alto); 
                   var hola = new Presentacion(x4, y4, wid, hei);
                   var logo = new Sello(x5, y5, wid, hei);
                   logo.dibu0(ctx);
-                  var boton1 = new BtJugar(x0, y0, wid, hei);
-                  boton1.dibu1(ctx);
-                  var boton2 = new BtSalir(x1, y1, wid, hei);
-                  boton2.dibu2(ctx);
-                  var boton3 = new BtAyuda(x2, y2, wid, hei);
-                  boton3.dibu3(ctx);
-                  var boton4 = new BtCredito(x3, y3, wid, hei);
-                  boton4.dibu4(ctx);
                   hola.dibujar3(ctx);
                   setTimeout(animate3, 5000); 
+              /*    animbot1();
+                  animbot2();
+                  animbot3();
+                  animbot4();  */
               };
               animate3();
 
 
+var $playButton = $('<input/>').attr({
+    type: 'button',
+    name: 'btn1',
+    value: 'Jugar',
+    id: 'playButton',
+    style: 'position:absolute; top:50px;left:100px; zindex:2'
+});
+
+boton1 = $playButton;
+$('body').append($playButton);
+$(document).on("click", "#playButton", function() {
+    window.location.href = "index.html";//iniciar el juego
+});
+
+var $playButton = $('<input/>').attr({
+    type: 'button',
+    name: 'btn1',
+    value: 'Jugar',
+    id: 'playButton',
+    style: 'position:absolute; top:50px;left:100px; zindex:2'
+});
+
+$('body').append($playButton);
+$(document).on("click", "#playButton", function() {
+    window.location.href = "index.html";//iniciar el juego
+});
+
+var $exitButton = $('<input/>').attr({
+    type: 'button',
+    name: 'btn2',
+    value: 'Salir',
+    id: 'exitButton',
+    style: 'position:absolute; top:100px;left:100px; zindex:2'
+});
+
+$('body').append($exitButton);
+$(document).on("click", "#exitButton", function() {
+    window.location.href = "index.html";//salir del juego
+});
+
+var $helpButton = $('<input/>').attr({
+    type: 'button',
+    name: 'btn3',
+    value: 'Ayuda',
+    id: 'helpButton',
+    style: 'position:absolute; top:50px;left:200px; zindex:2'
+});
+
+$('body').append($helpButton);
+$(document).on("click", "#helpButton", function() {
+    window.location.href = "index.html";//referir aqui la pagina de ayuda
+});
+
+var $creditButton = $('<input/>').attr({
+    type: 'button',
+    name: 'btn4',
+    value: 'Creditos',
+    id: 'creditButton',
+    style: 'position:absolute; top:100px;left:200px; zindex:2'
+});
+
+$('body').append($creditButton);
+$(document).on("click", "#creditButton", function() {
+    window.location.href = "index.html";//referir aqui la pagina de creditos
+});
   		});
   		</script>
 	</head>
   	<body>
-      <canvas id="myCanvas" >
+
+     <canvas id="myCanvas" >
 	 		    <style>#myCanvas { background-color: rgba(0, 0, 0, 0.75); }</style> 
 		  </canvas>	
 		  <div style="display:none;">  
-		  </div> 
+
+</table>
 	</body>
 </HTML>
