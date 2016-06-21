@@ -7,7 +7,6 @@ function Tiger(x, y, w, h, dx, dy){
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
 	this.energia=100;
-	this.vivo=true;
 	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);

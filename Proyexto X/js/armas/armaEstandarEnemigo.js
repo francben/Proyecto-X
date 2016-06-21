@@ -6,7 +6,6 @@ function ArmaEstandarEnemigo(x, y, w, h, dx, dy){
 	this.velocidad = 0;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
-	//this.tipoProyectil = BalaEnergia;
 	this.disparar = function(nivel){
 		nivel.elementos.push(new BalaEnergia(his.x, this.y, this.w, this.h));
 	};

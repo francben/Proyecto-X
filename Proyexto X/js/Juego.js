@@ -140,19 +140,13 @@ function eventosRobot(){
 	if(g_nivelActual.jugador.x<=0){
 		avanzarNivel();
 	}
-
-	
 }
-
-
 function avanzarNivel(){
 	g_numNivelActual++;
 	g_nivelActual = g_niveles[g_numNivelActual];
 
 	mostrarPantallaNivel();
 }
-
-
 function mostrarPantallaNivel(){
 	// se muestra el mensaje de nivel actual por jugar
 
