@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Obstáculos</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/fondos/Fondo1.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMadera1.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMadera2.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMetal1.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMetal2.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMetal3.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMetal4.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaMetal5.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaDanger1.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaDanger2.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaDanger3.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaDanger4.js"></script>
+    <script type="text/javascript" src="js/obstaculos/cajaDanger5.js"></script>
+
+
+
+    <script type="text/javascript">
+
+      $(function() {
+
+        
+      });
+
+      function init(){
+
+        console.log("cargando juego");
+
+        var canvas = document.getElementById("mycanvas");
+         context = canvas.getContext("2d");
+        //context = canvas.get(0).getContext("2d");
+        
+        f1 = new Fondo1(0,0,1400,650);
+        f1.dibujar(context);
+
+        caja1 = new cajaMadera1(200,250,150,150);
+        caja1.dibujar(context);
+
+        caja2 = new cajaMadera2(20,250,150,150);
+        caja2.dibujar(context);
+
+        caja3 = new cajaMetal1(400,250,150,150);
+        caja3.dibujar(context);
+
+        caja4 = new cajaMetal2(600,250,150,150);
+        caja4.dibujar(context);
+
+        caja5 = new cajaMetal3(800,250,150,150);
+        caja5.dibujar(context);
+
+        caja6 = new cajaMetal4(1000,250,150,150);
+        caja6.dibujar(context);
+
+        caja7 = new cajaMetal3(1200,250,150,150);
+        caja7.dibujar(context);
+
+        caja8 = new cajaDanger1(200,450,150,150);
+        caja8.dibujar(context);
+
+        caja9 = new cajaDanger2(20,450,150,150);
+        caja9.dibujar(context);
+
+        caja10 = new cajaDanger3(400,450,150,150);
+        caja10.dibujar(context);
+
+        caja11 = new cajaDanger4(600,450,150,150);
+        caja11.dibujar(context);
+
+        caja12 = new cajaDanger5(800,450,150,150);
+        caja12.dibujar(context);
+        
+        console.log("Juego cargado");
+      }
+
+
+    </script>
+  </head>
+<body onload="init()">
+  <canvas width="1400px" height="650px" id="mycanvas" style="border: 2px solid black; width:1400px; height:650px"></canvas>
+  <!-- Insert fallback content here -->
+  </canvas>
+
+<div style="display:none">
+  <img id="imgFondo1" src="img/img5.jpg" />
+  <img id="CajaMadera1" src="img/cajaMadera1.jpg" />
+  <img id="CajaMadera2" src="img/cajaMadera2.jpg" />
+  <img id="CajaMetal1" src="img/cajaMetal1.jpg" />
+  <img id="CajaMetal2" src="img/cajaMetal2.jpg" />
+  <img id="CajaMetal3" src="img/cajaMetal3.jpg" />
+  <img id="CajaMetal4" src="img/cajaMetal4.jpg" />
+  <img id="CajaMetal5" src="img/cajaMetal5.jpg" />
+  <img id="CajaDanger1" src="img/cajaDanger1.jpg" />
+  <img id="CajaDanger2" src="img/cajaDanger2.jpg" />
+  <img id="CajaDanger3" src="img/cajaDanger3.jpg" />
+  <img id="CajaDanger4" src="img/cajaDanger4.jpg" />
+  <img id="CajaDanger5" src="img/cajaDanger5.jpg" />
+</div>
+</body>
+</html>
