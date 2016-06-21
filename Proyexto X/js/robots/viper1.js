@@ -31,6 +31,23 @@ function Viper1(x, y, w, h, dx, dy){
 			this.arma.mover();
 		}	
 	};
+	this.barraDeVida = function(ctx){
+		var porcentajeEnergiaEnemigo = this.energia/100.0;
+		ctx.save();
+		ctx.strokeStyle="red";
+		ctx.lineWidth = 2;
+		ctx.strokeRect(this.x, this.y*0.1, this.w/1.42, this.h*0.07);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.x, this.y*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.069);
+		ctx.restore();
+	};
+
+	this.daños = function(daño){
+			this.energia -= daño;
+			if(this.energia<=0){
+				this.energia=0;
+			}
+	};
 
 	this.dibujar = function(c){
 
@@ -137,7 +154,5 @@ function Viper1(x, y, w, h, dx, dy){
 		c.fill();
 
 		c.restore();
-
 	}
-
 }

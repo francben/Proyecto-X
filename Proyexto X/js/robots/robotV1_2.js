@@ -44,6 +44,16 @@ function RobotV1_2(x, y, w, h, dx, dy){
 			this.arma.moverDerecha(this.velocidad);	
 		}
 	};
+	this.barraDeVida = function(ctx){
+		var porcentajeEnergiaJugador = this.energia/100.0;
+		ctx.save();
+		ctx.strokeStyle="#0f0";
+		ctx.lineWidth = 2;
+		ctx.strokeRect(this.x*1.1, this.y*0.9, this.w*0.5, this.h*0.14);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.x*1.1, this.y*0.9, this.w*porcentajeEnergiaJugador, this.h*0.14);
+		ctx.restore();
+	};	
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

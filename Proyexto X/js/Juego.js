@@ -77,10 +77,6 @@ function init(){
 	//g_niveles.push(nivel6);
 	//
 	g_nivelActual = g_niveles[g_numNivelActual];
-
-
-	//g_canvas = OBTNER CANVAS;
-	//g_context = g_canvas.getContext("2d");
 	
 	AgregarEventeclado();
 	
@@ -103,10 +99,14 @@ function animar(){
 	
 	g_nivelActual.dibujar(g_context);
 	g_nivelActual.jugador.arma.dibujar(g_context);
-	g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+	if(g_nivelActual.robotEnemigo.energia!=0){
+		g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+	}
 	eventosRobot();
 	// detectar las colisiones
 	verificarContacto();
+
+	
 	//preguntar si seguir animando
 	g_nivelActual.mover();
 	if (g_teclado[80]){
@@ -137,6 +137,11 @@ function eventosRobot(){
 
 	}
 	else g_teclado.g_nivelActual = false;
+	if(g_nivelActual.jugador.x<=0){
+		avanzarNivel();
+	}
+
+	
 }
 
 
@@ -159,29 +164,15 @@ function verificarContacto(){
 		var enemigo = g_nivelActual.robotEnemigo;
 		if(disparo.colisiona(enemigo)){
 			disparo.exploto=true;
-			console.log("colisiono");
-				
+			g_nivelActual.robotEnemigo.daños(g_nivelActual.jugador.arma.dañoArma);
 		}
 	}
 	g_nivelActual.elementos = g_nivelActual.elementos.filter(function(d){
 				return !d.exploto;
 			});
-	
+
 }
-
-
 // llamar esta funcion al presionar tecla para disparar arma del robot jugador
-function dispararArmaJugador(){
-	g_nivelActual.jugador.disparar();
-}
-
-function moverDisparoArmaJugador(){
-	for(var i in g_nivelActual.elementos){
-		var disparo = g_nivelActual.elementos[i];
-		disparo.x-=disparo.velocidad;
-	}
-}
-
 function AgregarEventeclado(){
 	agregar(document,"keydown",function(e){
 		g_teclado[e.keyCode] = true;
