@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>videos ayuda</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!--modal al cargar la pagina-->
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#miventana").modal('show')
+    });
+	</script>
+
+<style>
+a:link{
+    list-style: none;
+    text-decoration: none;
+    -webkit-text-fill-color: white;
+}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+
+	<div class="modal fade" id="miventana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                	<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                		<h5>hola</h5>-->
+                		<button type="button" class="botton" onclick="detener()" id="objetivo">
+                    
+                                <span class="glyphicon glyphicon-play">
+                                    <a href="#">OBJETIVO</a></span>
+			            </button>
+			            <button type="button" class="botton" onclick="andar()" id="pausa">
+                    
+                                <span class="glyphicon glyphicon-pause">
+                                    <a href="#">PAUSA</a></span>
+			            </button>
+
+
+			            <button type="button" class="botton" onclick="darle()" id="como_jugar">
+			              		 <span class="glyphicon glyphicon-play">
+			                        <a href="#">COMO JUGAR</a></span>
+			            </button>
+
+			            <button type="button" class="botton" onclick="stop()" id="quieto">
+                    
+                                <span class="glyphicon glyphicon-pause">
+                                    <a href="#">PAUSA</a></span>
+			            </button>
+
+			            <button type="button" class="botton">
+			            		<span class="glyphicon glyphicon-play">
+			                        <a href="index.html">JUGAR</a></span>
+			            </button>
+
+			            <button type="button" class="botton">
+			            		<span class="glyphicon glyphicon-hand-left">
+			                        <a href="ayuda_principal.html">VOLVER</a></span>
+			            </button>
+                	
+                </div>
+
+                <div class="modal-body">
+                	<video src="video/objetivo.mp4" width="570" id="tivo" preload controls></video>
+                	<video src="video/comoJugar.mp4" width="570" id="gar" preload controls></video>
+                </div>
+
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-primary" onclick="detener()" data-dismiss="modal">Cerrar</button>-->
+                    <h5>DERECHOS RESERVADOS</h5>
+            	</div>
+        	</div>
+    	</div>
+    </div>
+
+<script type="text/javascript">
+  //your code here
+var objetivo = $("#objetivo");
+var como_jugar = $("#como_jugar");
+var pausa= $("#pausa");
+var quieto = $("#quieto");
+pausa.hide();
+quieto.hide();
+playAnimation = true;
+			
+	objetivo.click(function() {
+		$(this).hide();
+		pausa.show();
+		playAnimation = true;
+	});
+
+
+	pausa.click(function() {
+		$(this).hide();
+		objetivo.show();
+		playAnimation = false;
+	});
+
+	como_jugar.click(function(){
+		$(this).hide();
+		quieto.show();
+		playAnimation=true;
+	});
+
+	quieto.click(function() {
+		$(this).hide();
+		como_jugar.show();
+		playAnimation = false;
+	});
+
+var video = document.getElementById("tivo");
+
+function detener() {
+    video.play();
+    //video.currentTime = 0; sirve para mandarle el stop osea vuelve a comenzar.
+};
+function andar() {
+     video.pause();
+};
+</script>
+
+<script>
+var video2 = document.getElementById("gar");
+
+function darle() {
+    video2.play();
+    //video.currentTime = 0; sirve para mandarle el stop osea vuelve a comenzar.
+};
+function stop() {
+        video2.pause();
+    };
+</script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
