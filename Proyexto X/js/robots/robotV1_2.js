@@ -7,7 +7,7 @@ function RobotV1_2(x, y, w, h, dx, dy){
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
 	this.energia=100;
-	this.arma = new ArmaEstandar(this.x,this.y,this.w,this.h);
+	this.arma = new ArmaEstandar(this.x*1.03,this.y*0.95,this.w*0.4,this.h*0.6);
 
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);

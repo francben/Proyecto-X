@@ -6,7 +6,7 @@ var g_canvas = null;
 var g_context = null;
 
 var g_playing = false;
-var g_numNivelActual = 1;
+var g_numNivelActual = 0;
 var g_teclado= {};
 
 function init(){
