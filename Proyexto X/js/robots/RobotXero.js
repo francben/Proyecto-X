@@ -1,27 +1,52 @@
-function RobotXero(x, y, w, h){
+function RobotXero(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
 	this.velocidad = 8;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.energia=100;
-	
-
-	// todos los robots deben tener esta propiedad
 	this.arma = new ArmaEstandarEnemigo(x*11,y*1.63,w*0.35,h*0.35);
-
-	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
+	this.mover = function(){
+		if(this.dirX == 0 && this.dirY == 0) return;
+		if(this.dirX == 1){
+			this.x += this.velocidad;
+			this.arma.mover();
+		}
+		else if(this.dirX == -1){
+			this.x -= this.velocidad;
+			this.arma.mover();
+		}
 
-
+		if(this.dirY == 1){
+			this.y += this.velocidad;
+			this.arma.mover();
+		}
+		else if(this.dirY == -1){
+			this.y -= this.velocidad;
+			this.arma.mover();
+		}	
+	};
+	this.moverIzquierda = function(){
+		this.dirX=-1;
+		this.x -= this.velocidad;
+		this.arma.moverIzquierda(this.velocidad);	
+	};
+	this.moverDerecha = function(limite){
+			this.dirX=1;
+			this.x += this.velocidad;
+			this.arma.moverDerecha(this.velocidad);	
+		
+	};
 	this.dibujar = function(ctx){
 		var med = 8.0;
 		ctx.save();
-		//la cara
+		ctx.strokeStyle= "red";
+		ctx.strokeRect(this.x,this.y,this.w,this.h)	;	//la cara
 		//ctx.strokeStyle = "black";
 		//ctx.fillStyle = "black";
 	

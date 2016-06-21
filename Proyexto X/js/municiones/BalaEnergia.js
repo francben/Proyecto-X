@@ -1,20 +1,44 @@
-function BalaEnergia(x, y, w, h){
+function BalaEnergia(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
 	this.velocidad = 15;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.exploto = false;
-
 
 	this.dibujar = function(context){
 		var grilla = 8;
+		
 		brillo(context, 8/grilla*this.w,0,0,'f00');
 	    //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,1,1,'f90','fff');
 		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'990');
 		context.restore();
+	};
+	this.colisiona = function(fig){
+
+				return !( (fig.y > this.y+this.h) || 
+				(fig.x > this.x+this.w) ||
+				(this.y > fig.y+fig.w) ||
+				(this.x > fig.x+fig.w) )
+	};
+	this.mover = function(){
+		if(this.dirX == 0 && this.dirY == 0) return;
+
+		if(this.dirX == 1){
+			this.x += this.velocidad;
+		}
+		else if(this.dirX == -1){
+			this.x -= this.velocidad;
+		}
+
+		if(this.dirY == 1){
+			this.y += this.velocidad;
+		}
+		else if(this.dirY == -1){
+			this.y -= this.velocidad;
+		}
 	}
 }
 

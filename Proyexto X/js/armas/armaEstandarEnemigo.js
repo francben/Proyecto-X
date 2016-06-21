@@ -1,13 +1,44 @@
-
-function ArmaEstandarEnemigo(x, y, w, h){
+function ArmaEstandarEnemigo(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.tipoProyectil = BalaEnergia;
-	// todas las armas deben tener esta propiedad
-	this.tipoProyectil = BalaEnergia;
-	
+	this.velocidad = 0;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
+	//this.tipoProyectil = BalaEnergia;
+	this.disparar = function(nivel){
+		nivel.elementos.push(new BalaEnergia(his.x, this.y, this.w, this.h));
+	};
+	this.mover = function(){
+		if(this.dirX == 0 && this.dirY == 0) return;
+
+		if(this.dirX == 1){
+			this.x += this.velocidad;
+		}
+		else if(this.dirX == -1){
+			this.x -= this.velocidad;
+		}
+
+		if(this.dirY == 1){
+			this.y += this.velocidad;
+		}
+		else if(this.dirY == -1){
+			this.y -= this.velocidad;
+		}
+			
+	};
+	this.moverIzquierda = function(velocidad){
+		this.velocidad=velocidad;
+		this.dirX=-1;
+		this.x -= this.velocidad;	
+	};
+	this.moverDerecha = function(velocidad){
+		this.velocidad=velocidad;
+		this.dirX=1;
+		this.x += this.velocidad;
+		
+	};
 	this.dibujar = function(ctx){
 		var grilla =8;
 		elipsef(ctx,this.x+3.8/grilla*this.w, this.y+4/grilla*this.h, 2.3/grilla*this.w,1.6/grilla*this.h ,  0, 4.8, 1.47, true,'fff');
@@ -19,9 +50,7 @@ function ArmaEstandarEnemigo(x, y, w, h){
 		linea(ctx,this.x+2/grilla*this.w,this.y+4.5/grilla*this.h,this.x+3/grilla*this.w,this.y+4.5/grilla*this.h,'f33');
 	};
 
-	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(0,0,50,50));
-	}
+
 }
 
 

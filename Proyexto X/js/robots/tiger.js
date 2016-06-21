@@ -1,32 +1,36 @@
-function Tiger(x, y, w, h){
+function Tiger(x, y, w, h, dx, dy){
 	this.x = x;//150
 	this.y = y;//50
 	this.w = w;//100
 	this.h = h;//100
 	this.velocidad = 10;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.energia=100;
-	
-
-	// todos los robots deben tener esta propiedad
 	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
-
-	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
-	
+	this.mover = function(){
+		if(dirX == 0 && dirY == 0) return;
+		if(dirX == 1){
+			this.x += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirX == -1){
+			this.x -= this.velocidad;
+			this.arma.mover();
+		}
 
-var Shape = function(x, y, width, height) {
-				this.x = x;
-				this.y = y;
-				this.width = width;
-				this.height = height;
-				};
-
-	
-
+		if(dirY == 1){
+			this.y += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirY == -1){
+			this.y -= this.velocidad;
+			this.arma.mover();
+		}	
+	};
 
 	this.dibujar = function(ctx){
 		

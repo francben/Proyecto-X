@@ -19,17 +19,18 @@ function Nivel(){
 		
 		for (var i = 0; i < this.elementos.length; i++) {
 			var elemento = this.elementos[i];
-			elemento.dibujar(ctx);
+			if(!elemento.exploto){
+				elemento.dibujar(ctx);
+			}
 		}
 		
-		//this.mostrarBarrasEnergia(ctx);
+		this.mostrarBarrasEnergia(ctx);
 	}
 
 	// actualiza cada uno de los componentes del nivel
-	/*this.mover = function(){
+	this.mover = function(){
 
-		//this.jugador.mover();
-		this.robotEnemigo.mover();
+		//this.robotEnemigo.mover();
 
 		//$.each(this.elementos, function(e){ e.dibujar(ctx); });
 		
@@ -37,13 +38,13 @@ function Nivel(){
 			var element = this.elementos[i];
 			element.mover();
 		}
-	}*/ 
+	}
 
 
 	this.mostrarBarrasEnergia = function(ctx){
 		// dibujar rect para la energia del jugador
 		var porcentajeEnergiaEnemigo = this.robotEnemigo.energia/100.0;
-		ctx.sabe();
+		ctx.save();
 		ctx.strokeRect(20, 20, 200, 30);
 		ctx.fillRect(20, 20, 200*porcentajeEnergiaEnemigo, 30);
 

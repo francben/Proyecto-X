@@ -6,7 +6,7 @@ var g_canvas = null;
 var g_context = null;
 
 var g_playing = false;
-var g_numNivelActual = 0;
+var g_numNivelActual = 1;
 var g_teclado= {};
 
 function init(){
@@ -18,7 +18,7 @@ function init(){
 	var nivel6 = new Nivel();
 	
 
-	var g_canvas = $("#myCanvas"); 
+	g_canvas = $("#myCanvas"); 
     g_context = g_canvas.get(0).getContext("2d");
     g_canvas.attr("width", $(window).get(0).innerWidth);
     g_canvas.attr("height", $(window).get(0).innerHeight);
@@ -83,6 +83,7 @@ function init(){
 	//g_context = g_canvas.getContext("2d");
 	
 	AgregarEventeclado();
+	
 }
 
 function startGame(){
@@ -103,13 +104,11 @@ function animar(){
 	g_nivelActual.dibujar(g_context);
 	g_nivelActual.jugador.arma.dibujar(g_context);
 	g_nivelActual.robotEnemigo.arma.dibujar(g_context);
-	moverRobot();
-	dispararArmaJugador();
-	moverDisparoArmaJugador();
+	eventosRobot();
 	// detectar las colisiones
 	verificarContacto();
 	//preguntar si seguir animando
-
+	g_nivelActual.mover();
 	if (g_teclado[80]){
 		g_playing=false;
 		console.log("EN PAUSA");
@@ -120,27 +119,20 @@ function animar(){
 
 }
 
-function moverRobot(){
+function eventosRobot(){
+	//mueve izquierda
 	if(g_teclado[37]){
-		g_nivelActual.jugador.x-=g_nivelActual.jugador.velocidad;
-		g_nivelActual.jugador.arma.x-=g_nivelActual.jugador.velocidad;
-		g_nivelActual.jugador.arma.tipoProyectil.x-=g_nivelActual.jugador.velocidad;
+		g_nivelActual.jugador.moverIzquierda();
 	}
+	//mueve derecha
 	if(g_teclado[39]){
-		g_nivelActual.jugador.x+=g_nivelActual.jugador.velocidad;
-		g_nivelActual.jugador.arma.x+=g_nivelActual.jugador.velocidad;
-		g_nivelActual.jugador.arma.tipoProyectil.x+=g_nivelActual.jugador.velocidad;
-		var limite = 1000;
-		if(g_nivelActual.jugador.x>limite){
-			g_nivelActual.jugador.X=limite;
-			console.log("paso");
-		}	
+		g_nivelActual.jugador.moverDerecha(g_canvas.width());
 	}
+	//dispara arma con tecla x
 	if(g_teclado[88]){
 		if(!g_teclado.g_nivelActual){
 			disparo = g_nivelActual.jugador.disparar(g_nivelActual);
 			g_teclado.g_nivelActual =true;
-
 		}
 
 	}
@@ -165,57 +157,29 @@ function verificarContacto(){
 	for (var i in g_nivelActual.elementos) {
 		var disparo = g_nivelActual.elementos[i];
 		var enemigo = g_nivelActual.robotEnemigo;
-		if(hit(disparo,enemigo)){
-			console.log("hubo contacto");
-			g_nivelActual.elementos = g_nivelActual.elementos.filter(function(disparo){
-				return false;	
-				});
+		if(disparo.colisiona(enemigo)){
+			disparo.exploto=true;
+			console.log("colisiono");
+				
 		}
 	}
-	function hit(){
-		var contacto = false;
-		if (enemigo.x + enemigo.w/1.5 >= disparo.x && enemigo.x < disparo.x +disparo.w) {
-			if (enemigo.y + enemigo.h >= disparo.y && enemigo.y < disparo.y + disparo.h) {
-			contacto = true;
-			}
-		}
-		if (enemigo.x <= disparo.x && enemigo.x + enemigo.w/1.5 >= disparo.x + disparo.w) {
-			if (enemigo.y <= disparo.y && enemigo.y + enemigo.h >= disparo.y + disparo.h) {
-				contacto = true;
-			}
-		}
-		if (disparo.x <= enemigo.x && disparo.x + disparo.w >= enemigo.x + enemigo.w/1.5) {
-			if (disparo.y <= enemigo.y && disparo.y + disparo.h >= enemigo.y + enemigo.h) {
-				contacto = true;
-			}
-		}
-		return contacto; 	
-		/*if (contacto) {
-			console.log("hubo contacto");
-			 
-			
-		}*/
-			
-	}
+	g_nivelActual.elementos = g_nivelActual.elementos.filter(function(d){
+				return !d.exploto;
+			});
 	
 }
 
 
 // llamar esta funcion al presionar tecla para disparar arma del robot jugador
 function dispararArmaJugador(){
-	for(var i in g_nivelActual.elementos){	
-		var disparo = g_nivelActual.elementos[i];
-		g_nivelActual.jugador.arma.tipoProyectil = new BalaEnergia(g_nivelActual.jugador.arma.x*1,g_nivelActual.jugador.arma.y*1.04,g_nivelActual.jugador.arma.w*0.4,g_nivelActual.jugador.arma.h*0.4);
-	}
+	g_nivelActual.jugador.disparar();
 }
+
 function moverDisparoArmaJugador(){
 	for(var i in g_nivelActual.elementos){
 		var disparo = g_nivelActual.elementos[i];
 		disparo.x-=disparo.velocidad;
 	}
-	g_nivelActual.elementos = g_nivelActual.elementos.filter(function(disparo){
-		return disparo.x > 0;
-	});
 }
 
 function AgregarEventeclado(){

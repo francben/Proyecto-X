@@ -1,13 +1,59 @@
 
-function RobotRocket(x, y, w, h){
+function RobotRocket(x, y, w, h, dx, dy){
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.velocidad = 15;
+    this.dirX = dx || -1;
+    this.dirY = dy || 0;
+    this.exploto = false;
+    this.arma = new ArmaEstandarEnemigo(x*1.05,y*1.13,w*0.25,h*0.4);
+    this.disparar = function(nivel){
+        this.arma.disparar(nivel);
+    };
+    this.dibujar = function(context){
+        var grilla = 8;
+        brillo(context, 8/grilla*this.w,0,0,'f00');
+        //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,1,1,'f90','fff');
+        circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'990');
+        context.restore();
+    };
+    this.mover = function(){
+        if(dirX == 0 && dirY == 0) return;
 
-    var grilla = 8;
+        if(dirX == 1){
+            this.x += this.velocidad;
+            this.arma.mover();
+        }
+        else if(dirX == -1){
+            this.x -= this.velocidad;
+            this.arma.mover();
+        }
 
+        if(dirY == 1){
+            this.y += this.velocidad;
+            this.arma.mover();
+        }
+        else if(dirY == -1){
+            this.y -= this.velocidad;
+            this.arma.mover();
+        }    
+    };
+    this.moverIzquierda = function(){
+        this.dirX=-1;
+        this.x -= this.velocidad;
+        this.arma.moverIzquierda(this.velocidad);   
+    };
+    this.moverDerecha = function(limite){
+        if((this.x + this.w) <= limite){
+            this.dirX=1;
+            this.x += this.velocidad;
+            this.arma.moverDerecha(this.velocidad); 
+        }
+    };
     this.dibujar = function(ctx){
+        var grilla = 8;
         
         ctx.lineWidth = 0.8;
         

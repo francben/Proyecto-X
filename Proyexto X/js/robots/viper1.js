@@ -1,22 +1,36 @@
-function Viper1(x, y, w, h){
+function Viper1(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
 	this.velocidad = 9;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.energia=100;
-	
-
-	// todos los robots deben tener esta propiedad
 	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
-
-	// todos los robots deben tener esta funcion
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
-	
+	this.mover = function(){
+		if(dirX == 0 && dirY == 0) return;
+		if(dirX == 1){
+			this.x += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirX == -1){
+			this.x -= this.velocidad;
+			this.arma.mover();
+		}
+
+		if(dirY == 1){
+			this.y += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirY == -1){
+			this.y -= this.velocidad;
+			this.arma.mover();
+		}	
+	};
 
 	this.dibujar = function(c){
 

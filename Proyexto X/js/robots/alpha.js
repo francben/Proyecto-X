@@ -1,70 +1,48 @@
-
-function roundedRect(ctx,x,y,width,height,radius,color){
-	ctx.beginPath();
-	ctx.fillStyle = '#'+color;
-	ctx.moveTo(x,y+radius);
-	ctx.lineTo(x,y+height-radius);
-	ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
-	ctx.lineTo(x+width-radius,y+height);
-	ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
-	ctx.lineTo(x+width,y+radius);
-	ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
-	ctx.lineTo(x+radius,y);
-	ctx.quadraticCurveTo(x,y,x,y+radius);
-	ctx.fill();
-	ctx.closePath();
-}
-function Triangulo(ctx,grilla,color){
-	ctx.beginPath();
-	ctx.fillStyle = '#'+color;
-	ctx.moveTo(this.x+2/grilla*this.w, this.y+9/grilla*this.h);
-	ctx.lineTo(this.x+12/grilla*this.w, this.y+9/grilla*this.h);
-	ctx.lineTo(this.x+9/grilla*this.w, this.y+12/grilla*this.h);
-	ctx.lineTo(this.x+2/grilla*this.w, this.y+9/grilla*this.h);
-	ctx.fill();
-	ctx.closePath();
-}
-function Circulo(ctx,x,y,w,h,radio,estado,color){
-	ctx.beginPath();
-	ctx.fillStyle = '#'+color;
-	ctx.arc(x,y,w,h, radio, estado);
-	ctx.fill();
-}
-
-function Rectangulo(ctx,x,y,width,height,color){
-	ctx.beginPath();
-	ctx.fillStyle = '#'+color;
-	ctx.fillRect(x,y,width,height);
-	ctx.closePath();
-}
-
-function Elipse(ctx,x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock,color){
-	ctx.beginPath();
-	ctx.fillStyle = '#'+color;
-	ctx.ellipse(x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock);
-	ctx.fill();
-	ctx.closePath();
-}
-
-
-function Alpha(x, y, w, h){
+function Alpha(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
 	this.velocidad = 12;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.energia=100;
-	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
-
-	// todos los robots deben tener esta funcion
+	this.arma = new ArmaEstandarEnemigo(this.x,this.y,this.w,this.h);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
-	
+	this.mover = function(){
+		if(dirX == 0 && dirY == 0) return;
+		if(dirX == 1){
+			this.x += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirX == -1){
+			this.x -= this.velocidad;
+			this.arma.mover();
+		}
 
+		if(dirY == 1){
+			this.y += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirY == -1){
+			this.y -= this.velocidad;
+			this.arma.mover();
+		}
+	};
+	this.moverIzquierda = function(){
+		this.dirX=-1;
+		this.x -= this.velocidad;
+		this.arma.moverIzquierda(this.velocidad);	
+	};
+	this.moverDerecha = function(limite){
+		if((this.x + this.w) <= limite){
+			this.dirX=1;
+			this.x += this.velocidad;
+			this.arma.moverDerecha(this.velocidad);	
+		}
+	};
 	this.dibujar = function(ctx){
 		var grilla = 16;
 		var color = '';
@@ -277,3 +255,51 @@ function Alpha(x, y, w, h){
 
 	}
 }
+
+function roundedRect(ctx,x,y,width,height,radius,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.moveTo(x,y+radius);
+	ctx.lineTo(x,y+height-radius);
+	ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
+	ctx.lineTo(x+width-radius,y+height);
+	ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
+	ctx.lineTo(x+width,y+radius);
+	ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
+	ctx.lineTo(x+radius,y);
+	ctx.quadraticCurveTo(x,y,x,y+radius);
+	ctx.fill();
+	ctx.closePath();
+}
+function Triangulo(ctx,grilla,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.moveTo(this.x+2/grilla*this.w, this.y+9/grilla*this.h);
+	ctx.lineTo(this.x+12/grilla*this.w, this.y+9/grilla*this.h);
+	ctx.lineTo(this.x+9/grilla*this.w, this.y+12/grilla*this.h);
+	ctx.lineTo(this.x+2/grilla*this.w, this.y+9/grilla*this.h);
+	ctx.fill();
+	ctx.closePath();
+}
+function Circulo(ctx,x,y,w,h,radio,estado,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.arc(x,y,w,h, radio, estado);
+	ctx.fill();
+}
+
+function Rectangulo(ctx,x,y,width,height,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.fillRect(x,y,width,height);
+	ctx.closePath();
+}
+
+function Elipse(ctx,x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock,color){
+	ctx.beginPath();
+	ctx.fillStyle = '#'+color;
+	ctx.ellipse(x,y,radiox,radioy,rotacion,iniangulo,finangulo,clock);
+	ctx.fill();
+	ctx.closePath();
+}
+

@@ -1,19 +1,49 @@
-function RobotV1_1(x, y, w, h){
+function RobotV1_1(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
 	this.velocidad = 8;
-	this.dirX = -1;
-	this.dirY = 1;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
 	this.energia=100;
-	// todos los robots deben tener esta propiedad
-	this.arma = new ArmaEstandar(x*1.05,y*1.13,w*0.25,h*0.4);
-
-	this.disparar = function(nivel,x){
+	this.arma = new ArmaEstandar(this.x*1.05,this.y*1.13,this.w*0.25,this.h*0.4);
+	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
+	this.mover = function(){
+		if(dirX == 0 && dirY == 0) return;
+		if(dirX == 1){
+			this.x += this.velocidad;
+			this.arma.moverDerecha();
+		}
+		else if(dirX == -1){
+			this.x -= this.velocidad;
+			this.arma.moverIzquierda();
+		}
 
+		if(dirY == 1){
+			this.y += this.velocidad;
+			this.arma.mover();
+		}
+		else if(dirY == -1){
+			this.y -= this.velocidad;
+			this.arma.mover();
+		}	
+	};
+
+	this.moverIzquierda = function(){
+		this.dirX=-1;
+		this.x -= this.velocidad;
+		this.arma.moverIzquierda(this.velocidad);	
+	};
+	this.moverDerecha = function(limite){
+		if((this.x + this.w) <= limite){
+			this.dirX=1;
+			this.x += this.velocidad;
+			this.arma.moverDerecha(this.velocidad);	
+		}
+	};
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

@@ -1,12 +1,44 @@
-function ArmaEstandar(x, y, w, h){
+function ArmaEstandar(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.tipoProyectil = BalaEnergia;
-	
+	this.velocidad = 0;
+	this.dirX = dx || -1;
+	this.dirY = dy || 0;
+	//this.tipoProyectil = BalaEnergia;
 	this.disparar = function(nivel){
-		nivel.elementos.push(this.tipoProyectil);
+		nivel.elementos.push(new BalaEnergia(this.x, this.y*1.04, this.w*0.4, this.h*0.4));
+	};
+
+	this.mover = function(){
+		if(this.dirX == 0 && this.dirY == 0) return;
+
+		if(this.dirX == 1){
+			this.x += this.velocidad;
+		}
+		else if(this.dirX == -1){
+			this.x -= this.velocidad;
+		}
+
+		if(this.dirY == 1){
+			this.y += this.velocidad;
+		}
+		else if(this.dirY == -1){
+			this.y -= this.velocidad;
+		}
+			
+	};
+	this.moverIzquierda = function(velocidad){
+		this.velocidad=velocidad;
+		this.dirX=-1;
+		this.x -= this.velocidad;	
+	};
+	this.moverDerecha = function(velocidad){
+		this.velocidad=velocidad;
+		this.dirX=1;
+		this.x += this.velocidad;
+		
 	};
 
 	this.dibujar = function(ctx){
