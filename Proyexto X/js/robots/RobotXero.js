@@ -3,6 +3,7 @@ function RobotXero(x, y, w, h, dx, dy){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.estado = "vivo";
 	this.velocidad = 8;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
@@ -41,6 +42,22 @@ function RobotXero(x, y, w, h, dx, dy){
 			this.x += this.velocidad;
 			this.arma.moverDerecha(this.velocidad);	
 		
+	};
+	this.barraDeVida = function(ctx){
+		var porcentajeEnergiaEnemigo = this.energia/100.0;
+		ctx.save();
+		ctx.strokeStyle="red";
+		ctx.lineWidth = 2;
+		ctx.strokeRect(this.x, this.y*0.1, this.w/1.42, this.h*0.07);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.x, this.y*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.069);
+		ctx.restore();
+	};
+	this.daños = function(daño){
+			this.energia -= daño;
+			if(this.energia<=0){
+				this.energia=0;
+			}
 	};
 	this.dibujar = function(ctx){
 		var med = 8.0;

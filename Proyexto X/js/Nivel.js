@@ -10,12 +10,13 @@ function Nivel(){
 	// incluye los proyectiles de las armas
 	this.elementos = [];
 
-
 	this.dibujar = function(ctx){
 
 		this.fondo.dibujar(ctx);
 		this.jugador.dibujar(ctx);
-		this.robotEnemigo.dibujar(ctx);
+		if(this.robotEnemigo.energia!=0){
+			this.robotEnemigo.dibujar(ctx);
+		}
 		
 		for (var i = 0; i < this.elementos.length; i++) {
 			var elemento = this.elementos[i];
@@ -43,16 +44,11 @@ function Nivel(){
 
 	this.mostrarBarrasEnergia = function(ctx){
 		// dibujar rect para la energia del jugador
-		var porcentajeEnergiaEnemigo = this.robotEnemigo.energia/100.0;
-		ctx.save();
-		ctx.strokeRect(20, 20, 200, 30);
-		ctx.fillRect(20, 20, 200*porcentajeEnergiaEnemigo, 30);
-
+		//var porcentajeEnergiaEnemigo = this.robotEnemigo.energia/100.0;
+		this.jugador.barraDeVida(ctx);
 
 		// dibujar rect para la energia del robot enemigo
-		var porcentajeEnergiaJugador = this.jugador.energia/100.0;
-		ctx.strokeRect(500, 20, 200, 30);
-		ctx.fillRect(500, 20, 200*porcentajeEnergiaJugador, 30);
-		ctx.restore();
+		
+		this.robotEnemigo.barraDeVida(ctx);
 	}
 }

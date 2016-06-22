@@ -1,0 +1,141 @@
+.tamanho{                   
+    margin: 10px;
+}
+
+.contenedor{
+	padding: 0px; 
+}
+
+.contenedor li{ 				/* anchura del contenedor del li */                    
+    width: 250px;
+    height: 60px;                                  /* altura del contenedor del li */
+    display: block;
+    background-color: yellow;                          /* espacio entre contenedores li */
+    border-right: 5px solid red;                    /* tamaño y color del borde li */
+    border-left: 5px solid blue;
+    border-radius: 9px;
+    margin-bottom: 2px; 		/*separacion entre cada li*/
+}
+/*
+.video{
+	width: 400px;
+    height: 120px;
+
+}
+*/
+
+.contenedor li:hover{
+	border-right:5px solid orange;
+	border-left:5px solid orange ;
+	background-color: pink; 
+	-webkit-transition: 0.5s;
+
+}
+.a{
+	background-color: transparent;
+}
+
+
+.body{
+		padding-top: 20px;
+		background-color: white
+	}
+
+.img{							/*tamaño de imagen*/
+		width: 50px;
+		height: 50px;
+		margin: 2px;	
+	}
+
+#img{
+	width: 60px;
+	height: 60px;
+}
+
+/*para centrar la imagen en el div margin: 15px auto;*/
+
+.larguito{						/*contenedor de ayuda*/
+		
+		height: 10px;
+		width: 225px;
+	}
+
+.centrado {						/*posicion de texto ayuda*/
+  	position: absolute;
+  	top: 50%; 
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	}
+
+ul.despliegue{					/*transparencia en el despliegue dropdown*/
+	background-color: transparent;
+	border-color: transparent;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .0);
+	}
+
+
+.botton{
+    padding: 0px;
+    height: 40px;
+    width: 282px;
+    background-color: rgb(33, 97, 140);
+    /*border-radius: 30%;
+    border: 2px solid #0016b0;*/
+    -webkit-transition: 0.5s;
+  }
+
+  .botton:hover{
+    border-radius: 10px 10px 10px 10px;
+    -webkit-transition: 0.5s;
+    background-color: rgb(189, 195, 199);
+    /*-webkit-box-shadow: 0px 0px 30px #ffffff; */
+  }
+
+  #botton2{
+    padding: 0px;
+    height: 20px;
+    width: 282px;
+    background-color: red;
+    /*border-radius: 30%;
+    border: 2px solid #0016b0;*/
+    -webkit-transition: 0.5s;
+
+  }
+  #botton2:hover{
+    /*opacity: 0.5;*/
+    height: 20px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-transition: 0.5s;
+  }
+
+  .tamanho{                   /*<span class="glyphicon glyphicon-phone tamanho"> Contactenos</span>*/
+    margin: 40px;
+    margin-top: 20px;
+    -webkit-text-fill-color: white;
+    list-style-position: center;
+
+}
+
+li:hover .tamanho{
+
+    /*font-size: 20px;*/
+    -webkit-transition: 1s;
+    
+
+}
+/*
+ul{
+    list-style: none;
+    position: absolute;  podría ser relative 
+    padding-top: 10px;
+    margin-top: 0px;
+}
+*/
+a:link{
+    list-style: none;
+    text-decoration: none;
+    -webkit-text-fill-color: white;
+}
+h5{
+    text-align: center;
+}
