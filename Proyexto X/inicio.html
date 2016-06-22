@@ -4,140 +4,129 @@
 		<title>Proyecto X</title>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    	<script type="text/javascript" src="js/welcome.js"></script> 
-    	<script type="text/javascript" src="js/sellar.js"></script>
-      <script type="text/javascript" src="js/blinblin.js"></script>
-      <script type="text/javascript" src="js/btjugar.js"></script>
-      <script type="text/javascript" src="js/btsalir.js"></script>
-      <script type="text/javascript" src="js/btcredito.js"></script>
-      <script type="text/javascript" src="js/btayuda.js"></script>
+    <script type="text/javascript" src="js/welcome.js"></script> 
+    <script type="text/javascript" src="js/sellar.js"></script>
+    <script type="text/javascript" src="js/blinblin.js"></script>
+    <script type="text/javascript" src="js/btjugar.js"></script>
+    <script type="text/javascript" src="js/btsalir.js"></script>
+    <script type="text/javascript" src="js/btcredito.js"></script>
+    <script type="text/javascript" src="js/btayuda.js"></script>
 		<script type="text/javascript">
-  		$(function() {
+  	   $(function() {
+          var canvas = $("#myCanvas"); 
+          ctx = canvas.get(0).getContext("2d");
+          canvas.attr("width", $(window).get(0).innerWidth);
+          canvas.attr("height", $(window).get(0).innerHeight);
 
-              var canvas = $("#myCanvas"); 
-              ctx = canvas.get(0).getContext("2d");
-              canvas.attr("width", $(window).get(0).innerWidth);
-              canvas.attr("height", $(window).get(0).innerHeight);
+          var ancho = canvas.width();
+          var alto = canvas.height();
+          var wid = ancho-ancho/1.75; 
+          var hei = alto-alto/7.25;
 
-              var ancho = canvas.width();
-              var alto = canvas.height();
-              var wid = ancho-ancho/1.75; 
-              var hei = alto-alto/7.25;
+          var bx1 = ancho-ancho/1.15;
+          var by1 = alto-alto/1.15;
+          var bx2 = ancho-ancho/2.4;
+          var by2 = alto-alto/1.3;
+          var bx3 = ancho-ancho/2.4;
+          var by3 = alto-alto/1.9;
+          var bx4 = ancho-ancho/2.4;
+          var by4 = alto-alto/1.9;      
 
-              var x0 = ancho-ancho/1.2;
-              var y0 = alto-alto/1.3;
-              var x1 = ancho-ancho/1.2;
-              var y1 = alto-alto/1.9;
-              var x2 = ancho-ancho/2.4;
-              var y2 = alto-alto/1.3;
-              var x3 = ancho-ancho/2.4;
-              var y3 = alto-alto/1.9;
-              var x4 = ancho-ancho/1.4;
-              var y4 = alto-alto/1.25;
-              var x4 = ancho-ancho/1.4;
-              var y4 = alto-alto/1.25;
-              var x5 = ancho-ancho/1.4;
-              var y5 = alto-alto/1.05;
+          var x1 = ancho-ancho/1.4;
+          var y1 = alto-alto/1.25;
+          var x2 = ancho-ancho/1.4;
+          var y2 = alto-alto/1.05;
 
-              var blink = new Blinblin(x4, y4, wid, hei);
+          var blink = new Blinblin(x1, y1, wid, hei);
 
-    /*          function animbot1() {
-                  var boton1 = new BtJugar(x0, y0, wid, hei);
-                  boton1.dibu1(ctx);
-             }
-            function animbot2() {
-                  var boton2 = new BtSalir(x1, y1, wid, hei);
-                  boton2.dibu2(ctx);
-              }
-              function animbot3() {
-                  var boton3 = new BtAyuda(x2, y2, wid, hei);
-                  boton3.dibu3(ctx);
-              }
-              function animbot4() {
-                  var boton4 = new BtCredito(x3, y3, wid, hei);
-                  boton4.dibu4(ctx);
-              }
-              */
-              function animate3() { 
-                  ctx.clearRect(0, 0, ancho, alto); 
-                  var hola = new Presentacion(x4, y4, wid, hei);
-                  var logo = new Sello(x5, y5, wid, hei);
-                  logo.dibu0(ctx);
-                  hola.dibujar3(ctx);
-                  setTimeout(animate3, 5000); 
-              /*    animbot1();
-                  animbot2();
-                  animbot3();
-                  animbot4();  */
-              };
-              animate3();
+          function close_window() {
+            if (confirm("Desea salir del Juego?")) {
+              window.close();
+            };
+          };
 
+          function animate3() { 
+            ctx.clearRect(0, 0, ancho, alto); 
+            var hola = new Presentacion(x1, y1, wid, hei);
+            var logo = new Sello(x2, y2, wid, hei);
+            logo.dibu0(ctx);
+            hola.dibujar3(ctx);
+            setTimeout(animate3, 5000); 
+          };
+          animate3();
 
-var $playButton = $('<input/>').attr({
-    type: 'button',
-    name: 'btn1',
-    value: 'Jugar',
-    id: 'playButton',
-    style: 'position:absolute; top:50px;left:100px; zindex:2'
-});
+          //boton jugar
+          var $playButton = $('<input/>').attr({
+              type: 'button', name: 'btn1', id: 'playButton', 
+              style: 'position:absolute; top:150px;left:10px; zindex:1; background-image: url(img/play.jpg); height:10em; width:17em;   display: block; margin: 0 auto'
+          });
+          $('body').append($playButton);
+          $(document).on("mouseover", "#playButton", function() {
+              window.playButton.style = 'position:absolute; top:150px;left:10px; zindex:1; background-image: url(img/play2.jpg); height:10em; width:17em';//boton seleccionado
+          });
+          $('body').append($playButton);
+          $(document).on("click", "#playButton", function() {
+              window.location.href = "index.html";//link al primer nivel del juego
+          });
+          $('body').append($playButton);
+          $(document).on("mouseout", "#playButton", function() {
+              window.playButton.style = 'position:absolute; top:150px;left:10px; zindex:1; background-image: url(img/play.jpg); height:10em; width:17em';//volver al boton original
+          });
 
-boton1 = $playButton;
-$('body').append($playButton);
-$(document).on("click", "#playButton", function() {
-    window.location.href = "index.html";//iniciar el juego
-});
+          //boton salir
+          var $exitButton = $('<input/>').attr({
+              type: 'button', name: 'btn2', id: 'exitButton',
+              style: 'position:absolute; top:300px;left:10px; zindex:1; background-image: url(img/exit.jpg); height:10em; width:17em'
+          });
+          $('body').append($exitButton);
+          $(document).on("mouseover", "#exitButton", function() {
+              window.exitButton.style = 'position:absolute; top:300px;left:10px; zindex:1; background-image: url(img/exit2.jpg); height:10em; width:17em';//boton seleccionado
+          });
+          $('body').append($exitButton);
+          $(document).on("click", "#exitButton", function() {
+              close_window();//Salir y cerrar ventana del juego
+          });
+          $('body').append($exitButton);
+          $(document).on("mouseout", "#exitButton", function() {
+              window.exitButton.style = 'position:absolute; top:300px;left:10px; zindex:1; background-image: url(img/exit.jpg); height:10em; width:17em';//volver al boton original
+          });
+          
+          //boton ayuda
+          var $helpButton = $('<input/>').attr({
+              type: 'button', name: 'btn3', id: 'helpButton',
+              style: 'position:absolute; top:150px;right:10px; zindex:1; background-image: url(img/help.jpg); height:10em; width:17em'
+          });
+          $('body').append($helpButton);
+          $(document).on("mouseover", "#helpButton", function() {
+              window.helpButton.style = 'position:absolute; top:150px;right:10px; zindex:1; background-image: url(img/help2.jpg); height:10em; width:17em';//boton seleccionado
+          });
+          $('body').append($helpButton);
+          $(document).on("click", "#helpButton", function() {
+              window.location.href = "index.html";//link a la pagina de ayuda
+          });
+          $('body').append($helpButton);
+          $(document).on("mouseout", "#helpButton", function() {
+              window.helpButton.style = 'position:absolute; top:150px;right:10px; zindex:1; background-image: url(img/help.jpg); height:10em; width:17em';//volver al boton original
+          });
 
-var $playButton = $('<input/>').attr({
-    type: 'button',
-    name: 'btn1',
-    value: 'Jugar',
-    id: 'playButton',
-    style: 'position:absolute; top:50px;left:100px; zindex:2'
-});
+          //boton creditos
+          var $creditButton = $('<input/>').attr({
+              type: 'button', name: 'btn4', id: 'creditButton',
+              style: 'position:absolute; top:300px;right:10px; zindex:1; background-image: url(img/credits.jpg); height:10em; width:17em'
+          });
+          $('body').append($creditButton);
+          $(document).on("mouseover", "#creditButton", function() {
+              window.creditButton.style = 'position:absolute; top:300px;right:10px; zindex:1; background-image: url(img/credit2.jpg); height:10em; width:17em';//boton seleccionado
+          });
+          $('body').append($creditButton);
+          $(document).on("click", "#creditButton", function() {
+              window.location.href = "index.html";//link a la pagina de creditos
+          });
+          $('body').append($creditButton);
+          $(document).on("mouseout", "#creditButton", function() {
+              window.creditButton.style = 'position:absolute; top:300px;right:10px; zindex:1; background-image: url(img/credits.jpg); height:10em; width:17em';//volver al boton original
+          });
 
-$('body').append($playButton);
-$(document).on("click", "#playButton", function() {
-    window.location.href = "index.html";//iniciar el juego
-});
-
-var $exitButton = $('<input/>').attr({
-    type: 'button',
-    name: 'btn2',
-    value: 'Salir',
-    id: 'exitButton',
-    style: 'position:absolute; top:100px;left:100px; zindex:2'
-});
-
-$('body').append($exitButton);
-$(document).on("click", "#exitButton", function() {
-    window.location.href = "index.html";//salir del juego
-});
-
-var $helpButton = $('<input/>').attr({
-    type: 'button',
-    name: 'btn3',
-    value: 'Ayuda',
-    id: 'helpButton',
-    style: 'position:absolute; top:50px;left:200px; zindex:2'
-});
-
-$('body').append($helpButton);
-$(document).on("click", "#helpButton", function() {
-    window.location.href = "index.html";//referir aqui la pagina de ayuda
-});
-
-var $creditButton = $('<input/>').attr({
-    type: 'button',
-    name: 'btn4',
-    value: 'Creditos',
-    id: 'creditButton',
-    style: 'position:absolute; top:100px;left:200px; zindex:2'
-});
-
-$('body').append($creditButton);
-$(document).on("click", "#creditButton", function() {
-    window.location.href = "index.html";//referir aqui la pagina de creditos
-});
   		});
   		</script>
 	</head>
