@@ -51,7 +51,6 @@ function RobotXero(x, y, w, h, dx, dy){
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaEnemigo = this.energia/100.0;
 		ctx.save();
-		
 		ctx.fillStyle="#822";
 		ctx.fillRect(this.w*0.103, this.h*0.1, this.w*0.7, this.h*0.05);
 		ctx.fillStyle="blue";

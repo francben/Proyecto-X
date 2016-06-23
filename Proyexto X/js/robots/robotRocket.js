@@ -3,16 +3,22 @@ function RobotRocket(x, y, w, h, dx, dy){
     this.y = y;
     this.w = w;
     this.h = h;
+    this.muerto=false;
     this.velocidad = 15;
     this.dirX = dx || -1;
     this.dirY = dy || 0;
-    this.estado = "vivo";
+    this.muerto=false;
     this.energia=150;
-    this.arma = new ArmaCohete(x*1.05,y*1.13,w*0.3,h*0.4);
+    this.cont = 0;
+    this.arma = new ArmaCohete(x*1.05,y*1.13,w*0.3,h*0.4,1);
     this.disparar = function(nivel){
         this.arma.disparar(nivel);
     };
-    this.mover = function(){
+   this.mover = function(){
+        this.cont++;
+        this.x+= Math.sin(this.cont * Math.PI/90)*5;
+        this.arma.mover(this.x);
+        /*
         if(this.dirX == 0 && this.dirY == 0) return;
         if(this.dirX == 1){
             this.x += this.velocidad;
@@ -30,7 +36,7 @@ function RobotRocket(x, y, w, h, dx, dy){
         else if(this.dirY == -1){
             this.y -= this.velocidad;
             this.arma.mover();
-        }    
+        }    */
     };
     this.moverIzquierda = function(){
         this.dirX=-1;
@@ -45,19 +51,22 @@ function RobotRocket(x, y, w, h, dx, dy){
         }
     };
     this.barraDeVida = function(ctx){
-        var porcentajeEnergiaEnemigo = this.energia/100.0;
+        var porcentajeEnergiaEnemigo = this.energia/215.0;
         ctx.save();
+        ctx.fillStyle="#822";
+        ctx.fillRect(this.w*0.103, this.h*0.1, this.w*0.7, this.h*0.05);
+        ctx.fillStyle="blue";
+        ctx.fillRect(this.w*0.1, this.h*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.05);
         ctx.strokeStyle="red";
         ctx.lineWidth = 2;
-        ctx.strokeRect(this.x, this.y*0.1, this.w/1.42, this.h*0.07);
-        ctx.fillStyle="blue";
-        ctx.fillRect(this.x, this.y*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.069);
+        ctx.strokeRect(this.w*0.1, this.h*0.1, this.w/1.42, this.h*0.05);
         ctx.restore();
     };
     this.daños = function(daño){
             this.energia -= daño;
             if(this.energia<=0){
                 this.energia=0;
+                this.muerto=true;
             }
     };
     this.dibujar = function(ctx){

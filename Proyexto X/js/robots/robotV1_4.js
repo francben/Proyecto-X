@@ -3,11 +3,12 @@ function RobotV1_4(x, y, w, h, dx, dy){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.muerto=false;
 	this.velocidad = 11;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
-	this.energia=100;
-	this.arma = new ArmaEstandar(this.x,this.y,this.w,this.h);
+	this.energia=182;
+	this.arma = new ArmaEstandarS(this.x,this.y*1.04,this.w*0.4,this.h*0.6);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
@@ -15,11 +16,11 @@ function RobotV1_4(x, y, w, h, dx, dy){
 		if(dirX == 0 && dirY == 0) return;
 		if(dirX == 1){
 			this.x += this.velocidad;
-			this.arma.mover();
+			this.arma.moverDerecha();
 		}
 		else if(dirX == -1){
 			this.x -= this.velocidad;
-			this.arma.mover();
+			this.arma.moverIzquierda();
 		}
 
 		if(dirY == 1){
@@ -46,13 +47,29 @@ function RobotV1_4(x, y, w, h, dx, dy){
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaJugador = this.energia/100.0;
 		ctx.save();
+		ctx.fillStyle="red";
+		ctx.fillRect(this.w*3.5, this.h*0.15, this.w*1.12, this.h*0.11);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.w*3.5, this.h*0.15, this.h*porcentajeEnergiaJugador, this.h*0.11);
 		ctx.strokeStyle="#0f0";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.x*1.1, this.y*0.9, this.w*0.5, this.h*0.14);
-		ctx.fillStyle="blue";
-		ctx.fillRect(this.x*1.1, this.y*0.9, this.w*porcentajeEnergiaJugador, this.h*0.14);
+		ctx.strokeRect(this.w*3.5, this.h*0.15, this.w*1.129, this.h*0.11);
 		ctx.restore();
 	};	
+	this.daños = function(dañoEnemigo){
+			this.energia -= dañoEnemigo;
+			if(this.energia<=0){
+				this.energia=0;
+				this.muerto=true;
+			}
+	};
+	this.colisiona = function(fig){
+
+				return !( (fig.y > this.y+this.h) || 
+				(fig.x > this.x+this.w) ||
+				(this.y > fig.y+fig.w) ||
+				(this.x > fig.x+fig.w) )
+	};
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

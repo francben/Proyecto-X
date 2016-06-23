@@ -64,6 +64,13 @@ function RobotV1_1(x, y, w, h, dx, dy){
 			this.muerto=true;
 		}
 	};
+	this.colisiona = function(fig){
+
+				return !( (fig.y > this.y+this.h) || 
+				(fig.x > this.x+this.w) ||
+				(this.y > fig.y+fig.w) ||
+				(this.x > fig.x+fig.w) )
+	};
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

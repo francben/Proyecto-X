@@ -16,12 +16,11 @@ function init(){
 	var nivel4 = new Nivel();
 	var nivel5 = new Nivel();
 	var nivel6 = new Nivel();
-	/*ion.sound({
-		sound:[
+	ion.sound({
+		sounds:[
 		{name:"pistolalaser",volumen: 0.9,preload:false},
-		{name:"level1",volumen: 0.2},
-		{name:"move1", volumen: 0.3}],
-		path:"sound/",preload:true,multiplayer:true
+		{name:"move1", volumen: 0.3,preload:false}],
+		path:"sounds/",preload:true,multiplayer:true
 	});
 	
 
@@ -71,17 +70,19 @@ function init(){
 	// diseño de nivel 5
 	nivel5.fondo = new Fondo5(0,0,g_canvas.width(),g_canvas.height());
 	nivel5.jugador = new RobotV1_5(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
-	nivel5.robotEnemigo = new Alpha(g_canvas.width()*0.1,g_canvas.height()*0.1,g_canvas.width()*0.3,g_canvas.height()*0.41);
+	nivel5.robotEnemigo = new Alpha(g_canvas.width()*0.05,g_canvas.height()*0.25,g_canvas.width()*0.3,g_canvas.height()*0.35);
 
 	//nivel5.disparos.push(new Obstaculo(........));}
 	//nivel5.disparos.push(new Obstaculo(........));
+	// diseño de nivel 6
+	nivel6.fondo = new Fondo6(0,0,g_canvas.width(),g_canvas.height());
 	
 	g_niveles.push(nivel1);
 	g_niveles.push(nivel2);
 	g_niveles.push(nivel3);
 	g_niveles.push(nivel4);
 	g_niveles.push(nivel5);
-	//g_niveles.push(nivel6);
+	g_niveles.push(nivel6);
 	//
 	g_nivelActual = g_niveles[g_numNivelActual];
 	
@@ -105,10 +106,12 @@ function animar(){
 	
 	
 	g_nivelActual.dibujar(g_context);
-	g_nivelActual.jugador.arma.dibujar(g_context);
-	if(g_nivelActual.robotEnemigo.energia!=0){
-		g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+	if(g_nivelActual.jugador){
+		g_nivelActual.jugador.arma.dibujar(g_context);
 	}
+	if(!g_nivelActual.robotEnemigo.muerto){
+		g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+	}else g_nivelActual.robotEnemigo.y = -500;
 	eventosRobot();
 	eventosRobotEnemigo();
 	// detectar las colisiones
@@ -142,21 +145,26 @@ function eventosRobot(){
 		if(!g_teclado.g_nivelActual){
 			disparo = g_nivelActual.jugador.disparar(g_nivelActual);
 			g_teclado.g_nivelActual =true;
+			ion.sound.play("pistolalaser");
 		}
 
 	}
 	else g_teclado.g_nivelActual = false;
-	if(g_nivelActual.jugador.x<=0){
-		avanzarNivel();
+	if(g_nivelActual.jugador){
+		if(g_nivelActual.jugador.x<=0){
+			avanzarNivel();
+		}
 	}
 }
 function eventosRobotEnemigo(){
 	//disparos enemigos
+	if(g_nivelActual.robotEnemigo){
 	if(!g_nivelActual.robotEnemigo.muerto){
 	 if(aleatorio(0,10)==4){
 	 	g_nivelActual.robotEnemigo.disparar(g_nivelActual);
 	 }
 	}
+}
 }
 function aleatorio(a,b){
 	var posi = b-a;
@@ -176,6 +184,15 @@ function mostrarPantallaNivel(){
 	// probablemente llamar a startGame()
 }
 function verificarContacto(){
+	if(g_nivelActual.robotEnemigo){
+		var jugador= g_nivelActual.jugador;
+		var enemigo = g_nivelActual.robotEnemigo;
+		if(jugador.colisiona(enemigo)){
+			jugador.x=enemigo.x+enemigo.w;
+			jugador.arma.x=jugador.x;
+			jugador.daños(g_nivelActual.robotEnemigo.arma.dañoArma);
+		}
+	}
 	for (var i in g_nivelActual.disparos) {
 		var disparo = g_nivelActual.disparos[i];
 		var enemigo = g_nivelActual.robotEnemigo;

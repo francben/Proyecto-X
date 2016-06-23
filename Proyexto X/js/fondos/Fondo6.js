@@ -1,4 +1,4 @@
-function Fondo6(){function Fondo2(x,y,w,h){
+function Fondo6(x,y,w,h){
 	this.x=x;
 	this.y=y;
 	this.w=w;

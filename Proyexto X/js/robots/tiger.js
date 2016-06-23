@@ -7,9 +7,9 @@ function Tiger(x, y, w, h, dx, dy){
 	this.velocidad = 10;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
-	this.energia=100;
+	this.energia=200;
 	this.cont = 0;
-	this.arma = new ArmaMetralleta(this.x*0.8,this.y*1.45,this.w*2.5,this.h*1.8);
+	this.arma = new ArmaMetralleta(this.x*0.4,this.y*1.35,this.w*2.5,this.h*2.5);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
@@ -42,12 +42,12 @@ function Tiger(x, y, w, h, dx, dy){
 		ctx.save();
 		
 		ctx.fillStyle="#822";
-		ctx.fillRect(this.w*0.103, this.h*0.1, this.w*0.7, this.h*0.05);
+		ctx.fillRect(this.w*0.7, this.h*0.2, this.w*2, this.h*0.2);
 		ctx.fillStyle="blue";
-		ctx.fillRect(this.w*0.1, this.h*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.05);
+		ctx.fillRect(this.w*0.7, this.h*0.2, this.w*porcentajeEnergiaEnemigo, this.h*0.2);
 		ctx.strokeStyle="red";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.w*0.1, this.h*0.1, this.w/1.42, this.h*0.05);
+		ctx.strokeRect(this.w*0.7, this.h*0.2, this.w*2, this.h*0.2);
 		ctx.restore();
 	};
 	this.daños = function(daño){

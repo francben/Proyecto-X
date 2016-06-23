@@ -53,6 +53,7 @@ function Viper1(x, y, w, h, dx, dy){
 			this.energia -= daño;
 			if(this.energia<=0){
 				this.energia=0;
+				this.muerto=true;
 			}
 	};
 

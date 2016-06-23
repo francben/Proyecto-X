@@ -8,22 +8,27 @@ function ArmaCohete(x, y, w, h, dx, dy){
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(his.x, this.y, this.w, this.h));
+		nivel.disparosEnemigos.push(new BalaMisil(this.x, this.y*0.85, this.w*1.8, this.h*3,1));
 	};
-	this.mover = function(){
+	this.mover = function(x){
+		this.x = x;
+		/*	
 		if(this.dirX == 0 && this.dirY == 0) return;
+
 		if(this.dirX == 1){
 			this.x += this.velocidad;
 		}
 		else if(this.dirX == -1){
 			this.x -= this.velocidad;
 		}
+
 		if(this.dirY == 1){
 			this.y += this.velocidad;
 		}
 		else if(this.dirY == -1){
 			this.y -= this.velocidad;
 		}
+			*/
 	};
 	this.moverIzquierda = function(velocidad){
 		this.velocidad=velocidad;
