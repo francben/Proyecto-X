@@ -3,17 +3,22 @@ function RobotXero(x, y, w, h, dx, dy){
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.estado = "vivo";
+	this.muerto=false;
 	this.velocidad = 8;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
-	this.energia=100;
-	this.arma = new ArmaEstandarEnemigo(x*11,y*1.63,w*0.35,h*0.35);
+	this.energia=70;
+	this.cont = 0;
+	this.arma = new ArmaEstandarEnemigo(this.x*11,this.y*1.63,this.w*0.35,this.h*0.35);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
 	this.mover = function(){
-		if(this.dirX == 0 && this.dirY == 0) return;
+		this.cont++;
+		this.x+= Math.sin(this.cont * Math.PI/90)*5;
+		this.arma.mover(this.x);
+		
+		/*if(this.dirX == 0 && this.dirY == 0) return;
 		if(this.dirX == 1){
 			this.x += this.velocidad;
 			this.arma.mover();
@@ -30,7 +35,7 @@ function RobotXero(x, y, w, h, dx, dy){
 		else if(this.dirY == -1){
 			this.y -= this.velocidad;
 			this.arma.mover();
-		}	
+		}	*/
 	};
 	this.moverIzquierda = function(){
 		this.dirX=-1;
@@ -46,24 +51,29 @@ function RobotXero(x, y, w, h, dx, dy){
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaEnemigo = this.energia/100.0;
 		ctx.save();
+		
+		ctx.fillStyle="#822";
+		ctx.fillRect(this.w*0.103, this.h*0.1, this.w*0.7, this.h*0.05);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.w*0.1, this.h*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.05);
 		ctx.strokeStyle="red";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.x, this.y*0.1, this.w/1.42, this.h*0.07);
-		ctx.fillStyle="blue";
-		ctx.fillRect(this.x, this.y*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.069);
+		ctx.strokeRect(this.w*0.1, this.h*0.1, this.w/1.42, this.h*0.05);
 		ctx.restore();
 	};
 	this.daños = function(daño){
 			this.energia -= daño;
 			if(this.energia<=0){
 				this.energia=0;
+				this.muerto=true;
 			}
 	};
 	this.dibujar = function(ctx){
 		var med = 8.0;
 		ctx.save();
-		ctx.strokeStyle= "red";
-		ctx.strokeRect(this.x,this.y,this.w,this.h)	;	//la cara
+		//ctx.strokeStyle= "red";
+		//ctx.strokeRect(this.x,this.y,this.w,this.h)	;	
+		//la cara
 		//ctx.strokeStyle = "black";
 		//ctx.fillStyle = "black";
 	

@@ -1,4 +1,4 @@
-function BalaEnergia(x, y, w, h, dx, dy){
+function BalaEnergiaEnemigo(x, y, w, h, dx, dy){
 	this.x = x;
 	this.y = y;
 	this.w = w;
@@ -12,7 +12,7 @@ function BalaEnergia(x, y, w, h, dx, dy){
 		
 		brillo(context, 8/grilla*this.w,0,0,'f00');
 	    //relleno(context,this.x+1/grilla*this.w, this.y+4.5/grilla*this.h, 1.5/grilla*this.w, 1/grilla*this.w, 0.5/grilla*this.w,1,1,'f90','fff');
-		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'990');
+		circulo(context, this.x+2/grilla*this.w, this.y+4.5/grilla*this.h, 3/grilla*this.w, 0, Math.PI*2, true,'f50');
 		context.restore();
 	};
 	this.colisiona = function(fig){

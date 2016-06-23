@@ -6,10 +6,13 @@ function ArmaEstandarEnemigo(x, y, w, h, dx, dy){
 	this.velocidad = 0;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
+	this.dañoArmaEnemigo = 6;
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(his.x, this.y, this.w, this.h));
+		nivel.disparosEnemigos.push(new BalaEnergiaEnemigo(this.x*1.22, this.y*0.99, this.w*0.35, this.h,1));
 	};
-	this.mover = function(){
+	this.mover = function(x){
+		this.x = x+1.4*this.w;
+		/*
 		if(this.dirX == 0 && this.dirY == 0) return;
 
 		if(this.dirX == 1){
@@ -24,7 +27,7 @@ function ArmaEstandarEnemigo(x, y, w, h, dx, dy){
 		}
 		else if(this.dirY == -1){
 			this.y -= this.velocidad;
-		}
+		}*/
 			
 	};
 	this.moverIzquierda = function(velocidad){

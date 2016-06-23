@@ -16,6 +16,13 @@ function init(){
 	var nivel4 = new Nivel();
 	var nivel5 = new Nivel();
 	var nivel6 = new Nivel();
+	ion.sound({
+		sound:[
+		{name:"pistolalaser",volumen: 0.9,preload:false},
+		{name:"level1",volumen: 0.2},
+		{name:"move1", volumen: 0.3}],
+		path:"sound/",preload:true,multiplayer:true
+	});
 	
 
 	g_canvas = $("#myCanvas"); 
@@ -31,8 +38,8 @@ function init(){
 	nivel1.jugador = new RobotV1_1(g_canvas.width()*0.8,g_canvas.height()*0.59, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel1.robotEnemigo = new RobotXero(g_canvas.width()*0.02,g_canvas.height()*0.38,g_canvas.width()*0.4,g_canvas.height()*0.5);
 
-	//nivel1.elementos.push(new ArmaEstandar(g_pos.x*1.05,g_pos.y*1.09,g_canvas.width()*0.05, g_canvas.height()*0.13));
-	//nivel1.elementos.push(new Obtaculo(........));
+	//nivel1.disparos.push(new ArmaEstandar(g_pos.x*1.05,g_pos.y*1.09,g_canvas.width()*0.05, g_canvas.height()*0.13));
+	//nivel1.disparos.push(new Obtaculo(........));
 
 
 	// diseño de nivel 2
@@ -40,8 +47,8 @@ function init(){
 	nivel2.jugador = new RobotV1_2(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel2.robotEnemigo = new Viper1(g_canvas.width()*0.1,g_canvas.height()*0.28,g_canvas.width()*0.2,g_canvas.height()*0.3);
 
-	//nivel2.elementos.push(new Obtaculo(........));}
-	//nivel2.elementos.push(new Obtaculo(........));
+	//nivel2.disparos.push(new Obtaculo(........));}
+	//nivel2.disparos.push(new Obtaculo(........));
 	
 
 	// diseño de nivel 3
@@ -49,25 +56,25 @@ function init(){
 	nivel3.jugador = new RobotV1_3(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel3.robotEnemigo = new Tiger(g_canvas.width()*0.2,g_canvas.height()*0.4,g_canvas.width()*0.07,g_canvas.height()*0.15);
 
-	//nivel3.elementos.push(new Obtaculo(........));}
-	//nivel3.elementos.push(new Obtaculo(........));
+	//nivel3.disparos.push(new Obtaculo(........));}
+	//nivel3.disparos.push(new Obtaculo(........));
 		
 
 	// diseño de nivel 4
 	nivel4.fondo = new Fondo4(0,0,g_canvas.width(),g_canvas.height());
 	nivel4.jugador = new RobotV1_4(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
-	nivel4.robotEnemigo = new RobotRocket(g_canvas.width()*0.1,g_canvas.height()*0.1,g_canvas.width()*0.3,g_canvas.height()*0.41);
+	nivel4.robotEnemigo = new RobotRocket(g_canvas.width()*0.1,g_canvas.height()*0.48,g_canvas.width()*0.4,g_canvas.height()*0.48);
 
-	//nivel4.elementos.push(new Obtaculo(........));}
-	//nivel4.elementos.push(new Obtaculo(........));
+	//nivel4.disparos.push(new Obtaculo(........));}
+	//nivel4.disparos.push(new Obtaculo(........));
 
 	// diseño de nivel 5
 	nivel5.fondo = new Fondo5(0,0,g_canvas.width(),g_canvas.height());
 	nivel5.jugador = new RobotV1_5(g_canvas.width()*0.8,g_canvas.height()*0.55, g_canvas.width()*0.2, g_canvas.height()*0.25);
 	nivel5.robotEnemigo = new Alpha(g_canvas.width()*0.1,g_canvas.height()*0.1,g_canvas.width()*0.3,g_canvas.height()*0.41);
 
-	//nivel5.elementos.push(new Obstaculo(........));}
-	//nivel5.elementos.push(new Obstaculo(........));
+	//nivel5.disparos.push(new Obstaculo(........));}
+	//nivel5.disparos.push(new Obstaculo(........));
 	
 	g_niveles.push(nivel1);
 	g_niveles.push(nivel2);
@@ -103,6 +110,7 @@ function animar(){
 		g_nivelActual.robotEnemigo.arma.dibujar(g_context);
 	}
 	eventosRobot();
+	eventosRobotEnemigo();
 	// detectar las colisiones
 	verificarContacto();
 
@@ -123,6 +131,7 @@ function eventosRobot(){
 	//mueve izquierda
 	if(g_teclado[37]){
 		g_nivelActual.jugador.moverIzquierda();
+		ion.sound.play("move1");
 	}
 	//mueve derecha
 	if(g_teclado[39]){
@@ -141,6 +150,20 @@ function eventosRobot(){
 		avanzarNivel();
 	}
 }
+function eventosRobotEnemigo(){
+	//disparos enemigos
+	if(!g_nivelActual.robotEnemigo.muerto){
+	 if(aleatorio(0,10)==4){
+	 	g_nivelActual.robotEnemigo.disparar(g_nivelActual);
+	 }
+	}
+}
+function aleatorio(a,b){
+	var posi = b-a;
+	var r = Math.random() * posi;
+	r = Math.floor(r);
+	return parseInt(a) + r;
+}
 function avanzarNivel(){
 	g_numNivelActual++;
 	g_nivelActual = g_niveles[g_numNivelActual];
@@ -153,16 +176,43 @@ function mostrarPantallaNivel(){
 	// probablemente llamar a startGame()
 }
 function verificarContacto(){
-	for (var i in g_nivelActual.elementos) {
-		var disparo = g_nivelActual.elementos[i];
+	for (var i in g_nivelActual.disparos) {
+		var disparo = g_nivelActual.disparos[i];
 		var enemigo = g_nivelActual.robotEnemigo;
 		if(disparo.colisiona(enemigo)){
 			disparo.exploto=true;
 			g_nivelActual.robotEnemigo.daños(g_nivelActual.jugador.arma.dañoArma);
 		}
+		
 	}
-	g_nivelActual.elementos = g_nivelActual.elementos.filter(function(d){
+	for (var i in g_nivelActual.disparosEnemigos){
+		var disparoEnemigo = g_nivelActual.disparosEnemigos[i];
+		for (j in g_nivelActual.disparos){
+			var disparo = g_nivelActual.disparos[j];
+		if(disparoEnemigo.colisiona(disparo)){
+			disparoEnemigo.exploto=true;
+			disparo.exploto=true;
+		}
+		}
+		
+	}
+	for (var i in g_nivelActual.disparosEnemigos) {
+		var disparoEnemigo = g_nivelActual.disparosEnemigos[i];
+		var robot = g_nivelActual.jugador;
+		if(disparoEnemigo.colisiona(robot)){
+			disparoEnemigo.exploto=true;
+			g_nivelActual.jugador.daños(g_nivelActual.robotEnemigo.arma.dañoArmaEnemigo);
+		}
+		
+	}
+	g_nivelActual.disparos = g_nivelActual.disparos.filter(function(d){
 				return !d.exploto;
+			});
+	g_nivelActual.disparosEnemigos = g_nivelActual.disparosEnemigos.filter(function(de){
+		return !de.exploto;
+	});
+	g_nivelActual.disparos = g_nivelActual.disparos.filter(function(a){
+				return a.x > 0;
 			});
 
 }

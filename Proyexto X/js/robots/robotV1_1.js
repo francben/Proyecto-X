@@ -3,11 +3,11 @@ function RobotV1_1(x, y, w, h, dx, dy){
 	this.y = y;
 	this.w = w;
 	this.h = h;
-	this.estado= "vivo";
+	this.muerto=false;
 	this.velocidad = 8;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
-	this.energia=50;
+	this.energia=70;
 	this.arma = new ArmaEstandar(this.x*1.05,this.y*1.13,this.w*0.25,this.h*0.4);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
@@ -48,13 +48,22 @@ function RobotV1_1(x, y, w, h, dx, dy){
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaJugador = this.energia/100.0;
 		ctx.save();
+		ctx.fillStyle="red";
+		ctx.fillRect(this.w*4, this.h*0.15, this.w*0.7, this.h*0.11);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.w*4, this.h*0.15, this.w*porcentajeEnergiaJugador, this.h*0.11);
 		ctx.strokeStyle="#0f0";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.x*1.1, this.y*0.9, this.w*0.5, this.h*0.14);
-		ctx.fillStyle="blue";
-		ctx.fillRect(this.x*1.1, this.y*0.9, this.w*porcentajeEnergiaJugador, this.h*0.14);
+		ctx.strokeRect(this.w*4, this.h*0.15, this.w*0.7, this.h*0.11);
 		ctx.restore();
 	};	
+	this.daños = function(dañoEnemigo){
+		this.energia -= dañoEnemigo;
+		if(this.energia<=0){
+			this.energia=0;
+			this.muerto=true;
+		}
+	};
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

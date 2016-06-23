@@ -3,6 +3,7 @@ function RobotV1_2(x, y, w, h, dx, dy){
 	this.y = y;
 	this.w = w;
 	this.h = h;
+	this.muerto=false;
 	this.velocidad = 9;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
@@ -43,17 +44,26 @@ function RobotV1_2(x, y, w, h, dx, dy){
 			this.x += this.velocidad;
 			this.arma.moverDerecha(this.velocidad);	
 		}
-	};
+	};	
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaJugador = this.energia/100.0;
 		ctx.save();
+		ctx.fillStyle="red";
+		ctx.fillRect(this.w*3.5, this.h*0.15, this.w, this.h*0.11);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.w*3.5, this.h*0.15, this.w*porcentajeEnergiaJugador, this.h*0.11);
 		ctx.strokeStyle="#0f0";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.x*1.1, this.y*0.9, this.w*0.5, this.h*0.14);
-		ctx.fillStyle="blue";
-		ctx.fillRect(this.x*1.1, this.y*0.9, this.w*porcentajeEnergiaJugador, this.h*0.14);
+		ctx.strokeRect(this.w*3.5, this.h*0.15, this.w, this.h*0.11);
 		ctx.restore();
-	};	
+	};		
+	this.daños = function(dañoEnemigo){
+		this.energia -= dañoEnemigo;
+		if(this.energia<=0){
+			this.energia=0;
+			this.muerto=true;
+		}
+	};
 	this.dibujar = function(ctx){
 		var wi = 8.0;
 		var he = 8.0;

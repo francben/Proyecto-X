@@ -8,7 +8,8 @@ function Nivel(){
 
 	// contiene cada componente a ser dibujado dentro de la escena
 	// incluye los proyectiles de las armas
-	this.elementos = [];
+	this.disparos = [];
+	this.disparosEnemigos  = [];
 
 	this.dibujar = function(ctx){
 
@@ -16,10 +17,16 @@ function Nivel(){
 		this.jugador.dibujar(ctx);
 		if(this.robotEnemigo.energia!=0){
 			this.robotEnemigo.dibujar(ctx);
-		}
+		}else this.robotEnemigo.y = -500;
 		
-		for (var i = 0; i < this.elementos.length; i++) {
-			var elemento = this.elementos[i];
+		for (var i = 0; i < this.disparos.length; i++) {
+			var elemento = this.disparos[i];
+			if(!elemento.exploto){
+				elemento.dibujar(ctx);
+			}
+		}
+		for (var i = 0; i < this.disparosEnemigos.length; i++) {
+			var elemento = this.disparosEnemigos[i];
 			if(!elemento.exploto){
 				elemento.dibujar(ctx);
 			}
@@ -31,12 +38,16 @@ function Nivel(){
 	// actualiza cada uno de los componentes del nivel
 	this.mover = function(){
 
-		//this.robotEnemigo.mover();
+		this.robotEnemigo.mover();
 
-		//$.each(this.elementos, function(e){ e.dibujar(ctx); });
+		//$.each(this.disparosEnemigos, function(e){ e.dibujar(ctx); });
 		
-		for (var i = 0; i < this.elementos.length; i++) {
-			var element = this.elementos[i];
+		for (var i = 0; i < this.disparos.length; i++) {
+			var element = this.disparos[i];
+			element.mover();
+		}
+		for (var i = 0; i < this.disparosEnemigos.length; i++) {
+			var element = this.disparosEnemigos[i];
 			element.mover();
 		}
 	}

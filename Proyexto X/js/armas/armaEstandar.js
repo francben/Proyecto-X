@@ -8,7 +8,7 @@ function ArmaEstandar(x, y, w, h, dx, dy){
 	this.dirY = dy || 0;
 	this.dañoArma = 5;
 	this.disparar = function(nivel){
-		nivel.elementos.push(new BalaEnergia(this.x, this.y*1.04, this.w*0.4, this.h*0.4));
+		nivel.disparos.push(new BalaEnergia(this.x, this.y*1.04, this.w*0.4, this.h*0.4));
 	};
 
 	this.mover = function(){

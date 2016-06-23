@@ -3,15 +3,21 @@ function Tiger(x, y, w, h, dx, dy){
 	this.y = y;//50
 	this.w = w;//100
 	this.h = h;//100
+	this.muerto=false;
 	this.velocidad = 10;
 	this.dirX = dx || -1;
 	this.dirY = dy || 0;
 	this.energia=100;
-	this.arma = new ArmaEstandarEnemigo(x,y,w,h);
+	this.cont = 0;
+	this.arma = new ArmaMetralleta(this.x*0.8,this.y*1.45,this.w*2.5,this.h*1.8);
 	this.disparar = function(nivel){
 		this.arma.disparar(nivel);
 	};
 	this.mover = function(){
+		this.cont++;
+		this.x+= Math.sin(this.cont * Math.PI/90)*5;
+		this.arma.mover(this.x);
+		/*
 		if(dirX == 0 && dirY == 0) return;
 		if(dirX == 1){
 			this.x += this.velocidad;
@@ -29,23 +35,26 @@ function Tiger(x, y, w, h, dx, dy){
 		else if(dirY == -1){
 			this.y -= this.velocidad;
 			this.arma.mover();
-		}	
+		}	*/
 	};
 	this.barraDeVida = function(ctx){
 		var porcentajeEnergiaEnemigo = this.energia/100.0;
 		ctx.save();
+		
+		ctx.fillStyle="#822";
+		ctx.fillRect(this.w*0.103, this.h*0.1, this.w*0.7, this.h*0.05);
+		ctx.fillStyle="blue";
+		ctx.fillRect(this.w*0.1, this.h*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.05);
 		ctx.strokeStyle="red";
 		ctx.lineWidth = 2;
-		ctx.strokeRect(this.x, this.y*0.1, this.w/1.42, this.h*0.07);
-		ctx.fillStyle="blue";
-		ctx.fillRect(this.x, this.y*0.1, this.w*porcentajeEnergiaEnemigo, this.h*0.069);
+		ctx.strokeRect(this.w*0.1, this.h*0.1, this.w/1.42, this.h*0.05);
 		ctx.restore();
 	};
 	this.daños = function(daño){
 			this.energia -= daño;
 			if(this.energia<=0){
 				this.energia=0;
-				this.vivo=false;
+				this.muerto=true;
 			}
 	};
 	this.dibujar = function(ctx){
