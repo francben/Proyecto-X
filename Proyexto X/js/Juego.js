@@ -16,7 +16,7 @@ function init(){
 	var nivel4 = new Nivel();
 	var nivel5 = new Nivel();
 	var nivel6 = new Nivel();
-	ion.sound({
+	/*ion.sound({
 		sound:[
 		{name:"pistolalaser",volumen: 0.9,preload:false},
 		{name:"level1",volumen: 0.2},
@@ -131,7 +131,7 @@ function eventosRobot(){
 	//mueve izquierda
 	if(g_teclado[37]){
 		g_nivelActual.jugador.moverIzquierda();
-		ion.sound.play("move1");
+		//ion.sound.play("move1");
 	}
 	//mueve derecha
 	if(g_teclado[39]){
