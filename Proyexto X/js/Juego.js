@@ -8,7 +8,7 @@ var g_context = null;
 var g_playing = false;
 var g_numNivelActual = 0;
 var g_teclado= {};
-
+var g_sonido;
 function init(){
 	var nivel1 = new Nivel();
 	var nivel2 = new Nivel();
@@ -16,11 +16,18 @@ function init(){
 	var nivel4 = new Nivel();
 	var nivel5 = new Nivel();
 	var nivel6 = new Nivel();
+
+	
+	g_sonido = document.createElement('audio');
+	document.body.appendChild(g_sonido);
+	g_sonido.setAttribute('src','sounds/laserSpace.wav');
 	ion.sound({
 		sounds:[
 		{name:"pistolalaser",volumen: 0.9,preload:false},
 		{name:"move1", volumen: 0.3,preload:false}],
 		path:"sounds/",preload:true,multiplayer:true
+
+
 	});
 	
 
@@ -87,7 +94,7 @@ function init(){
 	g_nivelActual = g_niveles[g_numNivelActual];
 	
 	AgregarEventeclado();
-	
+	reanudar();
 }
 
 function startGame(){
@@ -110,7 +117,7 @@ function animar(){
 		g_nivelActual.jugador.arma.dibujar(g_context);
 	}
 	if(!g_nivelActual.robotEnemigo.muerto){
-		g_nivelActual.robotEnemigo.arma.dibujar(g_context);
+		//g_nivelActual.robotEnemigo.arma.dibujar(g_context);
 	}else g_nivelActual.robotEnemigo.y = -500;
 	eventosRobot();
 	eventosRobotEnemigo();
@@ -122,8 +129,8 @@ function animar(){
 	g_nivelActual.mover();
 	if (g_teclado[80]){
 		g_playing=false;
-		console.log("EN PAUSA");
-	}
+		reanudar();
+	}else g_teclado.g_nivelActual = false;
 	if(g_playing){
 		setTimeout(animar, 30);
 	}
@@ -143,17 +150,26 @@ function eventosRobot(){
 	//dispara arma con tecla x
 	if(g_teclado[88]){
 		if(!g_teclado.g_nivelActual){
+			g_sonido.pause();
+			g_sonido.currentTime = 0;
+			g_sonido.play();
 			disparo = g_nivelActual.jugador.disparar(g_nivelActual);
 			g_teclado.g_nivelActual =true;
-			ion.sound.play("pistolalaser");
 		}
 
-	}
-	else g_teclado.g_nivelActual = false;
+	}else g_teclado.g_nivelActual = false;
+
 	if(g_nivelActual.jugador){
 		if(g_nivelActual.jugador.x<=0){
 			avanzarNivel();
 		}
+	}
+}
+function reanudar(){
+	if(g_teclado[13]){	
+		animar();
+		g_playing=true;
+	
 	}
 }
 function eventosRobotEnemigo(){

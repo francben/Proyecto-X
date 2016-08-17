@@ -13,7 +13,7 @@ function BalaMetralla(x, y, w, h, dx, dy){
 		ctx.fillStyle ="#955";
 		ctx.strokeStyle = "#f00";
 		ctx.beginPath();
-		ctx.ellipse(this.x+2/grilla*this.w, this.y+3/grilla*this.h, 0.7/grilla*this.w,0.1/grilla*this.h ,  0, 0, 2*Math.PI, true);
+		ctx.ellipse(this.x+6/grilla*this.w, this.y+3/grilla*this.h, 0.7/grilla*this.w,0.1/grilla*this.h ,  0, 0, 2*Math.PI, true);
 		ctx.closePath();
 		ctx.stroke();
 		ctx.fill();
